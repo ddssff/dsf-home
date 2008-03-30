@@ -1,0 +1,9 @@
+Suspend problem on IBM X40 notebooks:
+
+kernel panic in ndiswrapper_suspend_device
+
+How to disable suspend UI:
+
+Edit /etc/hibernate/hibernate.conf, change the "ProcSetting
+userui_program" line to "/usr/sbin/suspend2ui_text".
+

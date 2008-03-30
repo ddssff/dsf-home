@@ -1,0 +1,46 @@
+root (hd0,0)		(/dev/hda1)
+kernel /boot/vmlinuz-2.6.7 root=/dev/ide/host0/bus0/target0/lun0/part1
+initrd /boot/initrd-2.6.7.gz
+
+end_request: I/O error, dev fd0, sector 0
+Buffer I/O error on device fd0, logical block 0
+
+pciehp - can't be loaded
+
+-------------
+
+My home test machine has two IDE controllers, and I don't think BIOS
+drive zero shows up as hda.  Here are the partitions.
+
+hda: hda1 (linspire 4.9.168) hda2
+hdb: hdb1
+hde: hde1, hde3 (home), hde5, hde6
+
+In particular, it was seeing the 
+
+------------------
+
+How to set up grub after installing a new version:
+
+grub --batch --no-floppy
+root (hd0,0)
+setup (hd0)
+
+------------------
+
+How to boot an installed disk partition with a cdrom:
+
+Edit the linspirelive line:
+
+set initrd=(hd0,0)/boot/initrd-2.6.11.gz
+set kernel=(hd0,0)/boot/vmlinuz-2.6.11, remove INSTALL_TYPE=, init=, set root=/dev/sda1
+
+------
+
+(Try "boot hda1" in the advanced menu
+
+Problem?  It says
+
+-> mknod /dev/hda1init/bin/init b 3 1
+mknod /dev/hda1init/bin/init: No such file or directory
+VFS: Cannot open root device "hda1init=/bin/init" or unknown-block(0,0)

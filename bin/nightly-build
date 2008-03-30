@@ -1,0 +1,62 @@
+#!/bin/sh
+
+# This is a nightly build script to update the repository snapshots,
+# run the autobuilder, upload the results, and clean obsolete packages
+# out of the freespire repository.
+
+set -e
+set -x
+
+DO_SNAPSHOT=
+
+#AUTOBUILDER=/home/dsf/tla/tos@linspire.com--skipjack/autobuilder--sid--2.0/autobuilder
+
+do_snapshot () {
+    NAME=$1
+
+    # Get the name of the current snapshot we have successfully
+    # build all our packages for.  This may be older than $NEWEST
+    # the newest snapshot we have already downloaded.
+    TODAY=`date +%Y%m%d`
+
+    # If we haven't got a snapshot with today's date, get it now.
+    if [ "$DO_SNAPSHOT" -a ! -d /var/www/${NAME}-archives/${TODAY} ]; then
+	sudo -u upload /home/upload/bin/wayback ${NAME}; fi
+}
+
+do_update () {
+    NAME=$1
+    TARGET=$2	# e.g. skipjack-sid-all
+    NEWEST=$3
+    AUTOBUILDER=$4
+
+    CURRENT=`readlink /var/www/${NAME}-archives/current`
+
+    sudo ${AUTOBUILDER} --flush-pool
+    { sudo ${AUTOBUILDER} ${TARGET} &&
+      sudo ${AUTOBUILDER} --upload-all &&
+      ssh upload@sandbox.linspire.com newdist &&
+      if [ ${CURRENT} != ${DATE} ]; then
+	  sudo -u upload rm /var/www/${NAME}-archives/current &&
+	  sudo -u upload ln -s ${NEWEST} /var/www/${NAME}-archives/current;
+      fi; }
+}
+
+sudo -u upload /home/upload/bin/wayback freespire
+do_snapshot debian
+do_snapshot ubuntu
+# Find the latest available versions of the archives.  We need to
+# pass a --let for both archives whenever we run the autobuilder
+# because if there is a mismatch it will remove all the dists.
+DEBIAN=`ls -1 /var/www/debian-archives | grep '^2.......$' | tail -1`
+UBUNTU=`ls -1 /var/www/ubuntu-archives | grep '^2.......$' | tail -1`
+AUTOBUILDER="autobuilder --moderate --if-sources-changed=remove \
+ --let debian=debian-archives/$DEBIAN \
+ --let ubuntu=ubuntu-archives/$UBUNTU"
+do_update debian skipjack-sid-all $DEBIAN "${AUTOBUILDER}"
+do_update ubuntu skipjack-feisty-all $UBUNTU "${AUTOBUILDER}"
+
+# Remove all obsolete packages from the freespire archive indexes
+ssh upload@sandbox.linspire.com newdist --expire
+# Move all unreferenced files into the "removed" directory
+ssh upload@sandbox.linspire.com newdist --clean-up

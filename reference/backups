@@ -1,0 +1,24 @@
+Original	Host	Original Path			Backup Path
+--------	----	-------------
+audio		server	/mnt/sdb1/audio			(tbd)
+cdroms		server	/mnt/sdb1/copies/cdroms		(tbd)
+cvs		server	/mnt/sdb1/copies/cvs		(tbd)
+dropbox		server	/mnt/sdb1/copies/dropbox	(tbd)
+dsf home	server	/home/dsf			/mnt/sdb1/copies/dsf
+geneweb		server	/var/lib/geneweb		/mnt/sdb1/copies/geneweb
+ldt home	lydia	/root				(tbd)
+images		server	/home/images			/mnt/sdb1/copies/images
+mail		server	/var/mail			/mnt/sdb1/copies/mail
+mysql		server	/var/lib/mysql			/mnt/sdb1/copies/mysql
+tla		server	/home/{archives}		/mnt/sdb1/copies/tla
+uue		server	/mnt/sdb1/uue			(none)
+www		server	/var/www			/mnt/sdb1/copies/www
+
+
+---------------
+
+How to persuade customers of backup / directory merging software to trust you:
+
+1. Provide source for key components: "This is the heart of the directory
+   merging program.  It has been verified using formal code reviews with
+   xxx and yyy, blah blah."

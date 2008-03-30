@@ -1,0 +1,38 @@
+Dump and restore bugzilla database:
+
+% mysqldump --opt bugs -uuser -ppasswd > /root/bugzilla-backup.sql
+% scp /root/bugzilla-backup.sql dsf@foxthompson.net:
+% mysql bugs < bugzilla-backup.sql
+% /usr/share/bugzilla/lib/checksetup.pl
+
+------------
+
+Install and connect a mysql-server:
+
+% apt-get install mysql-server
+% /etc/init.d/mysql start
+% mysqladmin password lindows
+% mysql --user root mysql
+
+------------
+Mysql documentation:
+
+% apt-get install mysql-doc
+open file:///usr/share/doc/mysql-doc/index.html
+
+------------
+Create and use a database:
+
+mysql> create database taskzilla;
+mysql> use taskzilla;
+mysql> create table tasks (serial int primary key);
+mysql> alter table tasks add column (description blob);
+mysql> desk tasks;
+mysql> alter table tasks add column (description blob);
+
+------------
+
+Create a user root which can connect from localhost with password admin:
+
+grant all privileges on *.* to root@localhost
+ identified by 'admin' with grant option;

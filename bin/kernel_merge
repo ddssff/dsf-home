@@ -1,0 +1,73 @@
+#!/bin/sh -e
+
+# FIXME:
+#   We might make sure there are no local changes before we merge,
+#   and offer to undo them if there are.
+
+echo -n "Package name: "; read NAME
+
+ROOT=/home/dsf/tla
+ARCH=tos@lindows.com--2004
+
+echo "--------- $NAME-modules--los-debian--2.6.11 ---------"
+cd "$ROOT/$ARCH/$NAME-modules--los-debian--2.6.11"
+tla update
+tla star-merge --three-way "$ARCH/$NAME-modules--los-debian--2.6.10" || true
+tla changes -q || {
+  echo -n "conflicts resolved? "; read ans; if [ "$ans" != "y" ]; then exit 1; fi
+  tla commit -L 'merge';
+}
+
+echo "--------- $NAME-modules-smp--los-debian--2.6.10 ---------"
+cd "$ROOT/$ARCH/$NAME-modules-smp--los-debian--2.6.10"
+tla update
+tla star-merge --three-way "$ARCH/$NAME-modules--los-debian--2.6.10" || true
+tla changes -q || { 
+  echo -n "conflicts resolved? "; read ans; if [ "$ans" != "y" ]; then exit 1; fi
+  tla commit -L 'merge';
+}
+
+echo "--------- $NAME-modules-smp--los-debian--2.6.11 ---------"
+cd "$ROOT/$ARCH/$NAME-modules-smp--los-debian--2.6.11"
+tla update
+tla star-merge --three-way "$ARCH/$NAME-modules--los-debian--2.6.11" || true
+tla changes -q || { 
+  echo -n "conflicts resolved? "; read ans; if [ "$ans" != "y" ]; then exit 1; fi
+  tla commit -L 'merge';
+}
+
+echo "--------- $NAME-modules--build-marlin--2.6.10 ---------"
+cd "$ROOT/$ARCH/$NAME-modules--build-marlin--2.6.10"
+tla update
+tla star-merge --three-way "$ARCH/$NAME-modules--los-debian--2.6.10" || true
+tla changes -q || { 
+  echo -n "conflicts resolved? "; read ans; if [ "$ans" != "y" ]; then exit 1; fi
+  tla commit -L 'merge';
+}
+
+echo "--------- $NAME-modules--build-marlin--2.6.11 ---------"
+cd "$ROOT/$ARCH/$NAME-modules--build-marlin--2.6.11"
+tla update
+tla star-merge --three-way "$ARCH/$NAME-modules--los-debian--2.6.11" || true
+tla changes -q || { 
+  echo -n "conflicts resolved? "; read ans; if [ "$ans" != "y" ]; then exit 1; fi
+  tla commit -L 'merge';
+}
+
+echo "--------- $NAME-modules-smp--build-marlin--2.6.10 --------"
+cd "$ROOT/$ARCH/$NAME-modules-smp--build-marlin--2.6.10"
+tla update
+tla star-merge --three-way "$ARCH/$NAME-modules-smp--los-debian--2.6.10" || true
+tla changes -q || { 
+  echo -n "conflicts resolved? "; read ans; if [ "$ans" != "y" ]; then exit 1; fi
+  tla commit -L 'merge';
+}
+
+echo "--------- $NAME-modules-smp--build-marlin--2.6.11 ---------"
+cd "$ROOT/$ARCH/$NAME-modules-smp--build-marlin--2.6.11"
+tla update
+tla star-merge --three-way "$ARCH/$NAME-modules-smp--los-debian--2.6.11" || true
+tla changes -q || { 
+  echo -n "conflicts resolved? "; read ans; if [ "$ans" != "y" ]; then exit 1; fi
+  tla commit -L 'merge';
+}

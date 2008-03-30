@@ -1,0 +1,28 @@
+#!/usr/bin/runghc6
+
+
+-----------------
+
+foo.hs: inc n = n + 1
+
+*Main Data.Maybe Data.List> :help
+% ghci6
+Prelude> 3+5
+8
+Prelude> length [1,2,3]
+3
+Prelude> :load "/tmp/foo.hs"
+Compiling Main             ( /tmp/foo.hs, interpreted )
+Ok, modules loaded: Main.
+*Main> inc 3
+4
+*Main> map (\x -> x + 1) [3]
+[4]
+*Main> :m +Data.Maybe
+*Main Data.Maybe> :m +Data.List Data.Maybe
+*Main Data.Maybe Data.List> fromJust (Just 3)
+3
+
+-----------------
+
+Option.map f o == Maybe.maybe 

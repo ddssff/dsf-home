@@ -1,0 +1,821 @@
+Notes on tos@linspire.com--2005/xorg-x11--debian-los--6.9:
+
+Changes from patch-20, built as 6.9.0.dfsg.1-0pre1+SVN.dsf1:
+
+	M  {arch}/=tagging-method
+	M  debian/patches/linspire/create-host-def
+	
+	* modified files
+	
+	--- orig/debian/patches/linspire/create-host-def
+	+++ mod/debian/patches/linspire/create-host-def
+	@@ -5,7 +5,7 @@
+	 @@ -0,0 +1,41 @@
+	 +#define BuildDevelDRIDrivers YES
+	 +
+	-+#define MakeDllModules NO
+	++XCOMM #define MakeDllModules NO
+	 +
+	 +XCOMM As of 5/18/05, the savage dri driver (still) doesn't build.
+	 +XCOMM
+	
+	
+	--- orig/{arch}/=tagging-method
+	+++ mod/{arch}/=tagging-method
+	@@ -141,7 +141,7 @@
+	 
+	 junk ^(,.*)$
+	 
+	-precious ^(\+.*|\.gdbinit|\.#ckpts-lock|=build\.*|=install\.*|CVS|CVS\.adm|RCS|RCSLOG|SCCS|TAGS|\.svn|\.cvsignore)$
+	+precious ^(\+.*|\.gdbinit|\.#ckpts-lock|=build\.*|=install\.*|CVS|CVS\.adm|RCS|RCSLOG|SCCS|TAGS|\.svn|\.cvsignore|\.pc)$
+	 
+	 # Files matching the following regexp are classified as backup files, and
+	 # traversal does not descend into backup directories:
+	
+
+MANIFEST.i386 changes:
+
+	--- MANIFEST.i386	2005-09-02 07:55:18.000000000 -0700
+	+++ MANIFEST.i386.new	2005-09-02 07:55:18.000000000 -0700
+	@@ -6105,121 +6105,121 @@
+	 usr/X11R6/lib/modules/dri/sis_dri.so
+	 usr/X11R6/lib/modules/dri/tdfx_dri.so
+	 usr/X11R6/lib/modules/dri/unichrome_dri.so
+	-usr/X11R6/lib/modules/drivers/apm_drv.o
+	-usr/X11R6/lib/modules/drivers/ark_drv.o
+	-usr/X11R6/lib/modules/drivers/ati_drv.o
+	-usr/X11R6/lib/modules/drivers/atimisc_drv.o
+	-usr/X11R6/lib/modules/drivers/chips_drv.o
+	-usr/X11R6/lib/modules/drivers/cirrus_alpine_drv.o
+	-usr/X11R6/lib/modules/drivers/cirrus_drv.o
+	-usr/X11R6/lib/modules/drivers/cirrus_laguna_drv.o
+	-usr/X11R6/lib/modules/drivers/cyrix_drv.o
+	-usr/X11R6/lib/modules/drivers/dummy_drv.o
+	-usr/X11R6/lib/modules/drivers/fbdev_drv.o
+	-usr/X11R6/lib/modules/drivers/glide_drv.o
+	-usr/X11R6/lib/modules/drivers/glint_drv.o
+	-usr/X11R6/lib/modules/drivers/i128_drv.o
+	-usr/X11R6/lib/modules/drivers/i740_drv.o
+	-usr/X11R6/lib/modules/drivers/i810_drv.o
+	-usr/X11R6/lib/modules/drivers/imstt_drv.o
+	-usr/X11R6/lib/modules/drivers/mga_drv.o
+	-usr/X11R6/lib/modules/drivers/neomagic_drv.o
+	-usr/X11R6/lib/modules/drivers/newport_drv.o
+	-usr/X11R6/lib/modules/drivers/nsc_drv.o
+	-usr/X11R6/lib/modules/drivers/nv_drv.o
+	-usr/X11R6/lib/modules/drivers/r128_drv.o
+	-usr/X11R6/lib/modules/drivers/radeon_drv.o
+	-usr/X11R6/lib/modules/drivers/rendition_drv.o
+	-usr/X11R6/lib/modules/drivers/riva128_drv.o
+	-usr/X11R6/lib/modules/drivers/s3_drv.o
+	-usr/X11R6/lib/modules/drivers/s3virge_drv.o
+	-usr/X11R6/lib/modules/drivers/savage_drv.o
+	-usr/X11R6/lib/modules/drivers/siliconmotion_drv.o
+	-usr/X11R6/lib/modules/drivers/sis_drv.o
+	-usr/X11R6/lib/modules/drivers/sisusb_drv.o
+	-usr/X11R6/lib/modules/drivers/tdfx_drv.o
+	-usr/X11R6/lib/modules/drivers/tga_drv.o
+	-usr/X11R6/lib/modules/drivers/trident_drv.o
+	-usr/X11R6/lib/modules/drivers/tseng_drv.o
+	-usr/X11R6/lib/modules/drivers/v4l_drv.o
+	-usr/X11R6/lib/modules/drivers/vesa_drv.o
+	-usr/X11R6/lib/modules/drivers/vga_drv.o
+	-usr/X11R6/lib/modules/drivers/via_drv.o
+	-usr/X11R6/lib/modules/drivers/vmware_drv.o
+	-usr/X11R6/lib/modules/extensions/libGLcore.a
+	-usr/X11R6/lib/modules/extensions/libdbe.a
+	-usr/X11R6/lib/modules/extensions/libdri.a
+	-usr/X11R6/lib/modules/extensions/libextmod.a
+	-usr/X11R6/lib/modules/extensions/libglx.a
+	-usr/X11R6/lib/modules/extensions/librecord.a
+	-usr/X11R6/lib/modules/extensions/libxtrap.a
+	-usr/X11R6/lib/modules/fonts/libbitmap.a
+	+usr/X11R6/lib/modules/drivers/apm_drv.so
+	+usr/X11R6/lib/modules/drivers/ark_drv.so
+	+usr/X11R6/lib/modules/drivers/ati_drv.so
+	+usr/X11R6/lib/modules/drivers/atimisc_drv.so
+	+usr/X11R6/lib/modules/drivers/chips_drv.so
+	+usr/X11R6/lib/modules/drivers/cirrus_alpine_drv.so
+	+usr/X11R6/lib/modules/drivers/cirrus_drv.so
+	+usr/X11R6/lib/modules/drivers/cirrus_laguna_drv.so
+	+usr/X11R6/lib/modules/drivers/cyrix_drv.so
+	+usr/X11R6/lib/modules/drivers/dummy_drv.so
+	+usr/X11R6/lib/modules/drivers/fbdev_drv.so
+	+usr/X11R6/lib/modules/drivers/glide_drv.so
+	+usr/X11R6/lib/modules/drivers/glint_drv.so
+	+usr/X11R6/lib/modules/drivers/i128_drv.so
+	+usr/X11R6/lib/modules/drivers/i740_drv.so
+	+usr/X11R6/lib/modules/drivers/i810_drv.so
+	+usr/X11R6/lib/modules/drivers/imstt_drv.so
+	+usr/X11R6/lib/modules/drivers/mga_drv.so
+	+usr/X11R6/lib/modules/drivers/neomagic_drv.so
+	+usr/X11R6/lib/modules/drivers/newport_drv.so
+	+usr/X11R6/lib/modules/drivers/nsc_drv.so
+	+usr/X11R6/lib/modules/drivers/nv_drv.so
+	+usr/X11R6/lib/modules/drivers/r128_drv.so
+	+usr/X11R6/lib/modules/drivers/radeon_drv.so
+	+usr/X11R6/lib/modules/drivers/rendition_drv.so
+	+usr/X11R6/lib/modules/drivers/riva128_drv.so
+	+usr/X11R6/lib/modules/drivers/s3_drv.so
+	+usr/X11R6/lib/modules/drivers/s3virge_drv.so
+	+usr/X11R6/lib/modules/drivers/savage_drv.so
+	+usr/X11R6/lib/modules/drivers/siliconmotion_drv.so
+	+usr/X11R6/lib/modules/drivers/sis_drv.so
+	+usr/X11R6/lib/modules/drivers/sisusb_drv.so
+	+usr/X11R6/lib/modules/drivers/tdfx_drv.so
+	+usr/X11R6/lib/modules/drivers/tga_drv.so
+	+usr/X11R6/lib/modules/drivers/trident_drv.so
+	+usr/X11R6/lib/modules/drivers/tseng_drv.so
+	+usr/X11R6/lib/modules/drivers/v4l_drv.so
+	+usr/X11R6/lib/modules/drivers/vesa_drv.so
+	+usr/X11R6/lib/modules/drivers/vga_drv.so
+	+usr/X11R6/lib/modules/drivers/via_drv.so
+	+usr/X11R6/lib/modules/drivers/vmware_drv.so
+	+usr/X11R6/lib/modules/extensions/libGLcore.so
+	+usr/X11R6/lib/modules/extensions/libdbe.so
+	+usr/X11R6/lib/modules/extensions/libdri.so
+	+usr/X11R6/lib/modules/extensions/libextmod.so
+	+usr/X11R6/lib/modules/extensions/libglx.so
+	+usr/X11R6/lib/modules/extensions/librecord.so
+	+usr/X11R6/lib/modules/extensions/libxtrap.so
+	+usr/X11R6/lib/modules/fonts/libbitmap.so
+	 usr/X11R6/lib/modules/fonts/libfreetype.so
+	-usr/X11R6/lib/modules/fonts/libtype1.a
+	-usr/X11R6/lib/modules/input/acecad_drv.o
+	-usr/X11R6/lib/modules/input/aiptek_drv.o
+	-usr/X11R6/lib/modules/input/calcomp_drv.o
+	-usr/X11R6/lib/modules/input/citron_drv.o
+	-usr/X11R6/lib/modules/input/digitaledge_drv.o
+	-usr/X11R6/lib/modules/input/dmc_drv.o
+	-usr/X11R6/lib/modules/input/dynapro_drv.o
+	-usr/X11R6/lib/modules/input/elographics_drv.o
+	-usr/X11R6/lib/modules/input/evdev_drv.o
+	-usr/X11R6/lib/modules/input/fpit_drv.o
+	-usr/X11R6/lib/modules/input/hyperpen_drv.o
+	-usr/X11R6/lib/modules/input/js_x_drv.o
+	-usr/X11R6/lib/modules/input/kbd_drv.o
+	-usr/X11R6/lib/modules/input/keyboard_drv.o
+	-usr/X11R6/lib/modules/input/magellan_drv.o
+	-usr/X11R6/lib/modules/input/microtouch_drv.o
+	-usr/X11R6/lib/modules/input/mouse_drv.o
+	-usr/X11R6/lib/modules/input/mutouch_drv.o
+	-usr/X11R6/lib/modules/input/palmax_drv.o
+	-usr/X11R6/lib/modules/input/penmount_drv.o
+	-usr/X11R6/lib/modules/input/spaceorb_drv.o
+	-usr/X11R6/lib/modules/input/summa_drv.o
+	-usr/X11R6/lib/modules/input/tek4957_drv.o
+	-usr/X11R6/lib/modules/input/ur98_drv.o
+	-usr/X11R6/lib/modules/input/void_drv.o
+	-usr/X11R6/lib/modules/input/wacom_drv.o
+	-usr/X11R6/lib/modules/libafb.a
+	-usr/X11R6/lib/modules/libcfb.a
+	-usr/X11R6/lib/modules/libcfb16.a
+	-usr/X11R6/lib/modules/libcfb24.a
+	-usr/X11R6/lib/modules/libcfb32.a
+	-usr/X11R6/lib/modules/libddc.a
+	-usr/X11R6/lib/modules/libexa.a
+	-usr/X11R6/lib/modules/libfb.a
+	-usr/X11R6/lib/modules/libi2c.a
+	-usr/X11R6/lib/modules/libint10.a
+	-usr/X11R6/lib/modules/liblayer.a
+	-usr/X11R6/lib/modules/libmfb.a
+	-usr/X11R6/lib/modules/libpcidata.a
+	-usr/X11R6/lib/modules/librac.a
+	-usr/X11R6/lib/modules/libramdac.a
+	-usr/X11R6/lib/modules/libscanpci.a
+	-usr/X11R6/lib/modules/libshadow.a
+	-usr/X11R6/lib/modules/libshadowfb.a
+	-usr/X11R6/lib/modules/libvbe.a
+	-usr/X11R6/lib/modules/libvgahw.a
+	-usr/X11R6/lib/modules/libxaa.a
+	-usr/X11R6/lib/modules/libxf1bpp.a
+	-usr/X11R6/lib/modules/libxf4bpp.a
+	-usr/X11R6/lib/modules/libxf8_16bpp.a
+	-usr/X11R6/lib/modules/libxf8_32bpp.a
+	-usr/X11R6/lib/modules/linux/libdrm.a
+	-usr/X11R6/lib/modules/linux/libfbdevhw.a
+	-usr/X11R6/lib/modules/linux/libint10.a
+	-usr/X11R6/lib/modules/multimedia/bt829_drv.o
+	-usr/X11R6/lib/modules/multimedia/fi1236_drv.o
+	-usr/X11R6/lib/modules/multimedia/msp3430_drv.o
+	-usr/X11R6/lib/modules/multimedia/tda8425_drv.o
+	-usr/X11R6/lib/modules/multimedia/tda9850_drv.o
+	-usr/X11R6/lib/modules/multimedia/tda9885_drv.o
+	-usr/X11R6/lib/modules/multimedia/theatre200_drv.o
+	-usr/X11R6/lib/modules/multimedia/theatre_detect_drv.o
+	-usr/X11R6/lib/modules/multimedia/theatre_drv.o
+	-usr/X11R6/lib/modules/multimedia/uda1380_drv.o
+	+usr/X11R6/lib/modules/fonts/libtype1.so
+	+usr/X11R6/lib/modules/input/acecad_drv.so
+	+usr/X11R6/lib/modules/input/aiptek_drv.so
+	+usr/X11R6/lib/modules/input/calcomp_drv.so
+	+usr/X11R6/lib/modules/input/citron_drv.so
+	+usr/X11R6/lib/modules/input/digitaledge_drv.so
+	+usr/X11R6/lib/modules/input/dmc_drv.so
+	+usr/X11R6/lib/modules/input/dynapro_drv.so
+	+usr/X11R6/lib/modules/input/elographics_drv.so
+	+usr/X11R6/lib/modules/input/evdev_drv.so
+	+usr/X11R6/lib/modules/input/fpit_drv.so
+	+usr/X11R6/lib/modules/input/hyperpen_drv.so
+	+usr/X11R6/lib/modules/input/js_x_drv.so
+	+usr/X11R6/lib/modules/input/kbd_drv.so
+	+usr/X11R6/lib/modules/input/keyboard_drv.so
+	+usr/X11R6/lib/modules/input/magellan_drv.so
+	+usr/X11R6/lib/modules/input/microtouch_drv.so
+	+usr/X11R6/lib/modules/input/mouse_drv.so
+	+usr/X11R6/lib/modules/input/mutouch_drv.so
+	+usr/X11R6/lib/modules/input/palmax_drv.so
+	+usr/X11R6/lib/modules/input/penmount_drv.so
+	+usr/X11R6/lib/modules/input/spaceorb_drv.so
+	+usr/X11R6/lib/modules/input/summa_drv.so
+	+usr/X11R6/lib/modules/input/tek4957_drv.so
+	+usr/X11R6/lib/modules/input/ur98_drv.so
+	+usr/X11R6/lib/modules/input/void_drv.so
+	+usr/X11R6/lib/modules/input/wacom_drv.so
+	+usr/X11R6/lib/modules/libafb.so
+	+usr/X11R6/lib/modules/libcfb.so
+	+usr/X11R6/lib/modules/libcfb16.so
+	+usr/X11R6/lib/modules/libcfb24.so
+	+usr/X11R6/lib/modules/libcfb32.so
+	+usr/X11R6/lib/modules/libddc.so
+	+usr/X11R6/lib/modules/libexa.so
+	+usr/X11R6/lib/modules/libfb.so
+	+usr/X11R6/lib/modules/libi2c.so
+	+usr/X11R6/lib/modules/libint10.so
+	+usr/X11R6/lib/modules/liblayer.so
+	+usr/X11R6/lib/modules/libmfb.so
+	+usr/X11R6/lib/modules/libpcidata.so
+	+usr/X11R6/lib/modules/librac.so
+	+usr/X11R6/lib/modules/libramdac.so
+	+usr/X11R6/lib/modules/libscanpci.so
+	+usr/X11R6/lib/modules/libshadow.so
+	+usr/X11R6/lib/modules/libshadowfb.so
+	+usr/X11R6/lib/modules/libvbe.so
+	+usr/X11R6/lib/modules/libvgahw.so
+	+usr/X11R6/lib/modules/libxaa.so
+	+usr/X11R6/lib/modules/libxf1bpp.so
+	+usr/X11R6/lib/modules/libxf4bpp.so
+	+usr/X11R6/lib/modules/libxf8_16bpp.so
+	+usr/X11R6/lib/modules/libxf8_32bpp.so
+	+usr/X11R6/lib/modules/linux/libdrm.so
+	+usr/X11R6/lib/modules/linux/libfbdevhw.so
+	+usr/X11R6/lib/modules/linux/libint10.so
+	+usr/X11R6/lib/modules/multimedia/bt829_drv.so
+	+usr/X11R6/lib/modules/multimedia/fi1236_drv.so
+	+usr/X11R6/lib/modules/multimedia/msp3430_drv.so
+	+usr/X11R6/lib/modules/multimedia/tda8425_drv.so
+	+usr/X11R6/lib/modules/multimedia/tda9850_drv.so
+	+usr/X11R6/lib/modules/multimedia/tda9885_drv.so
+	+usr/X11R6/lib/modules/multimedia/theatre200_drv.so
+	+usr/X11R6/lib/modules/multimedia/theatre_detect_drv.so
+	+usr/X11R6/lib/modules/multimedia/theatre_drv.so
+	+usr/X11R6/lib/modules/multimedia/uda1380_drv.so
+	 usr/X11R6/lib/pkgconfig/xcomposite.pc
+	 usr/X11R6/lib/pkgconfig/xdamage.pc
+	 usr/X11R6/lib/pkgconfig/xevie.pc
+	
+Patch for MANIFEST.i386.in:
+
+	--- MANIFEST.i386.in~	2005-09-01 05:51:00.000000000 -0700
+	+++ MANIFEST.i386.in	2005-09-02 08:36:16.000000000 -0700
+	@@ -1648,121 +1648,121 @@
+	 usr/X11R6/lib/modules/dri/sis_dri.so
+	 usr/X11R6/lib/modules/dri/tdfx_dri.so
+	 usr/X11R6/lib/modules/dri/unichrome_dri.so
+	-usr/X11R6/lib/modules/drivers/apm_drv.o
+	-usr/X11R6/lib/modules/drivers/ark_drv.o
+	-usr/X11R6/lib/modules/drivers/ati_drv.o
+	-usr/X11R6/lib/modules/drivers/atimisc_drv.o
+	-usr/X11R6/lib/modules/drivers/chips_drv.o
+	-usr/X11R6/lib/modules/drivers/cirrus_alpine_drv.o
+	-usr/X11R6/lib/modules/drivers/cirrus_drv.o
+	-usr/X11R6/lib/modules/drivers/cirrus_laguna_drv.o
+	-usr/X11R6/lib/modules/drivers/cyrix_drv.o
+	-usr/X11R6/lib/modules/drivers/dummy_drv.o
+	-usr/X11R6/lib/modules/drivers/fbdev_drv.o
+	-usr/X11R6/lib/modules/drivers/glide_drv.o
+	-usr/X11R6/lib/modules/drivers/glint_drv.o
+	-usr/X11R6/lib/modules/drivers/i128_drv.o
+	-usr/X11R6/lib/modules/drivers/i740_drv.o
+	-usr/X11R6/lib/modules/drivers/i810_drv.o
+	-usr/X11R6/lib/modules/drivers/imstt_drv.o
+	-usr/X11R6/lib/modules/drivers/mga_drv.o
+	-usr/X11R6/lib/modules/drivers/neomagic_drv.o
+	-usr/X11R6/lib/modules/drivers/newport_drv.o
+	-usr/X11R6/lib/modules/drivers/nsc_drv.o
+	-usr/X11R6/lib/modules/drivers/nv_drv.o
+	-usr/X11R6/lib/modules/drivers/r128_drv.o
+	-usr/X11R6/lib/modules/drivers/radeon_drv.o
+	-usr/X11R6/lib/modules/drivers/rendition_drv.o
+	-usr/X11R6/lib/modules/drivers/riva128_drv.o
+	-usr/X11R6/lib/modules/drivers/s3_drv.o
+	-usr/X11R6/lib/modules/drivers/s3virge_drv.o
+	-usr/X11R6/lib/modules/drivers/savage_drv.o
+	-usr/X11R6/lib/modules/drivers/siliconmotion_drv.o
+	-usr/X11R6/lib/modules/drivers/sis_drv.o
+	-usr/X11R6/lib/modules/drivers/sisusb_drv.o
+	-usr/X11R6/lib/modules/drivers/tdfx_drv.o
+	-usr/X11R6/lib/modules/drivers/tga_drv.o
+	-usr/X11R6/lib/modules/drivers/trident_drv.o
+	-usr/X11R6/lib/modules/drivers/tseng_drv.o
+	-usr/X11R6/lib/modules/drivers/v4l_drv.o
+	-usr/X11R6/lib/modules/drivers/vesa_drv.o
+	-usr/X11R6/lib/modules/drivers/vga_drv.o
+	-usr/X11R6/lib/modules/drivers/via_drv.o
+	-usr/X11R6/lib/modules/drivers/vmware_drv.o
+	-usr/X11R6/lib/modules/extensions/libGLcore.a
+	-usr/X11R6/lib/modules/extensions/libdbe.a
+	-usr/X11R6/lib/modules/extensions/libdri.a
+	-usr/X11R6/lib/modules/extensions/libextmod.a
+	-usr/X11R6/lib/modules/extensions/libglx.a
+	-usr/X11R6/lib/modules/extensions/librecord.a
+	-usr/X11R6/lib/modules/extensions/libxtrap.a
+	-usr/X11R6/lib/modules/fonts/libbitmap.a
+	+usr/X11R6/lib/modules/drivers/apm_drv.so
+	+usr/X11R6/lib/modules/drivers/ark_drv.so
+	+usr/X11R6/lib/modules/drivers/ati_drv.so
+	+usr/X11R6/lib/modules/drivers/atimisc_drv.so
+	+usr/X11R6/lib/modules/drivers/chips_drv.so
+	+usr/X11R6/lib/modules/drivers/cirrus_alpine_drv.so
+	+usr/X11R6/lib/modules/drivers/cirrus_drv.so
+	+usr/X11R6/lib/modules/drivers/cirrus_laguna_drv.so
+	+usr/X11R6/lib/modules/drivers/cyrix_drv.so
+	+usr/X11R6/lib/modules/drivers/dummy_drv.so
+	+usr/X11R6/lib/modules/drivers/fbdev_drv.so
+	+usr/X11R6/lib/modules/drivers/glide_drv.so
+	+usr/X11R6/lib/modules/drivers/glint_drv.so
+	+usr/X11R6/lib/modules/drivers/i128_drv.so
+	+usr/X11R6/lib/modules/drivers/i740_drv.so
+	+usr/X11R6/lib/modules/drivers/i810_drv.so
+	+usr/X11R6/lib/modules/drivers/imstt_drv.so
+	+usr/X11R6/lib/modules/drivers/mga_drv.so
+	+usr/X11R6/lib/modules/drivers/neomagic_drv.so
+	+usr/X11R6/lib/modules/drivers/newport_drv.so
+	+usr/X11R6/lib/modules/drivers/nsc_drv.so
+	+usr/X11R6/lib/modules/drivers/nv_drv.so
+	+usr/X11R6/lib/modules/drivers/r128_drv.so
+	+usr/X11R6/lib/modules/drivers/radeon_drv.so
+	+usr/X11R6/lib/modules/drivers/rendition_drv.so
+	+usr/X11R6/lib/modules/drivers/riva128_drv.so
+	+usr/X11R6/lib/modules/drivers/s3_drv.so
+	+usr/X11R6/lib/modules/drivers/s3virge_drv.so
+	+usr/X11R6/lib/modules/drivers/savage_drv.so
+	+usr/X11R6/lib/modules/drivers/siliconmotion_drv.so
+	+usr/X11R6/lib/modules/drivers/sis_drv.so
+	+usr/X11R6/lib/modules/drivers/sisusb_drv.so
+	+usr/X11R6/lib/modules/drivers/tdfx_drv.so
+	+usr/X11R6/lib/modules/drivers/tga_drv.so
+	+usr/X11R6/lib/modules/drivers/trident_drv.so
+	+usr/X11R6/lib/modules/drivers/tseng_drv.so
+	+usr/X11R6/lib/modules/drivers/v4l_drv.so
+	+usr/X11R6/lib/modules/drivers/vesa_drv.so
+	+usr/X11R6/lib/modules/drivers/vga_drv.so
+	+usr/X11R6/lib/modules/drivers/via_drv.so
+	+usr/X11R6/lib/modules/drivers/vmware_drv.so
+	+usr/X11R6/lib/modules/extensions/libGLcore.so
+	+usr/X11R6/lib/modules/extensions/libdbe.so
+	+usr/X11R6/lib/modules/extensions/libdri.so
+	+usr/X11R6/lib/modules/extensions/libextmod.so
+	+usr/X11R6/lib/modules/extensions/libglx.so
+	+usr/X11R6/lib/modules/extensions/librecord.so
+	+usr/X11R6/lib/modules/extensions/libxtrap.so
+	+usr/X11R6/lib/modules/fonts/libbitmap.so
+	 usr/X11R6/lib/modules/fonts/libfreetype.so
+	-usr/X11R6/lib/modules/fonts/libtype1.a
+	-usr/X11R6/lib/modules/input/acecad_drv.o
+	-usr/X11R6/lib/modules/input/aiptek_drv.o
+	-usr/X11R6/lib/modules/input/calcomp_drv.o
+	-usr/X11R6/lib/modules/input/citron_drv.o
+	-usr/X11R6/lib/modules/input/digitaledge_drv.o
+	-usr/X11R6/lib/modules/input/dmc_drv.o
+	-usr/X11R6/lib/modules/input/dynapro_drv.o
+	-usr/X11R6/lib/modules/input/elographics_drv.o
+	-usr/X11R6/lib/modules/input/evdev_drv.o
+	-usr/X11R6/lib/modules/input/fpit_drv.o
+	-usr/X11R6/lib/modules/input/hyperpen_drv.o
+	-usr/X11R6/lib/modules/input/js_x_drv.o
+	-usr/X11R6/lib/modules/input/kbd_drv.o
+	-usr/X11R6/lib/modules/input/keyboard_drv.o
+	-usr/X11R6/lib/modules/input/magellan_drv.o
+	-usr/X11R6/lib/modules/input/microtouch_drv.o
+	-usr/X11R6/lib/modules/input/mouse_drv.o
+	-usr/X11R6/lib/modules/input/mutouch_drv.o
+	-usr/X11R6/lib/modules/input/palmax_drv.o
+	-usr/X11R6/lib/modules/input/penmount_drv.o
+	-usr/X11R6/lib/modules/input/spaceorb_drv.o
+	-usr/X11R6/lib/modules/input/summa_drv.o
+	-usr/X11R6/lib/modules/input/tek4957_drv.o
+	-usr/X11R6/lib/modules/input/ur98_drv.o
+	-usr/X11R6/lib/modules/input/void_drv.o
+	-usr/X11R6/lib/modules/input/wacom_drv.o
+	-usr/X11R6/lib/modules/libafb.a
+	-usr/X11R6/lib/modules/libcfb.a
+	-usr/X11R6/lib/modules/libcfb16.a
+	-usr/X11R6/lib/modules/libcfb24.a
+	-usr/X11R6/lib/modules/libcfb32.a
+	-usr/X11R6/lib/modules/libddc.a
+	-usr/X11R6/lib/modules/libexa.a
+	-usr/X11R6/lib/modules/libfb.a
+	-usr/X11R6/lib/modules/libi2c.a
+	-usr/X11R6/lib/modules/libint10.a
+	-usr/X11R6/lib/modules/liblayer.a
+	-usr/X11R6/lib/modules/libmfb.a
+	-usr/X11R6/lib/modules/libpcidata.a
+	-usr/X11R6/lib/modules/librac.a
+	-usr/X11R6/lib/modules/libramdac.a
+	-usr/X11R6/lib/modules/libscanpci.a
+	-usr/X11R6/lib/modules/libshadow.a
+	-usr/X11R6/lib/modules/libshadowfb.a
+	-usr/X11R6/lib/modules/libvbe.a
+	-usr/X11R6/lib/modules/libvgahw.a
+	-usr/X11R6/lib/modules/libxaa.a
+	-usr/X11R6/lib/modules/libxf1bpp.a
+	-usr/X11R6/lib/modules/libxf4bpp.a
+	-usr/X11R6/lib/modules/libxf8_16bpp.a
+	-usr/X11R6/lib/modules/libxf8_32bpp.a
+	-usr/X11R6/lib/modules/linux/libdrm.a
+	-usr/X11R6/lib/modules/linux/libfbdevhw.a
+	-usr/X11R6/lib/modules/linux/libint10.a
+	-usr/X11R6/lib/modules/multimedia/bt829_drv.o
+	-usr/X11R6/lib/modules/multimedia/fi1236_drv.o
+	-usr/X11R6/lib/modules/multimedia/msp3430_drv.o
+	-usr/X11R6/lib/modules/multimedia/tda8425_drv.o
+	-usr/X11R6/lib/modules/multimedia/tda9850_drv.o
+	-usr/X11R6/lib/modules/multimedia/tda9885_drv.o
+	-usr/X11R6/lib/modules/multimedia/theatre200_drv.o
+	-usr/X11R6/lib/modules/multimedia/theatre_detect_drv.o
+	-usr/X11R6/lib/modules/multimedia/theatre_drv.o
+	-usr/X11R6/lib/modules/multimedia/uda1380_drv.o
+	+usr/X11R6/lib/modules/fonts/libtype1.so
+	+usr/X11R6/lib/modules/input/acecad_drv.so
+	+usr/X11R6/lib/modules/input/aiptek_drv.so
+	+usr/X11R6/lib/modules/input/calcomp_drv.so
+	+usr/X11R6/lib/modules/input/citron_drv.so
+	+usr/X11R6/lib/modules/input/digitaledge_drv.so
+	+usr/X11R6/lib/modules/input/dmc_drv.so
+	+usr/X11R6/lib/modules/input/dynapro_drv.so
+	+usr/X11R6/lib/modules/input/elographics_drv.so
+	+usr/X11R6/lib/modules/input/evdev_drv.so
+	+usr/X11R6/lib/modules/input/fpit_drv.so
+	+usr/X11R6/lib/modules/input/hyperpen_drv.so
+	+usr/X11R6/lib/modules/input/js_x_drv.so
+	+usr/X11R6/lib/modules/input/kbd_drv.so
+	+usr/X11R6/lib/modules/input/keyboard_drv.so
+	+usr/X11R6/lib/modules/input/magellan_drv.so
+	+usr/X11R6/lib/modules/input/microtouch_drv.so
+	+usr/X11R6/lib/modules/input/mouse_drv.so
+	+usr/X11R6/lib/modules/input/mutouch_drv.so
+	+usr/X11R6/lib/modules/input/palmax_drv.so
+	+usr/X11R6/lib/modules/input/penmount_drv.so
+	+usr/X11R6/lib/modules/input/spaceorb_drv.so
+	+usr/X11R6/lib/modules/input/summa_drv.so
+	+usr/X11R6/lib/modules/input/tek4957_drv.so
+	+usr/X11R6/lib/modules/input/ur98_drv.so
+	+usr/X11R6/lib/modules/input/void_drv.so
+	+usr/X11R6/lib/modules/input/wacom_drv.so
+	+usr/X11R6/lib/modules/libafb.so
+	+usr/X11R6/lib/modules/libcfb.so
+	+usr/X11R6/lib/modules/libcfb16.so
+	+usr/X11R6/lib/modules/libcfb24.so
+	+usr/X11R6/lib/modules/libcfb32.so
+	+usr/X11R6/lib/modules/libddc.so
+	+usr/X11R6/lib/modules/libexa.so
+	+usr/X11R6/lib/modules/libfb.so
+	+usr/X11R6/lib/modules/libi2c.so
+	+usr/X11R6/lib/modules/libint10.so
+	+usr/X11R6/lib/modules/liblayer.so
+	+usr/X11R6/lib/modules/libmfb.so
+	+usr/X11R6/lib/modules/libpcidata.so
+	+usr/X11R6/lib/modules/librac.so
+	+usr/X11R6/lib/modules/libramdac.so
+	+usr/X11R6/lib/modules/libscanpci.so
+	+usr/X11R6/lib/modules/libshadow.so
+	+usr/X11R6/lib/modules/libshadowfb.so
+	+usr/X11R6/lib/modules/libvbe.so
+	+usr/X11R6/lib/modules/libvgahw.so
+	+usr/X11R6/lib/modules/libxaa.so
+	+usr/X11R6/lib/modules/libxf1bpp.so
+	+usr/X11R6/lib/modules/libxf4bpp.so
+	+usr/X11R6/lib/modules/libxf8_16bpp.so
+	+usr/X11R6/lib/modules/libxf8_32bpp.so
+	+usr/X11R6/lib/modules/linux/libdrm.so
+	+usr/X11R6/lib/modules/linux/libfbdevhw.so
+	+usr/X11R6/lib/modules/linux/libint10.so
+	+usr/X11R6/lib/modules/multimedia/bt829_drv.so
+	+usr/X11R6/lib/modules/multimedia/fi1236_drv.so
+	+usr/X11R6/lib/modules/multimedia/msp3430_drv.so
+	+usr/X11R6/lib/modules/multimedia/tda8425_drv.so
+	+usr/X11R6/lib/modules/multimedia/tda9850_drv.so
+	+usr/X11R6/lib/modules/multimedia/tda9885_drv.so
+	+usr/X11R6/lib/modules/multimedia/theatre200_drv.so
+	+usr/X11R6/lib/modules/multimedia/theatre_detect_drv.so
+	+usr/X11R6/lib/modules/multimedia/theatre_drv.so
+	+usr/X11R6/lib/modules/multimedia/uda1380_drv.so
+	 usr/X11R6/lib/pkgconfig/xcomposite.pc
+	 usr/X11R6/lib/pkgconfig/xdamage.pc
+	 usr/X11R6/lib/pkgconfig/xevie.pc
+	
+Error in rules file:
+
+	--- rules~	2005-09-02 06:35:26.000000000 -0700
+	+++ rules	2005-09-02 08:38:13.000000000 -0700
+	@@ -198,7 +198,7 @@
+	 	if quilt push -a -v >$(STAMP_DIR)/log/patch 2>&1; then \
+	 	  echo "successful."; \
+	 	else \
+	-	  if [ ! grep '^File series fully applied' $(STAMP_DIR)/log/patch > /dev/null]; then \
+	+	  if [ ! grep '^File series fully applied' $(STAMP_DIR)/log/patch > /dev/null ]; then \
+	 		echo "failed! (check $(STAMP_DIR)/log/patch for details)"; \
+	 		exit 1; \
+	 	  fi; \
+
+Error when running dpkg-buildpackage -nc:
+
+ln: `debian/xserver-xorg-dbg.templates': File exists
+make: *** [stampdir/genscripts] Error 1
+
+	@@ -307,7 +307,7 @@
+	 	  fi; \
+	 	done
+	 	# Reuse xserver-xorg's templates file for xserver-xorg-dbg.
+	-	ln debian/xserver-xorg.templates \
+	+	ln -f debian/xserver-xorg.templates \
+	 	   debian/xserver-xorg-dbg.templates
+	 	# Validate syntax of generated shell scripts.
+	 	sh debian/scripts/validate-posix-sh debian/*.config \
+
+Omit arch stuff from the build tree:
+
+	@@ -230,7 +230,8 @@
+	 	mkdir -p $(SOURCE_DIR)
+	 	find . -maxdepth 1 -mindepth 1 ! -name $(SOURCE_DIR) \
+	 	     -a ! -name debian -a ! -name patches -a ! -name .pc \
+	-	     -a ! -name stampdir | xargs -i{} cp -al {} $(SOURCE_DIR)
+	+	     -a ! -name stampdir -a ! name {arch} -a ! name .arch-ids \
+	+	     | xargs -i{} cp -al {} $(SOURCE_DIR)
+	 	# Symlink some of the libraries on which we build-depend into
+	 	# imports/{lib,include} so we don't have to pull in -L/usr/include and
+	 	# other, similarly ugly, stuff (including, but not limited to,
+
+Print a list of files that were installed but not included in any package:
+
+	@@ -522,7 +522,7 @@
+	 $(STAMP_DIR)/binary-indep: $(STAMP_DIR)/build $(STAMP_DIR)/install $(STAMP_DIR)/check-manifest
+	 	dh_testdir
+	 	dh_testroot
+	-	dh_install --sourcedir=debian/tmp
+	+	dh_install --list-missing --sourcedir=debian/tmp > debian/install-missing-indep
+	 	dh_installdebconf
+	 	dh_installdirs
+	 	# Copy the fonts.{alias,scale} files into /etc
+	@@ -563,7 +563,7 @@
+	 $(STAMP_DIR)/binary-arch: $(STAMP_DIR)/build $(STAMP_DIR)/install debian/shlibs.local $(STAMP_DIR)/check-manifest
+	 	dh_testdir
+	 	dh_testroot
+	-	dh_install --sourcedir=debian/tmp
+	+	dh_install --list-missing --sourcedir=debian/tmp > debian/install-missing-arch
+	 	dh_installdebconf
+	 	dh_installdirs
+	 	dh_installdocs
+
+Required changes to .install files:
+
+	--- debian/xserver-xorg.install.i386~	2005-08-31 07:01:08.000000000 -0700
+	+++ debian/xserver-xorg.install.i386	2005-09-02 09:07:53.000000000 -0700
+	@@ -3,121 +3,121 @@
+	 usr/X11R6/bin/ioport
+	 usr/X11R6/bin/mmapr
+	 usr/X11R6/bin/mmapw
+	-usr/X11R6/lib/modules/drivers/apm_drv.o
+	-usr/X11R6/lib/modules/drivers/ark_drv.o
+	-usr/X11R6/lib/modules/drivers/ati_drv.o
+	-usr/X11R6/lib/modules/drivers/atimisc_drv.o
+	-usr/X11R6/lib/modules/drivers/chips_drv.o
+	-usr/X11R6/lib/modules/drivers/cirrus_alpine_drv.o
+	-usr/X11R6/lib/modules/drivers/cirrus_drv.o
+	-usr/X11R6/lib/modules/drivers/cirrus_laguna_drv.o
+	-usr/X11R6/lib/modules/drivers/cyrix_drv.o
+	-usr/X11R6/lib/modules/drivers/dummy_drv.o
+	-usr/X11R6/lib/modules/drivers/fbdev_drv.o
+	-usr/X11R6/lib/modules/drivers/glide_drv.o
+	-usr/X11R6/lib/modules/drivers/glint_drv.o
+	-usr/X11R6/lib/modules/drivers/i128_drv.o
+	-usr/X11R6/lib/modules/drivers/i740_drv.o
+	-usr/X11R6/lib/modules/drivers/i810_drv.o
+	-usr/X11R6/lib/modules/drivers/imstt_drv.o
+	-usr/X11R6/lib/modules/drivers/mga_drv.o
+	-usr/X11R6/lib/modules/drivers/neomagic_drv.o
+	-usr/X11R6/lib/modules/drivers/newport_drv.o
+	-usr/X11R6/lib/modules/drivers/nsc_drv.o
+	-usr/X11R6/lib/modules/drivers/nv_drv.o
+	-usr/X11R6/lib/modules/drivers/r128_drv.o
+	-usr/X11R6/lib/modules/drivers/radeon_drv.o
+	-usr/X11R6/lib/modules/drivers/rendition_drv.o
+	-usr/X11R6/lib/modules/drivers/riva128_drv.o
+	-usr/X11R6/lib/modules/drivers/s3_drv.o
+	-usr/X11R6/lib/modules/drivers/s3virge_drv.o
+	-usr/X11R6/lib/modules/drivers/savage_drv.o
+	-usr/X11R6/lib/modules/drivers/siliconmotion_drv.o
+	-usr/X11R6/lib/modules/drivers/sis_drv.o
+	-usr/X11R6/lib/modules/drivers/sisusb_drv.o
+	-usr/X11R6/lib/modules/drivers/tdfx_drv.o
+	-usr/X11R6/lib/modules/drivers/tga_drv.o
+	-usr/X11R6/lib/modules/drivers/trident_drv.o
+	-usr/X11R6/lib/modules/drivers/tseng_drv.o
+	-usr/X11R6/lib/modules/drivers/v4l_drv.o
+	-usr/X11R6/lib/modules/drivers/vesa_drv.o
+	-usr/X11R6/lib/modules/drivers/vga_drv.o
+	-usr/X11R6/lib/modules/drivers/via_drv.o
+	-usr/X11R6/lib/modules/drivers/vmware_drv.o
+	-usr/X11R6/lib/modules/extensions/libGLcore.a
+	-usr/X11R6/lib/modules/extensions/libdbe.a
+	-usr/X11R6/lib/modules/extensions/libdri.a
+	-usr/X11R6/lib/modules/extensions/libextmod.a
+	-usr/X11R6/lib/modules/extensions/libglx.a
+	-usr/X11R6/lib/modules/extensions/librecord.a
+	-usr/X11R6/lib/modules/extensions/libxtrap.a
+	-usr/X11R6/lib/modules/fonts/libbitmap.a
+	+usr/X11R6/lib/modules/drivers/apm_drv.so
+	+usr/X11R6/lib/modules/drivers/ark_drv.so
+	+usr/X11R6/lib/modules/drivers/ati_drv.so
+	+usr/X11R6/lib/modules/drivers/atimisc_drv.so
+	+usr/X11R6/lib/modules/drivers/chips_drv.so
+	+usr/X11R6/lib/modules/drivers/cirrus_alpine_drv.so
+	+usr/X11R6/lib/modules/drivers/cirrus_drv.so
+	+usr/X11R6/lib/modules/drivers/cirrus_laguna_drv.so
+	+usr/X11R6/lib/modules/drivers/cyrix_drv.so
+	+usr/X11R6/lib/modules/drivers/dummy_drv.so
+	+usr/X11R6/lib/modules/drivers/fbdev_drv.so
+	+usr/X11R6/lib/modules/drivers/glide_drv.so
+	+usr/X11R6/lib/modules/drivers/glint_drv.so
+	+usr/X11R6/lib/modules/drivers/i128_drv.so
+	+usr/X11R6/lib/modules/drivers/i740_drv.so
+	+usr/X11R6/lib/modules/drivers/i810_drv.so
+	+usr/X11R6/lib/modules/drivers/imstt_drv.so
+	+usr/X11R6/lib/modules/drivers/mga_drv.so
+	+usr/X11R6/lib/modules/drivers/neomagic_drv.so
+	+usr/X11R6/lib/modules/drivers/newport_drv.so
+	+usr/X11R6/lib/modules/drivers/nsc_drv.so
+	+usr/X11R6/lib/modules/drivers/nv_drv.so
+	+usr/X11R6/lib/modules/drivers/r128_drv.so
+	+usr/X11R6/lib/modules/drivers/radeon_drv.so
+	+usr/X11R6/lib/modules/drivers/rendition_drv.so
+	+usr/X11R6/lib/modules/drivers/riva128_drv.so
+	+usr/X11R6/lib/modules/drivers/s3_drv.so
+	+usr/X11R6/lib/modules/drivers/s3virge_drv.so
+	+usr/X11R6/lib/modules/drivers/savage_drv.so
+	+usr/X11R6/lib/modules/drivers/siliconmotion_drv.so
+	+usr/X11R6/lib/modules/drivers/sis_drv.so
+	+usr/X11R6/lib/modules/drivers/sisusb_drv.so
+	+usr/X11R6/lib/modules/drivers/tdfx_drv.so
+	+usr/X11R6/lib/modules/drivers/tga_drv.so
+	+usr/X11R6/lib/modules/drivers/trident_drv.so
+	+usr/X11R6/lib/modules/drivers/tseng_drv.so
+	+usr/X11R6/lib/modules/drivers/v4l_drv.so
+	+usr/X11R6/lib/modules/drivers/vesa_drv.so
+	+usr/X11R6/lib/modules/drivers/vga_drv.so
+	+usr/X11R6/lib/modules/drivers/via_drv.so
+	+usr/X11R6/lib/modules/drivers/vmware_drv.so
+	+usr/X11R6/lib/modules/extensions/libGLcore.so
+	+usr/X11R6/lib/modules/extensions/libdbe.so
+	+usr/X11R6/lib/modules/extensions/libdri.so
+	+usr/X11R6/lib/modules/extensions/libextmod.so
+	+usr/X11R6/lib/modules/extensions/libglx.so
+	+usr/X11R6/lib/modules/extensions/librecord.so
+	+usr/X11R6/lib/modules/extensions/libxtrap.so
+	+usr/X11R6/lib/modules/fonts/libbitmap.so
+	 usr/X11R6/lib/modules/fonts/libfreetype.so
+	-usr/X11R6/lib/modules/fonts/libtype1.a
+	-usr/X11R6/lib/modules/input/acecad_drv.o
+	-usr/X11R6/lib/modules/input/aiptek_drv.o
+	-usr/X11R6/lib/modules/input/calcomp_drv.o
+	-usr/X11R6/lib/modules/input/citron_drv.o
+	-usr/X11R6/lib/modules/input/digitaledge_drv.o
+	-usr/X11R6/lib/modules/input/dmc_drv.o
+	-usr/X11R6/lib/modules/input/dynapro_drv.o
+	-usr/X11R6/lib/modules/input/elographics_drv.o
+	-usr/X11R6/lib/modules/input/evdev_drv.o
+	-usr/X11R6/lib/modules/input/fpit_drv.o
+	-usr/X11R6/lib/modules/input/hyperpen_drv.o
+	-usr/X11R6/lib/modules/input/js_x_drv.o
+	-usr/X11R6/lib/modules/input/kbd_drv.o
+	-usr/X11R6/lib/modules/input/keyboard_drv.o
+	-usr/X11R6/lib/modules/input/magellan_drv.o
+	-usr/X11R6/lib/modules/input/microtouch_drv.o
+	-usr/X11R6/lib/modules/input/mouse_drv.o
+	-usr/X11R6/lib/modules/input/mutouch_drv.o
+	-usr/X11R6/lib/modules/input/palmax_drv.o
+	-usr/X11R6/lib/modules/input/penmount_drv.o
+	-usr/X11R6/lib/modules/input/spaceorb_drv.o
+	-usr/X11R6/lib/modules/input/summa_drv.o
+	-usr/X11R6/lib/modules/input/tek4957_drv.o
+	-usr/X11R6/lib/modules/input/ur98_drv.o
+	-usr/X11R6/lib/modules/input/void_drv.o
+	-usr/X11R6/lib/modules/input/wacom_drv.o
+	-usr/X11R6/lib/modules/libafb.a
+	-usr/X11R6/lib/modules/libcfb.a
+	-usr/X11R6/lib/modules/libcfb16.a
+	-usr/X11R6/lib/modules/libcfb24.a
+	-usr/X11R6/lib/modules/libcfb32.a
+	-usr/X11R6/lib/modules/libddc.a
+	-usr/X11R6/lib/modules/libexa.a
+	-usr/X11R6/lib/modules/libfb.a
+	-usr/X11R6/lib/modules/libi2c.a
+	-usr/X11R6/lib/modules/libint10.a
+	-usr/X11R6/lib/modules/liblayer.a
+	-usr/X11R6/lib/modules/libmfb.a
+	-usr/X11R6/lib/modules/libpcidata.a
+	-usr/X11R6/lib/modules/librac.a
+	-usr/X11R6/lib/modules/libramdac.a
+	-usr/X11R6/lib/modules/libscanpci.a
+	-usr/X11R6/lib/modules/libshadow.a
+	-usr/X11R6/lib/modules/libshadowfb.a
+	-usr/X11R6/lib/modules/libvbe.a
+	-usr/X11R6/lib/modules/libvgahw.a
+	-usr/X11R6/lib/modules/libxaa.a
+	-usr/X11R6/lib/modules/libxf1bpp.a
+	-usr/X11R6/lib/modules/libxf4bpp.a
+	-usr/X11R6/lib/modules/libxf8_16bpp.a
+	-usr/X11R6/lib/modules/libxf8_32bpp.a
+	-usr/X11R6/lib/modules/linux/libdrm.a
+	-usr/X11R6/lib/modules/linux/libfbdevhw.a
+	-usr/X11R6/lib/modules/linux/libint10.a
+	-usr/X11R6/lib/modules/multimedia/bt829_drv.o
+	-usr/X11R6/lib/modules/multimedia/fi1236_drv.o
+	-usr/X11R6/lib/modules/multimedia/msp3430_drv.o
+	-usr/X11R6/lib/modules/multimedia/tda8425_drv.o
+	-usr/X11R6/lib/modules/multimedia/tda9850_drv.o
+	-usr/X11R6/lib/modules/multimedia/tda9885_drv.o
+	-usr/X11R6/lib/modules/multimedia/theatre200_drv.o
+	-usr/X11R6/lib/modules/multimedia/theatre_detect_drv.o
+	-usr/X11R6/lib/modules/multimedia/theatre_drv.o
+	-usr/X11R6/lib/modules/multimedia/uda1380_drv.o
+	+usr/X11R6/lib/modules/fonts/libtype1.so
+	+usr/X11R6/lib/modules/input/acecad_drv.so
+	+usr/X11R6/lib/modules/input/aiptek_drv.so
+	+usr/X11R6/lib/modules/input/calcomp_drv.so
+	+usr/X11R6/lib/modules/input/citron_drv.so
+	+usr/X11R6/lib/modules/input/digitaledge_drv.so
+	+usr/X11R6/lib/modules/input/dmc_drv.so
+	+usr/X11R6/lib/modules/input/dynapro_drv.so
+	+usr/X11R6/lib/modules/input/elographics_drv.so
+	+usr/X11R6/lib/modules/input/evdev_drv.so
+	+usr/X11R6/lib/modules/input/fpit_drv.so
+	+usr/X11R6/lib/modules/input/hyperpen_drv.so
+	+usr/X11R6/lib/modules/input/js_x_drv.so
+	+usr/X11R6/lib/modules/input/kbd_drv.so
+	+usr/X11R6/lib/modules/input/keyboard_drv.so
+	+usr/X11R6/lib/modules/input/magellan_drv.so
+	+usr/X11R6/lib/modules/input/microtouch_drv.so
+	+usr/X11R6/lib/modules/input/mouse_drv.so
+	+usr/X11R6/lib/modules/input/mutouch_drv.so
+	+usr/X11R6/lib/modules/input/palmax_drv.so
+	+usr/X11R6/lib/modules/input/penmount_drv.so
+	+usr/X11R6/lib/modules/input/spaceorb_drv.so
+	+usr/X11R6/lib/modules/input/summa_drv.so
+	+usr/X11R6/lib/modules/input/tek4957_drv.so
+	+usr/X11R6/lib/modules/input/ur98_drv.so
+	+usr/X11R6/lib/modules/input/void_drv.so
+	+usr/X11R6/lib/modules/input/wacom_drv.so
+	+usr/X11R6/lib/modules/libafb.so
+	+usr/X11R6/lib/modules/libcfb.so
+	+usr/X11R6/lib/modules/libcfb16.so
+	+usr/X11R6/lib/modules/libcfb24.so
+	+usr/X11R6/lib/modules/libcfb32.so
+	+usr/X11R6/lib/modules/libddc.so
+	+usr/X11R6/lib/modules/libexa.so
+	+usr/X11R6/lib/modules/libfb.so
+	+usr/X11R6/lib/modules/libi2c.so
+	+usr/X11R6/lib/modules/libint10.so
+	+usr/X11R6/lib/modules/liblayer.so
+	+usr/X11R6/lib/modules/libmfb.so
+	+usr/X11R6/lib/modules/libpcidata.so
+	+usr/X11R6/lib/modules/librac.so
+	+usr/X11R6/lib/modules/libramdac.so
+	+usr/X11R6/lib/modules/libscanpci.so
+	+usr/X11R6/lib/modules/libshadow.so
+	+usr/X11R6/lib/modules/libshadowfb.so
+	+usr/X11R6/lib/modules/libvbe.so
+	+usr/X11R6/lib/modules/libvgahw.so
+	+usr/X11R6/lib/modules/libxaa.so
+	+usr/X11R6/lib/modules/libxf1bpp.so
+	+usr/X11R6/lib/modules/libxf4bpp.so
+	+usr/X11R6/lib/modules/libxf8_16bpp.so
+	+usr/X11R6/lib/modules/libxf8_32bpp.so
+	+usr/X11R6/lib/modules/linux/libdrm.so
+	+usr/X11R6/lib/modules/linux/libfbdevhw.so
+	+usr/X11R6/lib/modules/linux/libint10.so
+	+usr/X11R6/lib/modules/multimedia/bt829_drv.so
+	+usr/X11R6/lib/modules/multimedia/fi1236_drv.so
+	+usr/X11R6/lib/modules/multimedia/msp3430_drv.so
+	+usr/X11R6/lib/modules/multimedia/tda8425_drv.so
+	+usr/X11R6/lib/modules/multimedia/tda9850_drv.so
+	+usr/X11R6/lib/modules/multimedia/tda9885_drv.so
+	+usr/X11R6/lib/modules/multimedia/theatre200_drv.so
+	+usr/X11R6/lib/modules/multimedia/theatre_detect_drv.so
+	+usr/X11R6/lib/modules/multimedia/theatre_drv.so
+	+usr/X11R6/lib/modules/multimedia/uda1380_drv.so
+	 usr/X11R6/man/man1/Xorg.1x
+	 usr/X11R6/man/man1/gtf.1x
+	 usr/X11R6/man/man4/aiptek.4x
+	

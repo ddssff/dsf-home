@@ -1,0 +1,34 @@
+#!/bin/bash
+
+TIMEOUT=30
+ENV=/home/dsf/unstable
+
+while [ $# -gt 0 ] ; do
+    case $1 in
+        -s) TIMEOUT=$2; shift; shift;;
+        *) PACKAGE=$1 ; shift ;;
+    esac
+done
+
+if [ -z "$PACKAGE" ] ; then
+    echo "You must specify a package." 1>&2
+    exit 1
+fi
+
+if [ ! -d $ENV ]; then
+    build-env -s /etc/apt/sources.list -o $ENV
+fi
+
+#cp tmp/config/full/sources.list tmp/config/full/essential_chroot/etc/apt/sources.list
+#echo 'APT::Cache-Limit 300000000;' > tmp/config/full/essential_chroot/etc/apt/apt.conf
+
+OLD=$(chroot $ENV bash -c "apt-get update; apt-get -s install $PACKAGE" | grep "^Conf $PACKAGE ")
+echo OLD=$OLD $(date)
+NEW=$OLD
+while [ "$NEW" = "$OLD" ] ;  do
+    sleep $TIMEOUT
+    NEW=$(chroot $ENV bash -c "apt-get update; apt-get -s install $PACKAGE" | grep "^Conf $PACKAGE ")
+    echo NEW=$NEW $(date)
+done
+echo "Got it\!" 1>&2
+exit 0

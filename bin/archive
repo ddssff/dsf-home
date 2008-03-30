@@ -1,0 +1,230 @@
+#!/bin/sh
+
+set -e
+set -o pipefail
+
+# Usage:
+#   archive [options] original backupdir
+#
+# Options:
+#   --prune <number>	-- limit the number of backup dirs to <number>
+#   --unlink		-- Keep only the most recent hard link.  The newest
+#			   backup is always complete, but the previous day
+#			   will only include the files that changed or were
+#			   removed.
+#   -A			-- Always create a new backup, without this option
+#			   today's backup will be updated if it already exists
+#   --exclude		-- Passed to rsync, implies rsync's --delete-excluded
+#			   flag (so that adding this flag makes files go away
+#			   in newer backups.)
+#   --current		-- Create a link named "current" to the new archive.
+#
+# Create a backup of ORIGINAL in BACKUPDIR in a directory whose name is
+# todays date.  The original may be on a remote machine.
+#
+# This is achieved without wasting disk space on unchanged files using
+# a simple incremental backup technique I read about somewhere using
+# cp -al to create a hard linked copy of the previous backup and rsync
+# to modify that copy into a copy of the current directory.  It does use
+# a lot of inodes, but I haven't run out yet.
+#
+# Example crontab:
+#  0 1 * * * /root/bin/archive --prune 20 --exclude '/.mozilla/**/Cache/' --exclude '/.kde/share/cache/' root@dsf:/home/dsf /backups/dsf
+#  0 2 * * * /root/bin/archive --prune 20 root@p4:/home/audio /backups/audio
+#  20 2 * * * /root/bin/archive --prune 10 root@p4:/disks/hdc3/cdroms /backups/cdroms
+#  30 2 * * * /root/bin/archive --exclude '/.mozilla/**/Cache/' --exclude '/.kde/share/cache/' root@t22:/root /backups/ldt-t22
+#  40 2 * * * /root/bin/archive root@dsf:/var/lib/geneweb /backups/geneweb
+
+# Parameters:
+
+PRUNE=0
+ALWAYS=no	# No means only create one backup a day, additional runs update
+#EXTRA="-v -P"	# Extra parameters to rsync - e.g. -v, -P
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -A) ALWAYS=yes; shift;;
+    -v) EXTRA="$EXTRA $1"; shift;;
+    -P) EXTRA="$EXTRA $1"; shift;;
+    -c) EXTRA="$EXTRA $1"; shift;;
+    -x) set -x; shift;;
+    -xv) set -xv; shift;;
+    --prune) PRUNE=$2; shift; shift;;
+    --unlink) UNLINK=1; shift;;
+    --exclude) EXTRA="$EXTRA $1 $2"; shift; shift;;
+    --delete-excluded) EXTRA="$EXTRA $1"; shift;;
+    --delete-after) EXTRA="$EXTRA $1"; shift;;
+    --timeout=*) EXTRA="$EXTRA $1"; shift;;
+    --partial) EXTRA="$EXTRA $1"; shift;;
+    --whole-file) EXTRA="$EXTRA $1"; shift;;
+    --force) EXTRA="$EXTRA $1"; shift;;
+    --size-only) EXTRA="$EXTRA $1"; shift;;
+    --bwlimit=*) EXTRA="$EXTRA $1"; shift;;
+    --current) CURRENT=yes; shift;;
+    *) if [ "$ORIG" = "" ]; then ORIG=$1;
+       elif [ "$BACKUP" = "" ]; then BACKUP=$1;
+       else EXTRA="$EXTRA $1"; fi; shift;;
+  esac
+done
+
+if [ ! "$BACKUP" ]; then exit 1; fi
+if [ ! -e "$BACKUP" ]; then mkdir -p $BACKUP; fi
+if [ ! -d "$BACKUP" ]; then exit 1; fi
+
+#if echo "$ORIG" | grep -q ':'; then
+#  ORIG_ADDRESS=`echo $ORIG | sed 's/\([^:]*\):.*/\1/'`
+#  ORIG_DIR=`echo $ORIG | sed 's/[^:]*:\(.*\)/\1/'`
+#else
+#  ORIG_ADDRESS=
+#  ORIG_DIR=$ORIG
+#fi
+
+echo "$BACKUP" | grep -q ':' && \
+  echo "Error: backup directory ($BACKUP) must be on localhost." && exit 1
+
+#BASE="`basename "$ORIG"`"
+DATE="`date +%Y%m%d`"
+TIME="`date +%H%M%S`"
+
+TARGET=$BACKUP/$DATE
+# If the ALWAYS flag is set we may need to create a directory with hours
+# minutes and seconds in the name.
+if [ $ALWAYS = "yes" -a -e $BACKUP/$DATE ]; then
+  TARGET=$BACKUP/$DATE-$TIME; fi
+
+echo "$ORIG -> $BACKUP:" 1>&2
+
+# Find the newest backup.  If there was a failed backup, remove it and
+# recompute $NEWEST
+if [ ! -e $BACKUP ]; then mkdir -p $BACKUP; fi
+NEWEST="`find $BACKUP -maxdepth 1 -mindepth 1 -type d | grep '/20' | sort -r | head -1 || echo ""`"
+if [ "$NEWEST" ]; then
+    NEWEST="`basename $NEWEST`"
+    if [ -e "$BACKUP/$NEWEST.incomplete" ]; then
+	echo "  Removing incomplete backup $NEWEST" 1>&2
+	rm -rf "$BACKUP/$NEWEST" "$BACKUP/$NEWEST.incomplete"
+	NEWEST="`ls -1r $BACKUP | grep -v '\.incomplete$' | grep '/20' | sort -r | head -1`"
+    fi
+fi
+
+INCOMPLETE=$TARGET.incomplete
+OUTOFDATE=$TARGET.outofdate
+
+if [ "$NEWEST" = "" -o ! -d "$BACKUP/$NEWEST" ]; then
+  # There is no previous backup
+  touch $OUTOFDATE
+  echo "  No previous backups exist" 1>&2
+  # If no backups exist we do a straight rsync.
+  #mkdir -p backupdir || exit 1
+  rsync $EXTRA -aHxSpDtl --partial --delete --delete-excluded "$ORIG/" "$TARGET"
+  rm -f $OUTOFDATE
+else
+  # If the target directory doesn't exist create it and hard link all
+  # the files to the previous backup.  It is important that this operation
+  # not be interrupted, or rsync will create more files than it needed to.
+  # Therefore, we create a flag next to $TARGET to indicate that it is not
+  # yet a complete link, and remove it when we're done.
+
+  # If we previously died while doing the cp -al, remove the incomplete copy.
+  if [ -e $INCOMPLETE ]; then
+    rm -rf $TARGET
+  fi
+  # If the newest backup has an "outofdate" tag we can rename it and use
+  # it for today's backup.
+  if [ $NEWEST != $TARGET -a -e $NEWEST.outofdate ]; then
+    echo "Moving $NEWEST to $TARGET"
+    mv $NEWEST.outofdate $TARGET.outofdate
+    mv $NEWEST $TARGET
+  fi
+  # Create a hard linked copy of the previous backup
+  if [ ! -d "$TARGET" ]; then
+    touch $INCOMPLETE
+    echo "  Linking to current backup ... " 1>&2
+    # Otherwise copy the most recent backup and update it from the original
+    cp -al "$BACKUP/$NEWEST" "$TARGET"
+    # Now the copy is complete but hasn't been updated from the original,
+    # so create an "outofdate" flag and remove the "incomplete" flag.
+    touch $OUTOFDATE
+    rm -f $INCOMPLETE
+  fi
+
+  set -x
+  echo "  Updating from original ... " 1>&2
+  rsync $EXTRA -aHxSpDtl --partial --delete --delete-excluded --stats "$ORIG/" "$TARGET" | tee /tmp/archive.out
+  rm -f $OUTOFDATE
+  BYTES=`sed -n 's/Total transferred file size: \(.*\) bytes$/\1/p' < /tmp/archive.out`
+  if [ "$BYTES" = "0" ]; then
+      # Create a flag to indicate that this archive is identical
+      # to the previous one.  (We could also remove the older one
+      # and replace it with a symlink to the newer one.)
+      touch "${TARGET}.unchanged";
+  else
+      echo "  Found $BYTES bytes of changed files." 1>&2
+  fi
+  if [ ! -z "$CURRENT" ]; then
+      rm -f ${BACKUP}/current
+      ln -sf `basename ${TARGET}` ${BACKUP}/current
+  fi
+  if [ "$UNLINK" -a "$BACKUP/$NEWEST" != "$TARGET" ]; then
+      # Unlink files that are unchanged from previous backup
+      echo "  Unlinking previous day's hard links" 1>&2
+      (cd "$BACKUP/$NEWEST" && find . -type f) | 
+      while read path; do
+	  if [ "$BACKUP/$NEWEST/$path" -ef "$TARGET/$path" ]; then
+	      rm -f "$BACKUP/$NEWEST/$path"
+	  else
+	      if [ -L "$BACKUP/$NEWEST/$path" -a -L "$TARGET/$path" ]; then
+		  if [ `readlink "$BACKUP/$NEWEST/$path"` = `readlink  "$TARGET/$path"` ]; then
+		      rm -f "$BACKUP/$NEWEST/$path"
+		  fi
+	      fi
+	  fi
+      done
+  fi
+  echo "  done" 1>&2
+fi
+
+# Pruning algorithm: Compute a value metric for each backup and remove
+# the least valuable.  Repeat while we exceed the desired number of
+# backups (the argument to --prune.)  The value of a backup is more if
+# the age difference between it and its neighbors is greater, and less
+# as it becomes older.  Note that the oldest backup will never be
+# removed!  We disallow --prune 1 so that the newest backup never gets
+# removed either.
+
+if [ "$PRUNE" -ge "2" ]; then
+  COUNT=`ls -1r $BACKUP | wc -l`
+  if [ "$COUNT" -gt "$PRUNE" ]; then
+    echo "Pruning $COUNT backups down to $PRUNE" 2>&1;
+  else
+    echo "No backup pruning necessary."
+  fi
+  while [ "$COUNT" -gt "$PRUNE" ]; do
+    #echo "name		time			age	dist	value" 2>&1;
+    ls -1r $BACKUP |
+    sed 's/\(-\([0-9][0-9][0-9][0-9][0-9][0-9][0-9][0-9]\)\(-\([0-9][0-9]\)\([0-9][0-9]\)\([0-9][0-9]\)\)\?\)$/\1 \2 \4:\5:\6/' |
+    sed 's/ ::/ 00:00:00/' |
+    while read i j k; do echo "$i `date -d \"$j $k\" +%s`"; done |
+    #(echo "now	`date '+%s'`"; cat) |
+    # Compute the value metric
+    awk 'BEGIN{pname=""; ptime=0; pptime=0; newest=0}
+           {if (newest == 0) {newest=$2};
+            pdist=(ptime-$2); ppdist=(pptime-ptime); dist=pdist;
+            if (ppdist>pdist) {dist=ppdist}; age=newest-ptime; if (age < 1) {age = 1};
+            if (pname != "") {printf("%-15s\t%d\t%15.2f\t%7d\t%7d\n", pname, $2, age, dist, dist / age)};
+            pname=$1; pptime=ptime; ptime=$2}' | # tee /dev/stderr |
+    # Divide by age to reduce the value of older backups
+    # Sort by value metric and select the least valuable (the first).
+    sort -n +4.0 | head -1 | awk '{print $1}'|
+    while read victim; do
+      echo "  Removing $BACKUP/$victim" 2>&1;
+      rm -rf $BACKUP/$victim;
+    done;
+    # Give up if we couldn't remove a directory
+    if [ "$COUNT" -eq `ls -1r $BACKUP | wc -l` ]; then
+      echo "Unable to remove any backups, aborting." 2>&1;
+      exit 1;
+    fi
+    COUNT=`ls -1r $BACKUP | wc -l`
+  done
+fi

@@ -1,0 +1,148 @@
+#!/bin/sh
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/X11R6/bin
+TLAHOME=$HOME/tla/dsf@foxthompson.net--2004/dsfhome--upstream--1
+
+function install_ssh () {
+    if [ ! -e /usr/bin/ssh ]; then
+	ftp -p -n ftp.debian.org >/dev/null <<XXX
+user anonymous dsf
+cd debian/pool/main/o/openssh
+mget ssh_*_i386.deb
+y
+n
+n
+n
+n
+n
+n
+n
+quit
+XXX
+	DEBIAN_FRONTEND=noninteractive dpkg -i ssh_*.deb
+    fi
+    if [ ! -f ~/.ssh/id_rsa.pub ]; then yes "" | ssh-keygen -t rsa; fi
+}
+
+function configure_ssh () {
+    rm -f /etc/ssh/sshd_not_to_be_run
+    echo 'ssh ssh/run_sshd boolean true' | debconf-set-selections -v
+    /etc/init.d/ssh start
+}
+
+# Set up ssh access to source code repositories
+
+function ssh_access () {
+    touch $HOME/.ssh/authorized_keys2
+    ADDRESS=$1;
+    PORT=22
+    ssh -o "BatchMode yes" -p $PORT $ADDRESS pwd >/dev/null && return 0
+    if [ ! -e $HOME/.ssh/id_rsa.pub ]; then ssh-keygen -t rsa -N ''; fi
+    cat $HOME/.ssh/id_rsa.pub | 
+    ssh $ADDRESS "set -x && mkdir -p \$HOME/.ssh &&
+    chmod 700 .ssh &&
+    cat >> \$HOME/.ssh/authorized_keys2 &&
+    chmod 600 \$HOME/.ssh/authorized_keys2"
+}
+
+function install_packages () {
+    apt-get update
+    apt-get -y install tla xtla los-dev-tlatools
+    apt-get -y install debview dpkg-dev-el
+    apt-get -y install tuareg-mode build-essential
+}    
+
+# Configure sources.list and install some packages
+
+function set_stan_ip () {
+    
+    INSIDE=`host 192.168.1.225 2>/dev/null | sed -n 's/Name: //p'`
+
+    if [ "$INSIDE" = "stan" -o "$INSIDE" = "stan.linspire.com" -o "$INSIDE" = "stan.sd.linspire.com" ]; then 
+#	if ! grep -q -w stan /etc/hosts; then
+#	    echo '192.168.1.225	stan' >> /etc/hosts
+#	fi
+	LOCATION=internal
+    else
+	if ! grep -q -w stan /etc/hosts; then
+	    echo '207.67.194.2    stan' >> /etc/hosts
+	fi
+	LOCATION=external
+    fi
+
+}
+
+# Configure ssh for X11 forwarding
+
+function ssh_x11 () {
+    grep -q 'X11Forwarding yes' /etc/ssh/sshd_config && return 0
+    sed 's/X11Forwarding no/X11Forwarding yes/' < \
+	/etc/ssh/sshd_config > /etc/ssh/sshd_config.new &&
+    mv /etc/ssh/sshd_config.new /etc/ssh/sshd_config
+    /etc/init.d/ssh restart
+}
+
+VERSION=`sed -n 's/^Version: //p' /etc/linspire-version`
+
+if [ "${VERSION#5.0.}" != "$VERSION" ]; then DISTRO=cooked; fi
+if [ "${VERSION#5.1.}" != "$VERSION" ]; then DISTRO=cooked-unstable; fi
+
+function write_sources_list () {
+    USER=$1
+    if [ ! -e /etc/apt/apt.conf ]; then
+	echo 'APT::Cache-Limit 30000000;' > /etc/apt/apt.conf
+    fi
+    if [ ! -e /etc/apt/sources.list.orig ]; then
+	cp -p /etc/apt/sources.list /etc/apt/sources.list.orig
+	ssh $USER@stan "curl -s http://fattushis/cgi-bin/dist_sources_list.cgi?dist=marlin/$DISTRO\&mode=raw\&location=$LOCATION" > /etc/apt/sources.list || exit 1
+    fi
+}
+
+function get_dsfhome () {
+    cd
+    if [ ! -e tla/dsf@foxthompson.net--2004/dsfhome--upstream--1 ]; then
+	tla my-id 'David Fox <david.fox@linspire.com>'
+	for LOC in sftp://dsf@src.lindows.com/home/{archives}/tos@lindows.com--2004 \
+		   sftp://dsf@src.lindows.com/home/{archives}/tos@linspire.com--2005 \
+		   sftp://dsf@src.lindows.com/home/{archives}/kernel@linspire.com--2005 \
+		   sftp://dsf@foxthompson.net/home/dsf/{archives}/dsf@foxthompson.net--2004; do
+	  tla register-archive -f $LOC
+	  ARCHIVE=`basename $LOC`
+	  mkdir -p $HOME/tla/$ARCHIVE
+	done
+	tla my-default-archive 'dsf@foxthompson.net--2004'
+	tla get dsf@foxthompson.net--2004/dsfhome--upstream--1 $HOME/tla/dsf@foxthompson.net--2004/dsfhome--upstream--1
+	tla my-default-archive 'tos@lindows.com--2004'
+	(cd tla/dsf@foxthompson.net--2004/dsfhome--upstream--1; ls -1a) |
+	while read i; do
+	    case "$i" in
+		\.|\.\.|\.arch-ids|{arch}|*~|+*|,,*) continue;;
+		\.procmailrc) continue;;
+		*) ln -s tla/dsf@foxthompson.net--2004/dsfhome--upstream--1/$i .
+	    esac
+	done
+
+	#for file in .emacs elisp bin notes ToDo.ol .Xdefaults; do
+	#    ln -sf $TLAHOME/$file $HOME/$file
+	#done
+	xrdb $HOME/.Xdefaults
+    fi
+}
+
+if [ "$EUID" = "0" ]; then
+  install_ssh
+  configure_ssh
+  set_stan_ip
+fi
+
+echo -n 'Enter user name for src.lindows.com: '
+read USER
+
+ssh_access $USER@stan
+ssh_access $USER@foxthompson.net
+ssh_access $USER@src.lindows.com
+
+write_sources_list $USER
+ssh_x11
+install_packages
+get_dsfhome

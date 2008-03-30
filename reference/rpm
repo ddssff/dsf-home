@@ -1,0 +1,4 @@
+RPM = <an rpm file>
+
+mkdir -p tmp
+rpm2cpio $(RPM) | (cd tmp && cpio --extract --make-directories)

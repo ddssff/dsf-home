@@ -1,0 +1,38 @@
+To start an interactive shell:
+
+PS1='shell# ' /bin/bash -i
+
+If you are inside a loop that reads stdin:
+
+PS1='shell# ' /bin/bash -i < /dev/tty
+
+----
+
+Code to have a script log its execution:
+
+if set -o | grep -q 'xtrace .*off'; then
+  path=`which $0`
+  echo "re-executing $0, `date`" >> /var/log/test.log
+  set -x
+  . $path $* 2>> /var/log/test.log
+  exit $?
+fi
+
+<original script>
+
+----
+To start a tty on virtual terminal 3, comment out
+"3:23:respawn:/sbin/getty 38400 tty3" in /etc/inittab, reboot, and run
+
+/sbin/getty -n -l /bin/bash vc/3 38400
+----
+To print a colored message on the console as each rc script starts:
+
+edit /etc/init.d/rcS and put this line before 'case "$i" in':
+
+echo "[31m$i[39m"
+----
+to see the console during resume:
+
+Hit shift and tab during boot, and boot image L<>| with added
+parameter "vga=normal".

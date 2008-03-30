@@ -1,0 +1,1076 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN" "http://www.w3.org/TR/REC-html40/loose.dtd">
+<html><head>
+
+<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta name="GENERATOR" content="hevea 1.06"><title>The documentation generator (ocamldoc)</title></head>
+
+<body text="black" bgcolor="white">
+<a href="file:///usr/share/doc/ocaml-doc/ocaml.html/manual028.html"><img src="ocamldoc_files/previous_motif.gif" alt="Previous"></a>
+<a href="file:///usr/share/doc/ocaml-doc/ocaml.html/index.html"><img src="ocamldoc_files/contents_motif.gif" alt="Up"></a>
+<a href="file:///usr/share/doc/ocaml-doc/ocaml.html/manual030.html"><img src="ocamldoc_files/next_motif.gif" alt="Next"></a>
+<hr>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#2de52d"><div align="center"><table>
+<tbody><tr><td><font size="6"><b><a name="htoc154">Chapter&nbsp;15</a></b></font></td>
+<td width="100%" align="center"><font size="6"><b>The documentation generator (ocamldoc)</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table> <a name="c:ocamldoc"></a>
+<br>
+This chapter describes OCamldoc, a tool that generates documentation from
+special comments embedded in source files. The comments used by OCamldoc
+are of the form <tt>(**</tt>...<tt>*)</tt> and follow the format described
+in section <a href="#s:ocamldoc-comments">15.2</a>.<br>
+<br>
+OCamldoc can produce documentation in various formats: HTML, L<sup>A</sup>T<sub>E</sub>X, 
+TeXinfo, Unix man pages, and <tt>dot</tt> dependency graphs. Moreover,
+users can add their own custom generators, as explained in
+section <a href="#s:ocamldoc-custom-generators">15.3</a>.<br>
+<br>
+In this chapter, we use the word <em>element</em> to refer to any of the
+following parts of an OCaml source file: a type declaration, a value,
+a module, an exception, a module type, a type constructor, a record
+field, a class, a class type, a class method, a class value or a class
+inheritance clause.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#66ff66"><div align="center"><table>
+<tbody><tr><td><font size="5"><b><a name="htoc155">15.1</a></b></font></td>
+<td width="100%" align="center"><font size="5"><b>Usage</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table> <a name="s:ocamldoc-usage"></a><br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc156">15.1.1</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>Invocation</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+OCamldoc is invoked via the command <tt>ocamldoc</tt>, as follows:
+<pre>        ocamldoc <i>options sourcefiles</i>
+</pre>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Options for choosing the output format</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+The following options determine the format for the generated
+documentation.
+<dl compact="compact"><dt>
+<tt><b>-html</b></tt></dt><dd>
+Generate documentation in HTML default format. The generated HTML pages
+are stored in the current directory, or in the directory specified
+with the <tt><b>-d</b></tt> option. You can customize the style of the
+generated pages by editing the generated <tt>style.css</tt> file, or by providing
+your own style sheet using option <tt>-css-style</tt>.
+The file <tt>style.css</tt> is not generated if it already exists.<br>
+<br>
+</dd><dt><tt><b>-latex</b></tt></dt><dd>
+Generate documentation in L<sup>A</sup>T<sub>E</sub>X default format. The generated
+L<sup>A</sup>T<sub>E</sub>X document is saved in file <tt>ocamldoc.out</tt>, or in the file
+specified with the <tt><b>-o</b></tt> option. The document uses the style file
+<tt>ocamldoc.sty</tt>. This file is generated when using the <tt>-latex</tt> option,
+if it does not already exist.
+You can change this file to customize the style of your L<sup>A</sup>T<sub>E</sub>X documentation.<br>
+<br>
+</dd><dt><tt><b>-texi</b></tt></dt><dd>
+Generate documentation in TeXinfo default format. The generated
+L<sup>A</sup>T<sub>E</sub>X document is saved in file <tt>ocamldoc.out</tt>, or in the file
+specified with the <tt><b>-o</b></tt> option.<br>
+<br>
+</dd><dt><tt><b>-man</b></tt></dt><dd>
+Generate documentation as a set of Unix <tt>man</tt> pages. The generated pages
+are stored in the current directory, or in the directory specified
+with the <tt><b>-d</b></tt> option.<br>
+<br>
+</dd><dt><tt><b>-dot</b></tt></dt><dd>
+Generate a dependency graph for the toplevel modules, in a format suitable
+for displaying and processing by <tt>dot</tt>. The <tt>dot</tt> tool is available from
+<tt><a href="http://www.research.att.com/sw/tools/graphviz/">http://www.research.att.com/sw/tools/graphviz/</a></tt>.
+The textual representation of the graph is written to the file
+<tt>ocamldoc.out</tt>, or to the file specified with the <tt><b>-o</b></tt> option.
+Use <tt>dot ocamldoc.out</tt> to display it.<br>
+<br>
+</dd><dt><b><tt>-g</tt> <i>file.cm[o,a]</i></b></dt><dd>
+Dynamically load the given file, which defines a custom documentation
+generator. See section <a href="#s:ocamldoc-compilation-and-usage">15.4.1</a>. This
+option is supported by the <tt>ocamldoc</tt> command, but not by its
+native-code version <tt>ocamldoc.opt</tt>.
+<div style="border-style: none; border-width: 0.5pt; background-color: yellow; color: red;">
+If the given file is a simple one and does not exist in
+the current directory, then ocamldoc looks for it in the custom 
+generators default directory, and in the directories specified with
+optional <tt>-i</tt> options.<br>
+</div>
+<br>
+</dd><dt style="background-color: yellow; color: red;"><tt><b>-customdir</b></tt></dt><dd style="background-color: yellow; color: red;">
+Display the custom generators default directory.<br>
+<br>
+</dd><dt style="background-color: yellow; color: red;"><b><tt>-i</tt> <i>directory</i></b></dt><dd style="background-color: yellow; color: red;">
+Add the given directory to the path where to look for custom generators.</dd></dl>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>General options</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+<dl compact="compact"><dt><b><tt>-d</tt> <i>dir</i></b></dt><dd>
+Generate files in directory <i>dir</i>, rather than in the current directory.<br>
+<br>
+</dd><dt><b><tt>-dump</tt> <i>file</i></b></dt><dd>
+Dump collected information into <i>file</i>. This information can be
+read with the <tt>-load</tt> option in a subsequent invocation of <tt>ocamldoc</tt>.<br>
+<br>
+</dd><dt><b><tt>-hide</tt> <i>modules</i></b></dt><dd>
+Hide the given complete module names in the generated documentation
+<i>modules</i> is a list of complete module names are separated
+ by '<tt>,</tt>', without blanks. For instance: <tt>Pervasives,M2.M3</tt>.<br>
+<br>
+</dd><dt><tt><b>-inv-merge-ml-mli</b></tt></dt><dd>
+Inverse implementations and interfaces when merging. All elements 
+in implementation files are kept, and the <tt><b>-m</b></tt> option
+indicates which parts of the comments in interface files are merged
+with the comments in implementation files.<br>
+<br>
+</dd><dt><tt><b>-keep-code</b></tt></dt><dd>
+Always keep the source code for values, methods and instance variables,
+when available. 
+The source code is always kept when a <tt>.ml</tt>
+file is given, but is by default discarded when a <tt>.mli</tt> is given. 
+This option allows to always keep the source code.<br>
+<br>
+</dd><dt><b><tt>-load</tt> <i>file</i></b></dt><dd>
+Load information from <i>file</i>, which has been produced by
+<tt>ocamldoc -dump</tt>. Several <tt>-load</tt> options can be given.<br>
+<br>
+</dd><dt><b><tt>-m</tt> <i>flags</i></b></dt><dd>
+Specify merge options between interfaces and implementations. 
+(see section <a href="#s:ocamldoc-merge">15.1.2</a> for details).
+<i>flags</i> can be one or several of the following characters:
+<dl compact="compact"><dt>
+ <tt><b>d</b></tt></dt><dd> merge description
+ </dd><dt><tt><b>a</b></tt></dt><dd> merge @author
+ </dd><dt><tt><b>v</b></tt></dt><dd> merge @version
+ </dd><dt><tt><b>l</b></tt></dt><dd> merge @see
+ </dd><dt><tt><b>s</b></tt></dt><dd> merge @since
+ </dd><dt><tt><b>o</b></tt></dt><dd> merge @deprecated
+ </dd><dt><tt><b>p</b></tt></dt><dd> merge @param
+ </dd><dt><tt><b>e</b></tt></dt><dd> merge @raise
+ </dd><dt><tt><b>r</b></tt></dt><dd> merge @return
+ </dd><dt><tt><b>A</b></tt></dt><dd> merge everything
+</dd></dl><br>
+<br>
+</dd><dt><tt><b>-no-custom-tags</b></tt></dt><dd>
+Do not allow custom @-tags (see section <a href="#s:ocamldoc-tags">15.2.5</a>).<br>
+<br>
+</dd><dt><tt><b>-no-stop</b></tt></dt><dd>
+Keep elements placed after the <tt>(**/**)</tt> special comment
+(see section <a href="#s:ocamldoc-comments">15.2</a>).<br>
+<br>
+</dd><dt><b><tt>-o</tt> <i>file</i></b></dt><dd>
+Output the generated documentation to <i>file</i> instead of <tt>ocamldoc.out</tt>.
+This option is meaningful only in conjunction with the
+<tt><b>-latex</b></tt>, <tt><b>-texi</b></tt>, or <tt><b>-dot</b></tt> options.<br>
+<br>
+</dd><dt><b><tt>-pp</tt> <i>command</i></b></dt><dd>
+Pipe sources through preprocessor <i>command</i>.<br>
+<br>
+</dd><dt><tt><b>-sort</b></tt></dt><dd>
+Sort the list of top-level modules before generating the documentation.<br>
+<br>
+</dd><dt><tt><b>-stars</b></tt></dt><dd>
+Remove blank characters until the first asterisk ('<tt>*</tt>') in each 
+line of comments.<br>
+<br>
+</dd><dt><b><tt>-t</tt> <i>title</i></b></dt><dd>
+Use <i>title</i> as the title for the generated documentation.<br>
+<br>
+</dd><dt style="background-color: yellow; color: red;"><b><tt>-intro</tt> <i>file</i></b></dt><dd style="background-color: yellow; color: red;">
+Use content of <i>file</i> as ocamldoc text to use as introduction (HTML, L<sup>A</sup>T<sub>E</sub>Xand TeXinfo only).
+For HTML, the file is used to create the whole <tt>index.html</tt> file.<br>
+<br>
+</dd><dt><tt><b>-v</b></tt></dt><dd>
+Verbose mode. Display progress information.<br>
+<br>
+</dd><dt><tt><b>-warn-error</b></tt></dt><dd>
+Treat warnings as errors.</dd></dl>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Type-checking options</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+OCamldoc calls the Objective Caml type-checker to obtain type
+informations. The following options impact the type-checking phase.
+They have the same meaning as for the <tt>ocamlc</tt> and <tt>ocamlopt</tt> commands.
+<dl compact="compact"><dt><b><tt>-I</tt> <i>directory</i></b></dt><dd>
+Add <i>directory</i> to the list of directories search for compiled
+interface files (<tt>.cmi</tt> files).<br>
+<br>
+</dd><dt><tt><b>-nolabels</b></tt></dt><dd>
+Ignore non-optional labels in types.<br>
+<br>
+</dd><dt><tt><b>-rectypes</b></tt></dt><dd>
+Allow arbitrary recursive types. (See the <tt>-rectypes</tt> option to <tt>ocamlc</tt>.)</dd></dl>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Options for generating HTML pages</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+The following options apply in conjunction with the <tt>-html</tt> option:
+<dl compact="compact"><dt>
+<tt><b>-all-params</b></tt></dt><dd>
+Display the complete list of parameters for functions and methods.<br>
+<br>
+</dd><dt><b><tt>-css-style</tt> <i>filename</i></b></dt><dd>
+Use <i>filename</i> as the Cascading Style Sheet file.<br>
+<br>
+</dd><dt><tt><b>-colorize-code</b></tt></dt><dd>
+Colorize the OCaml code enclosed in <tt>[ ]</tt> and <tt>\{[ ]\}</tt>, using colors
+to emphasize keywords, etc. If the code fragments are not
+syntactically correct, no color is added.<br>
+<br>
+</dd><dt><tt><b>-index-only</b></tt></dt><dd>
+Generate only index files.</dd></dl>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Options for generating L<sup>A</sup>T<sub>E</sub>X files</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+The following options apply in conjunction with the <tt>-latex</tt> option:
+<dl compact="compact"><dt>
+<b><tt>-latex-value-prefix</tt> <i>prefix</i></b></dt><dd>
+Give a prefix to use for the labels of the values in the generated L<sup>A</sup>T<sub>E</sub>X document.
+The default prefix is the empty string. You can also use the options
+<tt>-latex-type-prefix</tt>, <tt>-latex-exception-prefix</tt>, <tt>-latex-module-prefix</tt>,
+<tt>-latex-module-type-prefix</tt>, <tt>-latex-class-prefix</tt>, <tt>-latex-class-type-prefix</tt>,
+<tt>-latex-attribute-prefix</tt> and <tt>-latex-method-prefix</tt>.<br>
+<br>
+These options are useful when you have, for example, a type and a value with
+ the same name. If you do not specify prefixes, L<sup>A</sup>T<sub>E</sub>X will complain about
+multiply defined labels.<br>
+<br>
+</dd><dt><b><tt>-latextitle</tt> <i>n,style</i></b></dt><dd>
+Associate style number <i>n</i> to the given L<sup>A</sup>T<sub>E</sub>X sectioning command
+<i>style</i>, e.g. <tt>section</tt> or <tt>subsection</tt>. (L<sup>A</sup>T<sub>E</sub>X only.) This is
+useful when including the generated document in another L<sup>A</sup>T<sub>E</sub>X document,
+at a given sectioning level. The default association is 1 for <tt>section</tt>,
+2 for <tt>subsection</tt>, 3 for <tt>subsubsection</tt>, 4 for <tt>paragraph</tt> and 5 for
+<tt>subparagraph</tt>.<br>
+<br>
+</dd><dt><tt><b>-noheader</b></tt></dt><dd>
+Suppress header in generated documentation.<br>
+<br>
+</dd><dt><tt><b>-notoc</b></tt></dt><dd>
+Do not generate a table of contents.<br>
+<br>
+</dd><dt><tt><b>-notrailer</b></tt></dt><dd>
+Suppress trailer in generated documentation.<br>
+<br>
+</dd><dt><tt><b>-sepfiles</b></tt></dt><dd>
+Generate one <tt>.tex</tt> file per toplevel module, instead of the global
+<tt>ocamldoc.out</tt> file.
+</dd></dl>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Options for generating TeXinfo files</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+The following options apply in conjunction with the <tt>-texi</tt> option:
+<dl compact="compact"><dt>
+<tt><b>-esc8</b></tt></dt><dd>
+Escape accented characters in Info files.<br>
+<br>
+</dd><dt><tt><b>-info-entry</b></tt></dt><dd>
+Specify Info directory entry.<br>
+<br>
+</dd><dt><tt><b>-info-section</b></tt></dt><dd>
+Specify section of Info directory.<br>
+<br>
+</dd><dt><tt><b>-noheader</b></tt></dt><dd>
+Suppress header in generated documentation.<br>
+<br>
+</dd><dt><tt><b>-noindex</b></tt></dt><dd>
+Do not build index for Info files.<br>
+<br>
+</dd><dt><tt><b>-notrailer</b></tt></dt><dd>
+Suppress trailer in generated documentation.
+</dd></dl>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Options for generating <tt>dot</tt> graphs</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+The following options apply in conjunction with the <tt>-dot</tt> option:
+<dl compact="compact"><dt>
+<b><tt>-dot-colors</tt> <i>colors</i></b></dt><dd>
+Specify the colors to use in the generated <tt>dot</tt> code. 
+When generating module dependencies, <tt>ocamldoc</tt> uses different colors
+for modules, depending on the directories in which they reside.
+When generating types dependencies, <tt>ocamldoc</tt> uses different colors
+for types, depending on the modules in which they are defined.
+<i>colors</i> is a list of color names separated by '<tt>,</tt>', as
+in <tt>Red,Blue,Green</tt>. The available colors are the ones supported by
+the <tt>dot</tt> tool.<br>
+<br>
+</dd><dt><tt><b>-dot-include-all</b></tt></dt><dd>
+Include all modules in the <tt>dot</tt> output, not only modules given
+on the command line or loaded with the <tt><b>-load</b></tt> option.<br>
+<br>
+</dd><dt><tt><b>-dot-reduce</b></tt></dt><dd>
+Perform a transitive reduction of the dependency graph before
+outputting the <tt>dot</tt> code. This can be useful if there are
+a lot of transitive dependencies that clutter the graph.<br>
+<br>
+</dd><dt><tt><b>-dot-types</b></tt></dt><dd>
+Output <tt>dot</tt> code describing the type dependency graph instead of
+the module dependency graph.
+</dd></dl>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Options for generating man files</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+The following options apply in conjunction with the <tt>-man</tt> option:
+<dl compact="compact"><dt>
+<tt><b>-man-mini</b></tt></dt><dd>
+Generate man pages only for modules, module types, clases and class 
+types, instead of pages for all elements.<br>
+<br>
+</dd><dt><tt><b>-man-suffix</b></tt></dt><dd>
+Set the suffix used for generated man filenames. Default is '<tt>o</tt>',
+like in <tt>List.o</tt>.</dd></dl>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc157">15.1.2</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>Merging of module information</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+<a name="s:ocamldoc-merge"></a><br>
+Information on a module can be extracted either from the <tt>.mli</tt> or <tt>.ml</tt> 
+file, or both, depending on the files given on the command line. 
+When both <tt>.mli</tt> and <tt>.ml</tt> files are given for the same module, 
+information extracted from these files is merged according to the 
+following rules:
+<ul><li>
+Only elements (values, types, classes, ...) declared in the <tt>.mli</tt>
+file are kept. In other terms, definitions from the <tt>.ml</tt> file that are
+not exported in the <tt>.mli</tt> file are not documented.
+</li><li>Descriptions of elements and descriptions in @-tags are handled 
+as follows. If a description for the same element or in the same
+@-tag of the same element is present in both files, then the
+description of the <tt>.ml</tt> file is concatenated to the one in the <tt>.mli</tt> file,
+if the corresponding <tt>-m</tt> flag is given on the command line.
+If a description is present in the <tt>.ml</tt> file and not in the 
+<tt>.mli</tt> file, the <tt>.ml</tt> description is kept. 
+In either case, all the information given in the <tt>.mli</tt> file is kept.
+</li></ul>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc158">15.1.3</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>Coding rules</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+<a name="s:ocamldoc-rules"></a>
+The following rules must be respected in order to avoid name clashes 
+resulting in cross-reference errors:
+<ul><li>
+In a module, there must not be two modules, two module types or
+ a module and a module type with the same name.
+</li><li>In a module, there must not be two classes, two class types or
+ a class and a class type with the same name.
+</li><li>In a module, there must not be two values, two types, or two
+ exceptions with the same name.
+</li><li>Values defined in tuple, as in <tt>let (x,y,z) = (1,2,3)</tt>
+are not kept by OCamldoc.
+</li><li>Avoid the following construction:
+<pre>open Foo (* which has a module Bar with a value x *)
+module Foo = 
+  struct
+    module Bar = 
+      struct
+        let x = 1
+      end
+  end
+  let dummy = Bar.x
+</pre>In this case, OCamldoc will associate <tt>Bar.x</tt> to the <tt>x</tt> of module
+<tt>Foo</tt> defined just above, instead of to the <tt>Bar.x</tt> defined in the
+opened module <tt>Foo</tt>.
+</li></ul>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#66ff66"><div align="center"><table>
+<tbody><tr><td><font size="5"><b><a name="htoc159">15.2</a></b></font></td>
+<td width="100%" align="center"><font size="5"><b>Syntax of documentation comments</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+<a name="s:ocamldoc-comments"></a><br>
+Comments containing documentation material are called <em>special
+comments</em> and are written between <tt>(**</tt> and <tt>*)</tt>. Special comments
+must start exactly with <tt>(**</tt>. Comments beginning with <tt>(</tt> and more
+than two <tt>*</tt> are ignored.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc160">15.2.1</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>Placement of documentation comments</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+OCamldoc can associate comments to some elements of the language
+encountered in the source files. The association is made according to
+the locations of comments with respect to the language elements. The
+locations of comments in <tt>.mli</tt> and <tt>.ml</tt> files are different.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Comments in <tt>.mli</tt> files</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+A special comment is associated to an element if it is placed before or 
+after the element.<br>
+A special comment before an element is associated to this element if&nbsp;:
+<ul><li>
+There is no blank line or another special comment between the special 
+comment and the element. However, a regular comment can occur between 
+the special comment and the element.
+</li><li>The special comment is not already associated to the previous element.
+</li><li>The special comment is not the first one of a toplevel module.
+</li></ul>
+A special comment after an element is associated to this element if
+there is no blank line or comment between the special comment and the
+element.<br>
+<br>
+There are two exceptions: for type constructors and record fields in
+type definitions, the associated comment can only be placed after the
+constructor or field definition, without blank lines or other comments
+between them.<br>
+<br>
+The following sample interface file <tt>foo.mli</tt> illustrates the
+placement rules for comments in <tt>.mli</tt> files.
+<pre>(** The first special comment of the file is the comment associated 
+    with the whole module.*)
+
+
+(** Special comments can be placed between elements and are kept 
+    by the OCamldoc tool, but are not associated to any element.
+    @-tags in these comments are ignored.*)
+
+(*******************************************************************)
+(** Comments like the one above, with more than two asterisks, 
+    are ignored. *)
+
+(** The comment for function f. *)
+val f : int -&gt; int -&gt; int
+(** The continuation of the comment for function f. *)
+
+(** Comment for exception My_exception, even with a simple comment
+    between the special comment and the exception.*)
+(* Hello, I'm a simple comment :-) *)
+exception My_exception of (int -&gt; int) * int
+
+(** Comment for type weather  *)
+type weather =
+| Rain of int (** The comment for construtor Rain *)
+| Sun (** The comment for constructor Sun *) 
+
+(** Comment for type weather2  *)
+type weather2 =
+| Rain of int (** The comment for construtor Rain *)
+| Sun (** The comment for constructor Sun *) 
+(** I can continue the comment for type weather2 here
+  because there is already a comment associated to the last constructor.*)
+
+(** The comment for type my_record *)
+type my_record = {
+    val foo : int ;    (** Comment for field foo *)
+    val bar : string ; (** Comment for field bar *)
+  }
+  (** Continuation of comment for type my_record *)
+
+(** Comment for foo *)
+val foo : string
+(** This comment is associated to foo and not to bar. *)
+val bar : string
+(** This comment is assciated to bar. *)
+
+(** The comment for class my_class *)
+class my_class :
+  object
+    (** A comment to describe inheritance from cl *)
+    inherit cl 
+
+    (** The comment for attribute tutu *)
+    val mutable tutu : string
+
+    (** The comment for attribute toto. *)
+    val toto : int
+
+    (** This comment is not attached to titi since
+        there is a blank line before titi, but is kept
+        as a comment in the class. *)
+
+    val titi : string
+
+    (** Comment for method toto *)
+    method toto : string
+
+    (** Comment for method m *)
+    method m : float -&gt; int
+  end
+
+(** The comment for the class type my_class_type *)
+class type my_class_type = 
+  object
+    (** The comment for variable x. *)
+    val mutable x : int
+    
+    (** The commend for method m. *)
+    method m : int -&gt; int
+end
+    
+(** The comment for module Foo *)
+module Foo =
+  struct
+    (** The comment for x *)
+    val x : int
+
+    (** A special comment that is kept but not associated to any element *)
+  end
+    
+(** The comment for module type my_module_type. *)
+module type my_module_type =
+  sig
+    (** The comment for value x. *)
+    val x : int
+
+    (** The comment for module M. *)
+    module M =
+      struct
+        (** The comment for value y. *)
+        val y : int
+
+        (* ... *)
+      end
+        
+  end
+
+</pre>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Comments in <tt>.ml</tt> files</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+A special comment is associated to an element if it is placed before
+the element and there is no blank line between the comment and the
+element. Meanwhile, there can be a simple comment between the special
+comment and the element. There are two exceptions, for type
+constructors and record fields in type definitions, whose associated
+comment must be placed after the constructor or field definition,
+without blank line between them.<br>
+<br>
+The following example of file <tt>toto.ml</tt> shows where to place comments
+in a <tt>.ml</tt> file.
+<pre>(** The first special comment of the file is the comment associated 
+    to the whole module.*)
+
+(** The comment for function f *)
+let f x y = x + y
+
+(** This comment is not attached to any element since there is another 
+    special comment just before the next element. *)
+
+(** Comment for exception My_exception, even with a simple comment
+    between the special comment and the exception.*)
+(* A simple comment. *)
+exception My_exception of (int -&gt; int) * int
+
+(** Comment for type weather  *)
+type weather =  
+| Rain of int (** The comment for constructor Rain *)
+| Sun (** The comment for constructor Sun *) 
+
+(** The comment for type my_record *)
+type my_record = {
+    val foo : int ;    (** Comment for field foo *)
+    val bar : string ; (** Comment for field bar *)
+  }
+
+(** The comment for class my_class *)  
+class my_class =
+    object
+      (** A comment to describe inheritance from cl *)
+      inherit cl 
+
+      (** The comment for the instance variable tutu *)
+      val mutable tutu = "tutu"
+      (** The comment for toto *)
+      val toto = 1 
+      val titi = "titi"
+      (** Comment for method toto *)
+      method toto = tutu ^ "!"
+      (** Comment for method m *)
+      method m (f : float) = 1
+    end
+    
+(** The comment for class type my_class_type *)
+class type my_class_type = 
+  object
+    (** The comment for the instance variable x. *)
+    val mutable x : int
+    (** The commend for method m. *)
+    method m : int -&gt; int
+  end
+
+(** The comment for module Foo *)
+module Foo =
+  struct
+    (** The comment for x *)
+    val x : int 
+    (** A special comment in the class, but not associated to any element. *)
+  end
+
+(** The comment for module type my_module_type. *)
+module type my_module_type =
+  sig
+    (* Comment for value x. *)
+    val x : int
+    (* ... *)
+  end
+</pre>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc161">15.2.2</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>The Stop special comment</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+The special comment <tt>(**/**)</tt> tells OCamldoc to discard
+elements placed after this comment, up to the end of the current
+class, class type, module or module type. For instance:
+<pre>class type foo =
+  object
+    (** comment for method m *)
+    method m : string
+    
+    (**/**)
+
+    (** This method won't appear in the documentation *)
+    method bar : int
+  end
+
+(** This value appears in the documentation, since the Stop special comment
+    in the class does not affect the parent module of the class.*)
+val foo : string
+
+(**/**)
+(** The value bar does not appear in the documentation.*)
+val bar : string
+
+(** The type t does not appear either. *)
+type t = string
+</pre>
+The <tt><b>-no-stop</b></tt> option to <tt>ocamldoc</tt> causes the Stop special
+comments to be ignored.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc162">15.2.3</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>Syntax of documentation comments</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+The inside of documentation comments <tt>(**</tt>...<tt>*)</tt> consists of
+free-form text with optional formatting annotations, followed by
+optional <em>tags</em> giving more specific information about parameters,
+version, authors, ... The tags are distinguished by a leading @
+character. Thus, a documentation comment has the following shape:
+<pre>(** The comment begins with a description, which is text formatted
+   according to the rules described in the next section.
+   The description continues until the first non-escaped '@' character.
+   @author Mr Smith
+   @param x description for parameter x
+*)
+</pre>Some elements support only a subset of all @-tags. Tags that are not
+relevant to the documented element are simply ignored. For instance,
+all tags are ignored when documenting type constructors, record
+fields, and class inheritance clauses. Similarly, a <tt>@param</tt> tag on a
+class instance variable is ignored.<br>
+<br>
+At last, <tt>(**)</tt> is the empty documentation comment.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc163">15.2.4</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>Text formatting</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table><br>
+Here is the BNF grammar for the simple markup language used to format
+text descriptions.<br>
+<br>
+<i>text</i> ::= (<i>text_element</i>)<tt>+</tt><br>
+<i>text_element</i> ::= <br>
+<table cellspacing="2" cellpadding="0">
+<tbody><tr><td valign="top" align="left" nowrap="nowrap"><tt>| {[0-9]+ <i>text</i>}</tt></td>
+<td valign="top" align="left">format <i>text</i> as a section header;
+ the integer following <tt>{</tt> indicates the sectioning level.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {[0-9]+:<i>label text</i>}</tt></td>
+<td valign="top" align="left">same, but also associate the name <i>label</i> to the current point.
+ This point can be referenced by its fully-qualified label in a
+ <tt>{!</tt> command, just like any other element.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {b <i>text</i>}</tt></td>
+<td valign="top" align="left">set <i>text</i> in bold.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {i <i>text</i>}</tt></td>
+<td valign="top" align="left">set <i>text</i> in italic.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {e <i>text</i>}</tt></td>
+<td valign="top" align="left">emphasize <i>text</i>.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {C <i>text</i>}</tt></td>
+<td valign="top" align="left">center <i>text</i>.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {L <i>text</i>}</tt></td>
+<td valign="top" align="left">left align <i>text</i>.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {R <i>text</i>}</tt></td>
+<td valign="top" align="left">right align <i>text</i>.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {ul <i>list</i>}</tt></td>
+<td valign="top" align="left">build a list.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {ol <i>list</i>}</tt></td>
+<td valign="top" align="left">build an enumerated list.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {{:<i>string</i>}<i>text</i>}</tt></td>
+<td valign="top" align="left">put a link to the given address
+(given as a string) on the given text.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| [<i>string</i>]</tt></td>
+<td valign="top" align="left">set the given <i>string</i> in source code style.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {[<i>string</i>]}</tt></td>
+<td valign="top" align="left">set the given <i>string</i> in preformatted 
+				source code style.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {v <i>string</i> v}</tt></td>
+<td valign="top" align="left">set the given <i>string</i> in verbatim style.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {% <i>string</i> %}</tt></td>
+<td valign="top" align="left">take the given <i>string</i> 
+as raw L<sup>A</sup>T<sub>E</sub>X code.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {!<i>string</i>}</tt></td>
+<td valign="top" align="left">insert a reference to the element named
+<i>string</i>. <i>string</i> must be a fully qualified element name,
+for example <tt>Foo.Bar.t</tt>.
+<div style="border-style: none; border-width: 0.5pt; background-color: yellow; color: red;">
+The kind of the referenced element can be forced
+(useful when various elements have the same qualified name) with the following
+syntax: <tt>{!<i>kind</i>: Foo.Bar.t}</tt> where <i><tt>kind</tt></i> can be
+<tt>module</tt>, <tt>modtype</tt>, <tt>class</tt>, <tt>classtype</tt>, <tt>val</tt>,
+<tt>type</tt>, <tt>exception</tt>, <tt>attribute</tt>, <tt>method</tt> or <tt>section</tt>.
+</div>
+</td>
+</tr>
+<tr style="background-color: yellow; color: red;"><td valign="top" align="left" nowrap="nowrap"><tt>| {!modules: <i>string string</i> ...}</tt></td>
+<td valign="top" align="left">insert an index table
+for the given module names. Used in HTML only.</td>
+</tr>
+<tr style="background-color: yellow; color: red;"><td valign="top" align="left" nowrap="nowrap"><tt>| {!indexlist}</tt></td>
+<td valign="top" align="left">insert a table of links to the various indexes
+(types, values, modules, ...). Used in HTML only.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {^ <i>text</i>}</tt></td>
+<td valign="top" align="left">set text in superscript.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| {_ <i>text</i>}</tt></td>
+<td valign="top" align="left">set text in subscript.</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| <i>escaped_string</i></tt></td>
+<td valign="top" align="left">typeset the given string as is; 
+special characters ('<tt>{</tt>', '<tt>}</tt>', '<tt>[</tt>', '<tt>]</tt>' and '<tt>@</tt>')
+must be	escaped by a '<tt>\</tt>'</td>
+</tr>
+<tr><td valign="top" align="left" nowrap="nowrap"><tt>| <i>blank_line</i> </tt></td>
+<td valign="top" align="left">force a new line.</td>
+</tr></tbody></table> <br>
+<i>list</i> ::= <br>
+&nbsp;&nbsp;<tt>| ({- <i>text</i>})+</tt><br>
+&nbsp;&nbsp;<tt>| ({li <i>text</i>})+</tt><br>
+A shortcut syntax exists for lists and enumerated lists:
+<pre>(** Here is a {b list}
+- item 1
+- item 2
+- item 3
+
+The list is ended by the blank line.*)
+</pre>is equivalent to:
+<pre>(** Here is a {b list} 
+{ul {- item 1}
+{- item 2}
+{- item 3}}
+The list is ended by the blank line.*)
+</pre>
+The same shortcut is available for enumerated lists, using '<tt>+</tt>' 
+instead of '<tt>-</tt>'. 
+Note that only one list can be defined by this shortcut in nested lists.<br>
+<br>
+In the description of a value, type, exception, module, module type, class 
+or class type, the <em>first sentence</em> is sometimes used in indexes, or
+when just a part of the description is needed. The first sentence
+is composed of the first characters of the description, until
+<ul><li>
+the first dot followed by a blank, or
+</li><li>the first blank line
+</li></ul>
+outside of the following text formatting :
+<tt>{ul <em>list</em>}</tt>,
+<tt>{ol <em>list</em>}</tt>,
+<tt>[<em>string</em>]</tt>,
+<tt>{[<em>string</em>]}</tt>,
+<tt>{v <em>string</em> v}</tt>,
+<tt>{% <em>string</em>%}</tt>,
+<tt>{!<em>string</em>}</tt>,
+<tt>{^ <em>text</em>}</tt>,
+<tt>{_ <em>text</em>}</tt>.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc164">15.2.5</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>Documentation tags (@-tags)</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+<a name="s:ocamldoc-tags"></a><br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Predefined tags</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+The folowing table gives the list of predefined @-tags, with their
+syntax and meaning.<br>
+<table border="1" cellspacing="0" cellpadding="1">
+<tbody><tr><td valign="top" align="left"><tt>@author </tt><em>string</em></td>
+<td valign="top" align="left">The author of the element. One author by <tt>@author</tt> tag. 
+There may be several <tt>@author</tt> tags for the same element.</td>
+</tr>
+<tr><td valign="top" align="left"><tt>@deprecated </tt><em>text</em></td>
+<td valign="top" align="left">The <em>text</em> should describe when the element was 
+deprecated, what to use as a replacement, and possibly the reason
+for deprecation.</td>
+</tr>
+<tr><td valign="top" align="left"><tt>@param </tt><em>id text</em></td>
+<td valign="top" align="left">Associate the given description (<em>text</em>) to the
+given parameter name <em>id</em>. This tag is used for functions,
+methods, classes and functors.</td>
+</tr>
+<tr><td valign="top" align="left"><tt>@raise Exc </tt><em>text</em></td>
+<td valign="top" align="left">Explain that the element may raise
+ the exception <tt>Exc</tt>.</td>
+</tr>
+<tr><td valign="top" align="left"><tt>@return </tt><em>text</em></td>
+<td valign="top" align="left">Describe the return value and
+ its possible values. This tag is used for functions
+ and methods.</td>
+</tr>
+<tr><td valign="top" align="left"><tt>@see &lt;url&gt; </tt><em>text</em></td>
+<td valign="top" align="left">Add a reference to the URL between '<tt>&lt;</tt>' and '<tt>&gt;</tt>' 
+with the given text as comment.</td>
+</tr>
+<tr><td valign="top" align="left"><tt>@see 'filename' </tt><em>text</em></td>
+<td valign="top" align="left">Add a reference to the given file name 
+(written between single quotes), with the given text as comment.</td>
+</tr>
+<tr><td valign="top" align="left"><tt>@see "document name" </tt><em>text</em></td>
+<td valign="top" align="left">Add a reference to the given
+document name (written between double quotes), with the given text
+as comment.</td>
+</tr>
+<tr><td valign="top" align="left"><tt>@since </tt><em>string</em></td>
+<td valign="top" align="left">Indicates when the element was introduced.</td>
+</tr>
+<tr><td valign="top" align="left"><tt>@version </tt><em>string</em></td>
+<td valign="top" align="left">The version number for the element.</td>
+</tr></tbody></table><br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Custom tags</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+<a name="s:ocamldoc-custom-tags"></a>
+You can use custom tags in the documentation comments, but they will
+have no effect if the generator used does not handle them. To use a
+custom tag, for example <tt>foo</tt>, just put <tt>@foo</tt> with some text in your
+comment, as in:
+<pre>(** My comment to show you a custom tag.
+@foo this is the text argument to the [foo] custom tag.
+*)
+</pre>
+To handle custom tags, you need to define a custom generator, 
+as explained in section <a href="#s:ocamldoc-handling-custom-tags">15.3.2</a>.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#66ff66"><div align="center"><table>
+<tbody><tr><td><font size="5"><b><a name="htoc165">15.3</a></b></font></td>
+<td width="100%" align="center"><font size="5"><b>Custom generators</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+<a name="s:ocamldoc-custom-generators"></a><br>
+OCamldoc operates in two steps:
+<ol type="1"><li>
+analysis of the source files;
+</li><li>generation of documentation, through a documentation generator, 
+	which is an object of class <tt>Odoc_args.class_generator</tt>.
+</li></ol>
+Users can provide their own documentation generator to be used during
+step 2 instead of the default generators.
+All the information retrieved during the analysis step is available through
+the <tt>Odoc_info</tt> module, which gives access to all the types and functions
+ representing the elements found in the given modules, with their associated 
+description.<br>
+<br>
+The files you can used to define custom generators are installed in the
+<tt>ocamldoc</tt> sub-directory of the OCaml standard library.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc166">15.3.1</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>The generator class</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+A generator class is a class of type <tt>Odoc_args.doc_generator</tt>. 
+It has only one method<br>
+<tt>generator : Odoc_info.Module.t_module list -&gt; unit</tt><br>
+This method will be called with the list of analysed and possibly
+merged <tt>Odoc_info.t_module</tt> structures.
+Of course the class can have other methods, but the object of this
+ class must be coerced to <tt>Odoc_args.doc_generator</tt> before being
+ passed to the function<br>
+<tt>Odoc_args.set_doc_generator : Odoc_args.doc_generator -&gt; unit</tt><br>
+which installs the new documentation generator.<br>
+<br>
+The following example shows how to define and install a new documentation generator. 
+See the <tt>odoc_fhtml</tt> generator (in the Ocamldoc Hump) for a complete example.
+<pre>class my_doc_gen = 
+  object
+    (* ... *)
+
+    method generate module_list = 
+      (* ... *)
+      ()
+
+    (* ... *)
+  end
+
+let my_generator = new my_doc_gen
+let _ = Odoc_args.set_doc_generator (my_generator :&gt; Odoc_args.doc_generator)
+</pre>
+Note: The new class can inherit from <tt>Odoc_html.html</tt>, <tt>Odoc_latex.latex</tt>,
+<tt>Odoc_man.man</tt>, <tt>Odoc_texi.texi</tt> or <tt>Odoc_dot.dot</tt>, and
+redefine only some methods to benefit from the existing methods. <br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc167">15.3.2</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>Handling custom tags</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+<a name="s:ocamldoc-handling-custom-tags"></a><br>
+Making a custom generator handle custom tags (see
+<a href="#s:ocamldoc-custom-tags">15.2.5</a>) is very simple.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>For HTML</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+Here is how to develop a HTML generator handling your custom tags.<br>
+<br>
+The class <tt>Odoc_html.html</tt> inherits
+from the class <tt>Odoc_html.info</tt>, containing a field <tt>tag_functions</tt> which is a
+list pairs composed of a custom tag (e.g. 'foo') and a function taking a <tt>text</tt>
+and returning HTML code (of type <tt>string</tt>). 
+To handle a new tag <tt>bar</tt>, create a HTML generator class from the existing one
+ and complete the <tt>tag_functions</tt> field:
+<pre>class my_gen =
+  object(self)
+    inherit Odoc_html.html
+
+    (** Return HTML code for the given text of a bar tag. *)
+    method html_of_bar t = (* your code here *) 
+    
+    initializer
+      tag_functions &lt;- ("bar", self#html_of_bar) :: tag_functions 
+  end
+</pre>
+Another method of the class <tt>Odoc_html.info</tt> will look for the
+function associated to a custom tag and apply it to the text given to
+the tag. If no function is associated to a custom tag, then the method
+prints a warning message on <tt>stderr</tt>.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>For other generators</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+As for the HTML custom generator, you can define a new L<sup>A</sup>T<sub>E</sub>X(resp. <tt>man</tt>) generator by inheriting from the class
+<tt>Odoc_latex.latex</tt> (resp. <tt>Odoc_man.man</tt>) and 
+adding your own tag handler to the field <tt>tag_functions</tt>.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#66ff66"><div align="center"><table>
+<tbody><tr><td><font size="5"><b><a name="htoc168">15.4</a></b></font></td>
+<td width="100%" align="center"><font size="5"><b>Adding command line options</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+The command line analysis is performed after loading the module containing the 
+documentation generator, thus allowing command line options to be added to the
+ list of existing ones. Adding an option can be done with the function<br>
+<tt>Odoc_args.add_option : string * Arg.spec * string -&gt; unit</tt><br>
+Note: Existing command line options can be redefined using this function.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#7fff7f"><div align="center"><table>
+<tbody><tr><td><font size="4"><b><a name="htoc169">15.4.1</a></b></font></td>
+<td width="100%" align="center"><font size="4"><b>Compilation and usage</b></font></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+<a name="s:ocamldoc-compilation-and-usage"></a><br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Defining a custom generator class in one file</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+Let <tt>custom.ml</tt> be the file defining a new generator class.
+Compilation of <tt>custom.ml</tt> can be performed by the following command&nbsp;:<br>
+<tt>ocamlc -I +ocamldoc -c custom.ml</tt><br>
+The file <tt>custom.cmo</tt> is created and can be used this way&nbsp;:<br>
+<tt>ocamldoc -g custom.cmo <em>other-options source-files</em></tt><br>
+It is important not to give the <tt><b>-html</b></tt> or any other option selecting a
+built in generator to <tt>ocamldoc</tt>,
+which would result in using this generator instead of the one you just loaded.<br>
+<br>
+<table cellpadding="0" cellspacing="0" width="100%">
+<tbody><tr><td bgcolor="#98ff98"><div align="center"><table>
+<tbody><tr><td><b>Defining a custom generator class in several files</b></td>
+</tr></tbody></table></div></td>
+</tr></tbody></table>
+It is possible to define a generator class in several modules, which
+are defined in several files <tt>file1.ml[i]</tt>, <tt>file2.ml[i]</tt>, ...,
+<tt>fileN.ml[i]</tt>. A <tt>.cma</tt> library file must
+be created, including all these files.<br>
+The following commands create the <tt>custom.cma</tt> file from files <tt>file1.ml[i]</tt>, ..., 
+<tt>fileN.ml[i]</tt>&nbsp;:<br>
+<tt>ocamlc -I +ocamldoc -c file1.ml[i]<br>
+ocamlc -I +ocamldoc -c file2.ml[i]<br>
+...<br>
+ocamlc -I +ocamldoc -c fileN.ml[i]<br>
+ocamlc -o custom.cma -a file1.cmo file2.cmo ... fileN.cmo</tt><br>
+Then, the following command uses <tt>custom.cma</tt> as custom generator:<br>
+<tt>ocamldoc -g custom.cma <em>other-options source-files</em></tt><br>
+Again, it is important not to give the <tt><b>-html</b></tt> or any other option selecting a
+built in generator to <tt>ocamldoc</tt>,
+which would result in using this generator instead of the one you just loaded.<br>
+<br>
+
+<br>
+<br>
+<hr>
+<a href="file:///usr/share/doc/ocaml-doc/ocaml.html/manual028.html"><img src="ocamldoc_files/previous_motif.gif" alt="Previous"></a>
+<a href="file:///usr/share/doc/ocaml-doc/ocaml.html/index.html"><img src="ocamldoc_files/contents_motif.gif" alt="Up"></a>
+<a href="file:///usr/share/doc/ocaml-doc/ocaml.html/manual030.html"><img src="ocamldoc_files/next_motif.gif" alt="Next"></a>
+</body></html>

@@ -1,0 +1,43 @@
+scp dsf@stan:/build/isos/marlin_4.9.332*.iso tmp.iso && cdrecord -v driveropts=burnfree gracetime=2 speed=24 dev=/dev/cdroms/cdrom1 -data tmp.iso
+
+------------------
+audio:
+
+#!/bin/sh
+
+for i in track*.mp3; do
+  mpg123 --stereo --wav tmp.wav "$i" &&
+  cdrecord gracetime=2 speed=16 dev=0,0,0 -audio -pad -nofix tmp.wav &&
+  rm -f tmp.wav
+done
+cdrecord speed=16 dev=0,0,0 -fix
+
+#!/bin/sh
+
+for i in *.wav; do cdrecord speed=4 dev=0,6,0 -audio -pad -nofix "$i"; done
+cdrecord speed=2 dev=0,6,0 -fix
+
+mp3: put them in an iso image
+
+-------------------
+
+On LindowsOS:
+
+put the following in /etc/modutils/aliases -
+
+  options ide-cd ignore=hdc
+  alias sr0 sr_mod
+  pre-install sg modprobe ide-scsi
+  pre-install sr_mod modprobe ide-scsi
+  pre-install ide-scsi modprobe ide-cd
+
+run /sbin/update-modules?
+
+install cdrecord, check "cdrecord -scanbus".
+
+--------------
+
+data:
+
+mkisofs -o /tmp/tmp.iso /tmp/1011.rom
+cdrecord -v driveropts=burnfree gracetime=2 speed=24 dev=/dev/cdroms/cdrom0 -data /tmp/tmp.iso

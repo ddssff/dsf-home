@@ -1,0 +1,17 @@
+Building Xfree86:
+
+  make World
+
+to re-build after edits:
+
+  make e
+
+-------------
+
+Build dependencies:
+
+xorg-source flex bison groff zlib1g-dev libncurses5-dev libpam0g-dev
+libfreetype6-dev libpaperg rman tetex-bin po-debconf debhelper lynx
+libglide2-dev libglide3-dev linux-kernel-headers libpng12-dev
+libexpat1-dev libfontconfig1-dev libxft-dev libxcursor-dev dbs m4
+libxrender-dev

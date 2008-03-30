@@ -1,0 +1,231 @@
+%-*- mode: Outline; mode: Font-lock; outline-regexp: "[%]+"; truncate-lines: t; -*-
+% Quick Start
+apt-get update
+apt-get install tla los-dev-tlatools
+tla register-archive tos@lindows.com--2004 sftp://dsf@src.lindows.com/home/{archives}/tos@lindows.com--2004
+tla my-id 'David Fox <david.fox@linspireinc.com>'
+tla my-default-archive tos@lindows.com--2004
+sshexport dsf@src.lindows.com
+% My Tutorial
+%% Setup
+ # apt-get install los-dev-tlatools
+ % apt-get source bash
+ % mkdir '{archives}'
+ % tla my-id 'David Fox <dsf@foxthompson.net>'
+ % tla make-archive dsf@foxthompson.net--2004 /root/{archives}/dsf@foxthompson.net--2004
+  -- must be a full path, or sftp:...
+ 
+ % tla register-archive -f /root/{archives}/dsf@foxthompson.net--2004
+  -- re-registers archive if it moves
+ 
+ % tla archives
+ dsf@foxthompson.net--2004
+     {archives}/dsf@foxthompson.net--2004
+ 
+ tla my-default-archive dsf@foxthompson.net--2004
+ 
+ # tla_import_deb bash_2.05b-2-22.dsc
+ 
+ # tla abrowse
+ dsf@foxthompson.net--2004
+   bash
+     bash--debian
+       bash--debian--2.05.999.2
+         base-0 .. patch-1
+ 
+     bash--upstream
+       bash--upstream--2.05.999.2
+         base-0
+ 
+ # tla tag -S bash--upstream--2.05.999.2 bash--feature-1--2.05.999.2
+* creating branch david.fox@lindows.com--2004/bash--feature-1
+* creating version david.fox@lindows.com--2004/bash--feature-1--2.05.999.2
+# tla get bash--feature-1--2.05.999.2
+  or
+# tla get david.fox@lindows.com--2004/bash--feature-1--2.05.999.2
+  or
+# tla get bash--feature-1--2.05.999.2 bash--feature-1--2.05.999.2
+  (to avoid the --base-0 suffix)
+
+this checks out the upstream source, which in this case is just a tarball.
+
+# tla replay bash--debian--2.05.999.2
+
+This replays the debian branch.  It recognizes that debian and
+feature-1 have a common ancestor, so it doesn't do the base-0 stuff,
+just patch-1.
+
+# tla ancestry
+david.fox@lindows.com--2004
+  bash--feature-1--2.05.999.2
+    base-0 ... base-0
+  bash--upstream--2.05.999.2
+    base-0
+
+We're in feature 1, we pulled stuff from upstream, nothing committed
+
+# tla register-archive tos@lindows.com--2004 sftp://dsf@source.lindows.com/home/{archives}/tos@lindows.com--2004
+
+[at this point cliff imported the archive created above into tos@lindows.com]
+
+# tla register-archive -f tos@lindows.com--2004 sftp://dsf@src.lindows.com/home/{archives}/tos@lindows.com--2004
+ - oops, re-register because we got the wrong hostname for src
+
+# tla tag -S tos@lindows.com--2004/bash--debian--2.05.999.2 tos@lindows.com--2004/bash--feature-1--2.05.999.2
+ - create a branch for feature 1
+
+# tla get tos@lindows.com--2004/bash--feature-1--2.05.999.2 tos@lindows.com--2004/bash--feature-1--2.05.999.2
+# cd tos@lindows.com--2004
+
+[edit bash]
+
+# tla changes
+ * looking for tos@lindows.com--2004/bash--feature-1--2.05.999.2--base-0 to compare with
+ * comparing to tos@lindows.com--2004/bash--feature-1--2.05.999.2--base-0
+M  debian/skel.bash_profile
+# tla changes --diffs
+ * looking for tos@lindows.com--2004/bash--feature-1--2.05.999.2--base-0 to compare with
+ * comparing to tos@lindows.com--2004/bash--feature-1--2.05.999.2--base-0
+M  debian/skel.bash_profile
+
+ * modified files
+
+--- orig/debian/skel.bash_profile
++++ mod/debian/skel.bash_profile
+@@ -27,3 +27,7 @@
+ #    MANPATH=~/man:"${MANPATH}"
+ #    export MANPATH
+ #fi
++
++if [ "$EUID" = "0" ]; then
++    PATH="/sbin:/usr/sbin:$PATH"
++fi
+
+# emacs $(tla make-log)
+(edit, save, exit)
+
+# tla commit --strict
+# cd ../.. (to /root)
+
+# tla tag -S tos@lindows.com--2004/bash--debian--2.05.999.2 tos@lindows.com--2004/bash--feature-2--2.05.999.2
+# tla get tos@lindows.com--2004/bash--feature-2--2.05.999.2 tos@lindows.com--2004/bash--feature-2--2.05.999.2
+# cd tos@lindows.com--2004/bash--feature-2--2.05.999.2
+
+edit edit
+
+# emacs $(tla make-log)
+# tla commit --strict
+
+now make a build-marlin branch
+
+# cd ../.. (to /root)
+# tla tag -S tos@lindows.com--2004/bash--upstream--2.05.999.2 tos@lindows.com--2004/bash--build-marlin--2.05.999.2
+# tla get tos@lindows.com--2004/bash--build-marlin--2.05.999.2 tos@lindows.com--2004/bash--build-marlin--2.05.999.2
+
+Now we have a branch with upstream as base-0.  Now we replay debian, feature-1, feature-2.
+
+# tla replay tos@lindows.com--2004/bash--debian--2.05.999.2
+# tla replay tos@lindows.com--2004/bash--feature-1--2.05.999.2
+# tla replay tos@lindows.com--2004/bash--feature-2--2.05.999.2
+
+# tla log-for-merge
+Patches applied:
+
+ * tos@lindows.com--2004/bash--debian--2.05.999.2--base-0
+   tag of tos@lindows.com--2004/bash--upstream--2.05.999.2--base-0
+
+ * tos@lindows.com--2004/bash--debian--2.05.999.2--patch-1
+   
+
+ * tos@lindows.com--2004/bash--feature-1--2.05.999.2--base-0
+   tag of tos@lindows.com--2004/bash--debian--2.05.999.2--patch-1
+
+ * tos@lindows.com--2004/bash--feature-1--2.05.999.2--patch-1
+   Add /sbin and /usr/sbin to path if EUID=0
+
+ * tos@lindows.com--2004/bash--feature-2--2.05.999.2--base-0
+   tag of tos@lindows.com--2004/bash--debian--2.05.999.2--patch-1
+
+ * tos@lindows.com--2004/bash--feature-2--2.05.999.2--patch-1
+   Don't fail if remove-shell fails
+
+# tla commit --strict -s "Linspire changes to debian bash"
+
+Send this to Jeremy Norris:
+  The branch name:  tos@lindows.com--2004/bash--build-marlin--2.05.999.2
+  The unmangled version number: 2.05b-2-20
+
+
+-------------------------
+
+more edits...
+% Tasks
+%% Preparation
+# apt-get install tla los-dev-tlatools
+# tla my-id 'David Fox <david.fox@lindows.com>'
+# sshexport dsf@src.lindows.com
+# tla register-archive tos@lindows.com--2004 sftp://dsf@src.lindows.com/home/{archives}/tos@lindows.com--2004
+# tla my-default-archive tos@lindows.com--2004
+# mkdir -p tos@lindows.com--2004
+%% Check out and modify bash
+# for i in bash--feature-1--2.05.999.2; do tla get tos@lindows.com--2004/$i tos@lindows.com--2004/$i; done
+edit, edit
+# emacs $(tla make-log)
+# tla commit --strict
+# tla replay tos@lindows.com--2004/bash--feature-1--2.05.999.2
+%% Modify los-installer
+# tla get tos@lindows.com--2004/los-installer--lindows tos@lindows.com--2004/los-installer--lindows
+edit edit
+# emacs $(tla make-log)
+# tla commit --strict
+# cd ../..
+# tla get tos@lindows.com--2004/los-installer--build-marlin tos@lindows.com--2004/los-installer--build-marlin
+# cd los-installer--build-marlin
+# tla replay tos@lindows.com--2004/los-installer--lindows--2.0
+# tla update
+# tla commit --strict
+%% Create a local repository
+mkdir '{archives}'
+tla my-id 'David Fox <david.fox@lindows.com>'
+for i in david.fox@lindows.com--2004; do tla make-archive $i /root/{archives}/$i; done
+tla my-default-archive david.fox@lindows.com--2004
+%% Import and modify pcmcia-cs
+tla_import_deb pcmcia-cs_3.2.5-8.dsc
+%% Check out Sean's xorg module
+tla register-archive sean@lindows.com--2004 sftp://dsf@src.lindows.com/home/{archives}/sean@lindows.com--2004
+tla my-default-archive sean@lindows.com--2004
+tla get xorg--build-marlin
+%% Import and modify logrotate
+apt-get update
+apt-get source logrotate
+tla my-id 'David Fox <david.fox@lindows.com>'
+tla my-default-archive tos@lindows.com--2004
+tla_import_deb logrotate_3.7-2.dsc
+(abandoned)
+%% Import emacs from gnu cvs
+cvs -z3 -d:ext:anoncvs@savannah.gnu.org:/cvsroot/emacs co emacs
+%% Import synaptics driver
+apt-get update
+apt-get source xfree86-driver-synaptics
+(Add some magic to tla_import_deb to change the name to xorg-driver-synaptics)
+tla_import_deb xfree86-driver-synaptics_0.13.5-1.dsc
+tla get tos@lindows.com--2004/xorg-driver-synaptics--debian--0.13.5 tos@lindows.com--2004/xorg-driver-synaptics--debian--0.13.5
+tla tag -S tos@lindows.com--2004/xorg-driver-synaptics--upstream--0.13.5 tos@lindows.com--2004/xorg-driver-synaptics--build-marlin--0.13.5
+tla get tos@lindows.com--2004/xorg-driver-synaptics--build-marlin--0.13.5 tos@lindows.com--2004/xorg-driver-synaptics--build-marlin--0.13.5
+tla tag -S tos@lindows.com--2004/xorg-driver-synaptics--debian--0.13.5 tos@lindows.com--2004/xorg-driver-synaptics--xfree86-xorg--0.13.5
+tla get tos@lindows.com--2004/xorg-driver-synaptics--xfree86-xorg--0.13.5 tos@lindows.com--2004/xorg-driver-synaptics--xfree86-xorg--0.13.5
+(edit edit)
+tla commit --strict -L 'change name of package and fix dependencies'
+cd ../../tos@lindows.com--2004/xorg-driver-synaptics--build-marlin--0.13.5/
+%% Import a tree we control
+
+echo -n 'Package name: '; read name
+echo -n 'Branch name: '; read branch
+echo -n 'Version: '; read version
+# Create and/or cd to the directory with the files you wish to import
+tla init-tree tos@lindows.com--2004/${name}--${branch}--${version}
+tla inventory -s -B --names | xargs tla add
+tla import -S -s "initial import of ${name}"
+tla commit --strict -s "initial import of ${name}"
+%% Create a new repository on src.lindows.com
+tla make-archive kernel@linspire.com--2005 sftp://dsf@src.lindows.com/home/{archives}/kernel@linspire.com--2005

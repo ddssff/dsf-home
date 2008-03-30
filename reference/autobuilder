@@ -1,0 +1,3 @@
+To build an unstable package:
+
+  autobuilder -m marlin -t los-detector-6:build-unstable

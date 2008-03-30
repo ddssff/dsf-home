@@ -1,0 +1,18 @@
+When you want to apply two conflicting patches, it is possible to
+resolve the conflict without modifying either patch by generating a
+pre-patch and a post patch to be applied before and after the second
+patch, assuming you are able to manually resolve the rejected changes.
+
+In essence, the pre-patch reverses the part of the first patch that
+caused the conflict, and the post-patch re-applies that change with
+the necessary modifications.  Here is the procedre to follow:
+
+1. Attempt to apply the two patches.  Record the failures.
+2. Find the hunks in the first patch that caused the failures in
+   the second patch and put them into the prepatch.  Continue
+   until you can successfully apply all three patches: the first
+   patch, then the prepatch with the -R flag, then the second patch.
+3. Edit the end result to re-apply the effects of the pre-patch,
+   and then generate a post-patch by diffing the affected files.
+
+Much of this could be automated given a nice patch handling library.

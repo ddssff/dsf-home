@@ -1,0 +1,68 @@
+Options to consider
+
+----------------------
+CONFIG_IDEDISK_MULTI_MODE:
+
+If you get this error, try to say Y here:
+
+hda: set_multmode: status=0x51 { DriveReady SeekComplete Error }
+hda: set_multmode: error=0x04 { DriveStatusError }
+
+If in doubt, say N.
+
+
+ONFIG_IDE_CHIPSETS:
+CONFIG_SERIAL_EXTENDED
+ONFIG_REISERFS_PROC_INFO
+CONFIG_FB_TRIDENT:
+
+-------------------
+
+How To
+
+If you want it Right Now and are interested in building a kernel (and are already running a 2.4.23 kernel), do the following (AT YOUR OWN RISK!):
+
+1. CNR the "build-essential" package
+2. Go to the product page for kernel-image-lindows-2.4.23, click on Specifications, and then download (shift click) the dsc and tarball links.
+3. Unpack them with the console command "dpkg-source -x kernel-image-lindows-2.4.23_2.4.23-20.dsc
+4. cd into the resulting kernel-source-lindows-2.4.23-2.4.23 directory
+5. Copy debian/control-2.4.23 to debian/control
+6. Copy debian/changelog-2.4.23 to debian/changelog
+7. Edit debian/config-2.4.23 and change the line CONFIG_PDC202XX_NEW=m to CONFIG_PDC202XX_NEW=y
+8. Build the kernel package with the command "dpkg-buildpackage".  It may ask for more packages to be installed, CNR them and try dpkg-buildpackage again.
+9. Install the new kernel package with the command "dpkg -i kernel-image-lindows-2.4.23_2.4.23-20_i386.deb"
+10. Run jiffyboot just to be on the safe side.  (The install of the kernel package is supposed to do this)
+11. Run lilo to make extra extra sure things are working.  Observe any error messages.
+12. reboot
+
+-----------------------
+
+DEBUGGING USB-STORAGE DISCONNECT OOPS
+
+build command:
+  rm -rf /lib/modules/2.6.12-rc5 &&
+    make bzImage modules install modules_install &&
+    /sbin/mkinitrd 2.6.12-rc5
+
+Patches that modify config:
+
+  patch-31 - 4/27
+  patch-30 - 4/27
+  patch-29 - 3/30
+  patch-27 - 3/2
+
+Probably patch-29 was from before the problem became a problem.
+
+----------
+
+Tests:  (patches refer to los-kernel-image--los-debian--2.6.10)
+
+patch-29: broken
+patch-30: broken
+current: broken
+
+config1: broken, essentially identical to 2.6.12 config
+config2: broken, patch-31 reversed
+config3: patch-29 reversed
+config4: most of patch-30 reversed (except for DVB_TTUSB_DEC and the LOGO
+		options.)

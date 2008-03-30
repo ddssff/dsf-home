@@ -1,0 +1,34 @@
+#!/bin/sh
+
+# Copy a file with all the advantages of rsync and scp - resume, ssh, etc.
+# I like --archive mode, but if your not root it can easily fail because
+# of failed chowns.
+
+# Example: rcp dsf@foxthompson.net:/home/audio/WFMU/ByDate/20040823-Charlie.mp3 /home/dsf/mp3/20040823-Charlie.mp3
+# Example: rcp /root/tos@lindows.com--2004 /disks/hdb3/dsf/tla/
+
+RSYNC="rsync "
+RSYNC="$RSYNC -a"		# Same as -rlptgoD
+#RSYNC="$RSYNC -r"		# Recursive
+#RSYNC="$RSYNC -l"		# Links
+#RSYNC="$RSYNC -p"		# Permissions
+#RSYNC="$RSYNC -t"		# Times
+#RSYNC="$RSYNC -g"		# Groups
+#RSYNC="$RSYNC -o"		# Owner
+#RSYNC="$RSYNC -D"		# Devices
+RSYNC="$RSYNC -H"		# Hard links - why not part of -a?
+RSYNC="$RSYNC -L"		# Copy referent of symlinks
+RSYNC="$RSYNC --partial"	# Resume when possible
+RSYNC="$RSYNC --rsh=ssh"
+
+# Delete dest files not present in source.
+
+RSYNC="$RSYNC --delete"
+
+RSYNC="$RSYNC -v --progress"	# Verbose
+
+while [ $# != 2 ]; do
+  RSYNC="$RSYNC $1"; shift
+done
+
+$RSYNC $1 $2

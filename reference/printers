@@ -1,0 +1,8 @@
+Setting up work printers:
+
+Network (TCP)
+Change network to 192.168.1
+scan
+choose 204
+HP Laserjet 4100
+give it a name: qa

@@ -1,0 +1,18 @@
+The storage.pl / storage.ml script manages the following files:
+
+/etc/hotplug/scsi/devices.db - (but not always?)
+
+--------
+
+Script is not trying vfat before msdos on sda1, leads to errors in volume mgr
+storage-login script
+volume manager is not in the menu
+system gets into a state where it can't launch applications
+clock gets messed up on install
+
+--------
+
+Getting debug output from /sbin/hotplug:
+
+MESSAGE=`printenv | grep '^\(ACTION\|DEVPATH\|PHYSDEVBUS\|PHYSDEVDRIVER\|SEQNUM\|SUBSYSTEM\|INTERFACE\)=' | tr '\n' ' '`
+logger -t "hotplug[$$]" "EVENT: $MESSAGE"

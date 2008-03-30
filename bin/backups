@@ -1,0 +1,85 @@
+#!/bin/sh
+
+# This is a script to perform automated backups.  The requirements are
+# for all files to be backed up onto a different disk from the disk
+# holding the original.  It might be even better to back up to a
+# different computer, or a different computer on a different site, but
+# to me the biggest risk is of individual hard drive failure.
+
+# For this reason, there are two backup directories mounted on /home,
+# /home/backup and /home/backup2.  "/home/backups" is a directory
+# mounted from the massive drive in this machine (BHD) and holds the
+# backups of everthing that is not hosted on that drive.  These are
+# known as "TYPE 1" backups. "/home/backups2" is a directory on another drive
+# to hold files whose originals are on BHD.  These are known as "TYPE
+# 2" backups.
+
+set -e
+set -x
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -x) set -x; shift;;
+    -t) TEST=yes; shift;;
+    *) echo "Unknown option: $1"; exit 1
+  esac
+done
+
+# First we need to verify that
+#
+#  1) This script is up to date
+#  2) The archive script is up to date
+#  3) We are running on the right host
+#
+# This script is bin/backups in the TLA repository
+# dsf@foxthompson.net--2004/dsfhome--upstream--1.  Lets start by
+# seeing if we are up-to-date -- if not we'll have to start over.
+# We also give up if there are local changes which have not been
+# checked in.
+
+LOC=`realpath $0`
+cd `dirname $LOC`
+tla missing -x || { echo "Archive is not up-to-date"; exit 1; }
+tla changes || [ "$TEST" == "yes" ] || { echo "Archive has local changes"; exit 1; }
+
+# Is this the right host?  My server's hostname is www.foxthompson.net.
+
+test `hostname` == www || exit 1
+
+# Mount lydia's shared document folder
+
+
+# Finally, where are the backups?  This script will create them on
+# /home/backups, so mount something big there.
+
+ARCHIVE=`dirname $LOC`/Archive.hs
+
+# TYPE 1 backups
+
+mkdir -p /mnt/lydia
+mount -t smb -o password=leadgirl //192.168.0.7/SharedDocs /mnt/lydia
+$ARCHIVE '/mnt/lydia' '/home/backups2/lydia-windows'
+umount /mnt/lydia
+
+#$ARCHIVE lydia:/root		/home/backups/lydia
+#$ARCHIVE /home/dsf		/home/backups/dsf
+sudo $ARCHIVE /var/lib/geneweb	/home/backups/geneweb
+#$ARCHIVE /home/cvs		/home/backups/cvs
+$ARCHIVE /home/images		/home/backups/images
+$ARCHIVE /home/movies		/home/backups/movies
+#$ARCHIVE /var/www		/home/backups/www
+#$ARCHIVE /var/lib/mysql		/home/backups/mysql
+$ARCHIVE /home/{archives}	/home/backups/{archives}
+#$ARCHIVE /mnt/sdb1/audio	/home/backups/audio
+#$ARCHIVE /mnt/sdb1/ldt		/home/backups/ldt
+#$ARCHIVE /mnt/sdb1/cdroms	/home/backups/cdroms
+#$ARCHIVE /mnt/sdb1/cliff	/home/backups/cliff
+#$ARCHIVE /mnt/sdb1/pam		/home/backups/pam
+
+# To Do:
+#  ldt is not lydia's real working directory
+#
+# Missing:
+#  dropbox
+#  dropbox2
+#  mail*

@@ -1,0 +1,9 @@
+#!/bin/sh -x
+
+ssh dsf@stan 'ssh root@192.168.10.49 "/home/dsf/bin/apt-wait los-kernel-suite-2.6.14"'
+
+VERSION=`ssh dsf@stan 'ssh root@khrack "cat ~beshers/clifford.beshers@linspireinc.com--2004/isoluv-ml--build-marlin--0/os_version"'`
+
+ssh dsf@stan 'ssh root@khrack "cd ~beshers/clifford.beshers@linspireinc.com--2004/isoluv-ml--build-marlin--0 && make && make release"'
+
+scp dsf@stan:/isos/isoluv/$VERSION*.iso .

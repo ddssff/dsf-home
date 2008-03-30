@@ -1,0 +1,22 @@
+#!/bin/sh -e
+
+a=dsf@foxthompson.net--2004
+b=dsf
+d=$PWD
+
+echo -n "directory: [$d]"; read i; if [ "$i" ]; then d="$i"; fi
+echo -n "archive: [$a]"; read i; if [ "$i" ]; then a="$i"; fi
+echo -n "Package name: "; read n
+echo -n "Branch: [$b]"; read i; if [ "$i" ]; then b="$i"; fi
+echo -n "Version: "; read v
+set -x
+cd $d
+tla init-tree ${a}/${n}--${b}--${v}
+# At this point one might edit {arch}/=tagging-method.  Test
+# by running "tla inventory --names -u"
+tla inventory -s -B --names | xargs tla add
+tla import -S -s "initial import of ${n}"
+tla commit --strict -s "initial import of ${n}"
+
+#BUILD=build-marlin
+#tla tag -S ${a}/${n}--${BRANCH}--${v} ${a}/${n}--${b}--${v}

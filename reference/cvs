@@ -1,0 +1,128 @@
+Remove autobuilder lock:
+
+cvs admin -u1.5 changelog
+
+or maybe just
+
+cvs admin -U changelog
+
+---------------------
+
+Creating a branch at HEAD:
+
+cvs rtag -b RELEASE_4_0 os/kernel-n-drivers/atmelwlandriver/atmelwlandriver
+
+---------------------
+
+All the log entries since date:
+
+cvs log -d ">1 Nov 2002"
+
+Diff between now and then:
+
+cvs diff -D "1 Nov 2002"
+
+----------------------
+
+Getting a particular branch:
+
+export CVSROOT=:pserver:anonymous@anoncvs.kde.org:/home/kde
+cvs co -r KDE_3_0_BRANCH kdevelop
+
+-----------------
+
+CREATING A (LOCAL) CVS REPOSITORY:
+
+To create a repository, you'll need to do the following (assuming csh): 
+
+  mkdir ~/cvs
+  cd ~/cvs
+  export CVSROOT=~/cvs
+  cvs init
+
+------------------
+
+Tagging a file as binary:
+
+cvs update -kb grnangel.jpg
+
+------------------
+
+-- Putting a "symbolic" tag on a version:
+
+cvs tag ver_1_6c4 .
+
+-- Getting the files of a particular "symbolic revision":
+
+cvs co -r <tag> <module>
+
+-- Creating a patch between a revision and the head:
+
+cvs rdiff -u -r <tag> <module> > patch
+
+-------------------
+
+Turning a set of "progressive" patches into tagged revisions:
+
+% cvs co -r linux_2_4_16 uvfat/linux
+% cd uvfat/linux; patch -p1 < ../patches/uvfat_2.4.13-mn_try6.diff
+% tar cfz ../linux.tgz .
+% cvs update -A .
+% tar xfz ../linux.tgz --exclude=CVS
+% cd ..; mkdir linux.try6; cd linux.try6; tar xfz ../linux.tgz; cd ..
+% [replace all files in linux with files from linux.try6]
+% [Check all files in]
+% cvs tag mn_try6 linux
+
+---------------------
+
+Making a set of versions into tagged revisions:
+
+~/tmp/kdebase-2.2.2		- DEBIAN_2_2_2_-14
+~/tmp/kde_source/kdebase	- XANDROS_DESKTOP_1_0_BETA_1
+kde/kdebase			- module
+/home/dsf/cvs			- repository
+~/kde				- check-out location
+
+cd ~/tmp/kdebase-2.2.2
+cvs -d /home/dsf/cvs import kde/kdebase LINDOWS_COM DEBIAN_2_2_2_-14
+cd ~/kde
+cvs co -d kdebase kde/kdebase
+diff -ru kdebase ~/tmp/kde_source/kdebase \
+	| grep '^Only' | grep -v ' CVS$' | sed 's!: !/!' > /tmp/tmp
+grep '^Only in kdebase' < /tmp/tmp | sed 's:^Only in kdebase:.:' >/tmp/removed
+grep '^Only in /home' < /tmp/tmp | sed 's:^Only in /home/dsf/tmp/kde_source/kdebase:.:' > /tmp/added
+cd ~/kde/kdebase
+for i in `cat /tmp/removed`; do
+  if [ -d $i ]; then cvsremove $i
+  else rm $i; cvs remove $i fi
+done
+cd ~/tmp/kde_source/kdebase; tar cvf - . | (cd ~/kde/kdebase; tar xf -)
+
+--------------------------
+
+IMPORTING A CHECKED OUT CVS TREE INTO ANOTHER REPOSITORY:
+
+cd <source dir>
+cvs -d :ext:dsf@ftp.lindows.com:/home/cvs import -m "Import of KDE 3.0" \
+		-I ! os/kde3/kdevelop KDE KDE_3_0 | grep '^I' | grep -v '/CVS$'
+
+Check for improperly ignored files - only the CVS directories should
+be ignored if we just checked this out of a CVS repository.  Anything
+else is due to a defective .cvsignore, or to files that look like
+garbage if the -I ! argument is omitted.
+
+Result of "cvs status -v AUTHORS":
+
+File: AUTHORS           Status: Up-to-date
+
+   Working revision:    1.1.1.1
+   Repository revision: 1.1.1.1 /home/cvs/os/kde3/kdevelop/AUTHORS,v
+   Sticky Tag:          (none)
+   Sticky Date:         (none)
+   Sticky Options:      (none)
+
+   Existing Tags:
+        KDE_3_0                         (revision: 1.1.1.1)
+        KDE                             (branch: 1.1.1)
+

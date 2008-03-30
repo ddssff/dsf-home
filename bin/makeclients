@@ -1,0 +1,16 @@
+#!/bin/sh
+
+set -o pipefail
+set -x
+
+#makelibs
+DIRS="$DIRS tos@lindows.com--2004/los-detector--los-debian--6"
+DIRS="$DIRS tos@lindows.com--2004/los-hotplug--los-debian--3"
+DIRS="$DIRS tos@lindows.com--2004/los-mkinitrd--los-debian--2"
+DIRS="$DIRS tos@lindows.com--2004/los-pcimap--debian-los--6"
+
+for dir in $DIRS; do
+  cd /home/dsf/tla/$dir &&
+  tla update &&
+  dpkg-buildpackage -b || break
+done

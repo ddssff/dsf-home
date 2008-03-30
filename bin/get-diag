@@ -1,0 +1,26 @@
+#!/bin/sh
+
+# Usage:
+#
+#   get-diag root name
+#
+# Retrieve a diagnostic report and re-create its environment in a
+# build env at root
+
+ROOT=$1
+REPORT=$2
+
+ftp -p -n dropbox.lindows.com <<EOF
+user results 33o4PURZ
+cd sysreport
+lcd /tmp
+get $REPORT.gz
+quit
+EOF
+
+for TAG in /sys /proc; do
+  rm -rf $ROOT$TAG;
+  mkdir -p $ROOT$TAG;
+  gunzip < /tmp/$REPORT.gz | sed -n "/^%% \\$TAG\$/,/^%%/p" | grep -v "^%% " |
+  /usr/lib/python2.3/base64.py -d | gunzip | (cd $ROOT$TAG && tar xf -)
+done

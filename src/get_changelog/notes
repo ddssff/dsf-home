@@ -1,0 +1,24 @@
+mysql -h fattushis -u read --password=ir2206
+use 
+
+Find all build targets with unichrome in the id:
+
+  SELECT release_id,id FROM target WHERE release_id = 'marlin' AND id LIKE '%unichrome%'
+
+(17:02:37) LindowsNorris: To look for all targets in marlin named unichrome (just to ensure there wasn't already something there)
+(17:02:37) LindowsDavid:  
+(17:03:17) LindowsDavid: thanks
+(17:03:17) LindowsNorris: The target table links into the target_repository_<type> table, in most cases, target_repository_tla for tla target specific information.
+(17:04:08) LindowsNorris: then, if you want to see actual build attempt records, look in the db: process_builder_data.
+(17:04:09) LindowsNorris: +--------------------------------+
+| Tables_in_process_builder_data |
++--------------------------------+
+| build_attempt                  |
+| build_attempt_build_depend     |
+| build_attempt_extra            |
++--------------------------------+
+
+Find the build targets for a given tla branch:
+
+use process_builder;
+SELECT target_id FROM target_repository_tla WHERE category = 'los-detector' AND branch = 'build-marlin';

@@ -1,0 +1,3 @@
+Command to capitalize words:
+
+echo foo | perl -ne 'print ucfirst'

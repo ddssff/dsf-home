@@ -1,0 +1,21 @@
+#!/bin/sh
+
+set -x
+
+function set_stan_ip () {
+    
+    INSIDE=`host 192.168.1.225 2>/dev/null | sed -n 's/Name: //p'`
+
+    if [ "$INSIDE" = "stan" -o "$INSIDE" = "stan.linspire.com" -o "$INSIDE" = "stan.sd.linspire.com" ]; then 
+	LOCATION=internal
+    else
+	if ! grep -q -w stan /etc/hosts; then
+	    echo '207.67.194.2    stan' >> /etc/hosts
+	fi
+	LOCATION=external
+    fi
+
+}
+
+set_stan_ip
+ssh dsf@stan "curl -s http://fattushis/cgi-bin/dist_sources_list.cgi?dist=marlin/cooked-unstable\&mode=raw\&location=$LOCATION"

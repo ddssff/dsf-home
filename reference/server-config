@@ -1,0 +1,71 @@
+TESTS: Things to check after making modifications
+
+Is my web site visible?
+Are the bind mounts in /etc/fstab?
+Is geneweb running? check http://www.foxthompson.net/dsf//var/start.html
+Is tla archive accessable?
+Is slimserver running?
+Is bugzilla running?
+Can we log in from outside foxthompson.net?
+Can we receive mail from outside foxthompson.net?
+Is imap running?
+Are backups running?
+Are WFMU cron jobs installed?
+Is the wfmu command working?
+
+======================
+
+Notes on configuring my mail server (foxthompson.net, aka dsf).  Sections
+more or less in order of importance.
+
+======================
+EXIM mail server - Required for incoming mail to foxthompson.net to work 
+------------------
+
+Answers to eximconfig questions:
+
+Site type: 1 (Internet site)
+Visible mail name: foxthompson.net
+Other names: none
+Domains to relay: none
+Local domains to relay for: 192.168.0.0/8
+System admin mail address: postmaster
+Replace /etc/aliases?  n
+Is this OK ?  y
+
+QUESTION: how to get this to start automatically at boot?
+
+======================
+APACHE
+------
+Install /var/www/index.html from /home/dsf/html/????
+Create link /var/www/dsf -> /home/dsf/html
+Install /var/www/ldt
+
+In /etc/apache/httpd.conf:
+ServerName: foxthompson.net
+
+======================
+IMAP
+----
+Install uw-imapd
+
+QUESTION: how do we keep mozilla from complaining about security problems
+======================
+GENEWEB
+-------
+
+======================
+BACKUPS
+-------
+
+======================
+MYSQL
+-----
+Not yet in use
+======================
+SLIMSERVER
+----------
+======================
+
+======================

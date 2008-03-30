@@ -1,0 +1,89 @@
+#!/bin/sh
+
+while [ "$#" != 0 ]; do
+    case $1 in
+	-n) ECHO=echo; shift;;
+        -x) set -x; shift;;
+        --limit) LIMIT="--bwlimit=$2"; shift; shift;;
+	-v) EXTRA="$EXTRA $1"; shift;;
+	-P) EXTRA="$EXTRA $1"; shift;;
+	*) TASKS="$TASKS $1"; shift;;
+    esac
+done
+
+case "$TASKS" in
+    "") TASKS="freespire";;
+esac
+
+set -e
+
+# The wayback machine maintains an archive of past versions of the
+# Debian repository and maybe others.
+
+#OMIT="alpha arm hppa hurd-i386 m68k mips mipsel powerpc s390 sparc"
+#INCLUDE="i386 ia64"
+OMIT="alpha ia64 arm hppa hurd-i386 m68k mips mipsel powerpc s390 sparc"
+INCLUDE="i386 amd64"
+
+EXCLUDE="$EXCLUDE `for i in $OMIT; do echo -n "--exclude *$i.deb "; done`"
+EXCLUDE="$EXCLUDE `for i in $OMIT; do echo -n "--exclude binary-$i "; done`"
+EXCLUDE="$EXCLUDE `for i in $OMIT; do echo -n "--exclude disks-$i "; done`"
+EXCLUDE="$EXCLUDE `for i in $OMIT; do echo -n "--exclude Contents-$i.gz "; done`"
+EXCLUDE="$EXCLUDE `for i in $OMIT; do echo -n "--exclude Contents-$i.diff "; done`"
+EXCLUDE="$EXCLUDE `for i in $OMIT $INCLUDE; do echo -n "--exclude installer-$i "; done`"
+EXCLUDE="$EXCLUDE `for i in $OMIT $INCLUDE; do echo -n "--exclude daily-installer-$i "; done`"
+EXCLUDE="$EXCLUDE --exclude debian-installer --exclude project --exclude dists/woody --exclude indices"
+
+ROOT=/var/www
+ARCHIVE="/home/upload/bin/Archive.hs"
+
+DEBIAN_MIRROR=mirrors.usc.edu/debian
+#DEBIAN_MIRROR=saens.debian.org/debian
+#DEBIAN_MIRROR=mirror.anl.gov/debian
+
+# Working
+#UBUNTU_MIRROR=mirror.mcs.anl.gov/ubuntu
+UBUNTU_MIRROR=mirror.cs.umn.edu/ubuntu
+#UBUNTU_MIRROR=ubuntu.cs.utah.edu/ubuntu
+#UBUNTU_MIRROR=us.archive.ubuntu.com/ubuntu
+#UBUNTU_MIRROR=mirrors.kernel.org/mirrors/ubuntu
+#UBUNTU_MIRROR=mirror.anl.gov/ubuntu
+
+# Unsure
+#UBUNTU_SECURITY_MIRROR=security.ubuntu.com/ubuntu
+#UBUNTU_MIRROR=mirrors.cat.pdx.edu/ubuntu
+
+# Permission problems prevent removal of deleted files
+#UBUNTU_MIRROR=ubuntu.mirrors.tds.net/ubuntu
+
+
+#set -x
+
+for task in $TASKS; do
+    case $task in
+	cnr)
+	$ECHO ${ARCHIVE} ${EXTRA} --exclude /removed $ROOT/CNRUbuntu $ROOT/CNRUbuntu-archives
+	$ECHO ${ARCHIVE} ${EXTRA} --exclude /removed $ROOT/CNBUbuntu $ROOT/CNBUbuntu-archives
+	$ECHO ${ARCHIVE} ${EXTRA} --exclude /removed $ROOT/CNRDebian $ROOT/CNRDebian-archives
+	$ECHO ${ARCHIVE} ${EXTRA} --exclude /removed $ROOT/MSUbuntu $ROOT/MSUbuntu-archives
+	;;
+
+	cnb)
+	$ECHO ${ARCHIVE} ${EXTRA} --exclude /removed $ROOT/CNBUbuntu $ROOT/CNBUbuntu-archives
+	;;
+
+	debian)
+	$ECHO ${ARCHIVE} ${EXTRA} ${LIMIT} ${EXCLUDE} rsync://${DEBIAN_MIRROR} $ROOT/debian-archives
+	;;
+
+	ubuntu)
+	$ECHO ${ARCHIVE} ${EXTRA} ${LIMIT} ${EXCLUDE} rsync://${UBUNTU_MIRROR} $ROOT/ubuntu-archives
+	;;
+
+	ubuntu-security)
+	$ECHO ${ARCHIVE} ${EXTRA} ${LIMIT} rsync://${UBUNTU_SECURITY_MIRROR} $ROOT/ubuntu-security-archives
+	;;
+    esac
+done
+
+

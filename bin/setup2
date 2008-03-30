@@ -1,0 +1,65 @@
+#!/usr/bin/ocamlrun /usr/bin/ocaml
+#use "topfind"
+#require "los"
+
+(* Additional setup (for going off-line) *)
+
+let home = "/root"
+
+let archives = [
+  "dsf@foxthompson.net--2004/accuplay--dsf--0.1";
+  "dsf@foxthompson.net--2004/afn--dsf--0";
+(*"dsf@foxthompson.net--2004/archives--dsf--0";*)
+  "dsf@foxthompson.net--2004/argument--dsf--0";
+  "dsf@foxthompson.net--2004/dbweb--dsf--1";
+  "dsf@foxthompson.net--2004/dsfhome--upstream--1";
+  "dsf@foxthompson.net--2004/hwdb--upstream--1.0";
+  "dsf@foxthompson.net--2004/linkcopies--dsf--0";
+  "dsf@foxthompson.net--2004/makeindex--dsf--0";
+  "dsf@foxthompson.net--2004/mmview--dsf--0.1";
+  "dsf@foxthompson.net--2004/ocamlffi--dsf--1.0";
+  "dsf@foxthompson.net--2004/omp3--dsf--0.1";
+  "dsf@foxthompson.net--2004/pymp3cut--dsf--0.27";
+  "dsf@foxthompson.net--2004/refinery--upstream--0";
+  "dsf@foxthompson.net--2004/vc-el--dsf--0";
+  "tos@lindows.com--2004/los-autorun--los-debian--2.1";
+  "tos@lindows.com--2004/los-debutils-ocaml--los-debian--1";
+  "tos@lindows.com--2004/los-debian-ocaml--los-debian--1";
+  "tos@lindows.com--2004/los-detectlib--los-debian--1";
+  "tos@lindows.com--2004/los-detector--los-debian--6";
+  "tos@lindows.com--2004/los-displaysettings--lindows--1";
+  "tos@lindows.com--2004/los-hotplug--los-debian--3";
+  "tos@lindows.com--2004/los-installer--lindows--2.0";
+  "tos@lindows.com--2004/los-log-ocaml--los-debian--1";
+  "tos@lindows.com--2004/los-mkinitrd--los-debian--2";
+  "tos@lindows.com--2004/los-pcimap--debian-los--6";
+  "tos@lindows.com--2004/los-ocaml--los-debian--6";
+  "tos@linspire.com--2005/los-gettext--debian-los--1.0";
+  "tos@linspire.com--2005/udev--los-changes--0.070";
+  "kernel@linspire.com--2005/los-kernel-source--linspire--2.6.14";
+  "kernel@linspire.com--2005/los-kernel-image--linspire--2.6.14";
+  "kernel@linspire.com--2005/los-kernel-extra--linspire--2.6.14";
+  "kernel@linspire.com--2005/los-kernel-suite--linspire--2.6.14";
+  "kernel@linspire.com--2005/los-kernel-image-smp--linspire--2.6.14";
+  "kernel@linspire.com--2005/los-kernel-extra-smp--linspire--2.6.14";
+  "kernel@linspire.com--2005/los-kernel-suite-smp--linspire--2.6.14";
+  "kernel@linspire.com--2005/pcmciautils--linspire--0.007";
+  "david@linspire.com--2005/dependencies--linspire--0";
+]
+
+let command cmd =
+  prerr_endline ("-> " ^ cmd);
+  ignore (Sys.command cmd)
+
+let _ =
+  List.iter
+    (fun archive ->
+       let dir = home ^ "/tla/" ^ archive in
+       if Sys.file_exists dir
+       then command ("cd " ^ dir ^ " && tla update")
+       else command ("cd " ^ home ^ "/tla && " ^
+		       "tla get " ^ archive ^ " " ^ archive))
+    archives
+
+
+

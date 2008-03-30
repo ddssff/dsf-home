@@ -1,0 +1,42 @@
+#!/bin/sh
+
+usage () {
+  echo "Usage: sshexport [-p <port>] <user>@<host>"
+  exit 1
+}
+
+PORT=22
+
+while [ $# -gt 0 ]; do
+  case "$1" in
+    -p) PORT=$2; shift; shift;;
+    -C) COMMENT="-C $2"; shift; shift;;
+    *) if [ "$DEST" ]; then usage; else DEST=$1; fi; shift;;
+  esac
+done  
+
+if [ ! "$DEST" ]; then usage; fi
+
+if [ "$USER" = "root" ]; then
+  PUBKEY=/root/.ssh/id_rsa.pub
+else
+  PUBKEY=~/.ssh/id_rsa.pub
+fi
+
+if [ ! -f $PUBKEY ]; then yes "" | \
+ssh-keygen -t rsa $COMMENT; fi
+
+# See if we are already able to contact the host
+
+ssh -o 'PreferredAuthentications hostbased,publickey' -p $PORT $DEST pwd && \
+echo "Authentication succeeded." && exit 0
+
+# First add the new key to the authorized keys file.  After that,
+# uniquify the keys by comment field.  Otherwise the authorized keys
+# will accumulate lots of useless keys.  In general, keys are added at
+# the end, so keep the last key with a given comment.
+
+cat $PUBKEY | ssh -p $PORT $DEST \
+ "mkdir -p .ssh && chmod 700 .ssh && \
+  cat >> .ssh/authorized_keys2 &&
+  chmod 600 .ssh/authorized_keys2"

@@ -1,0 +1,13 @@
+Xlib: connection to ":0.0" refused by server
+Xlib: No protocol specified
+
+Error: Can't open display: :0.0
+
+SOLUTION:
+
+cp /root/.Xauthority ~dsf/.Xauthority; chown dsf.dsf ~dsf/.Xauthority
+
+---
+
+More verbose output in Xorg.0.log:
+

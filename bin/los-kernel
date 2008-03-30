@@ -1,0 +1,234 @@
+#!/bin/sh
+
+#ACTION=make-branch
+#ACTION=make-smp-branch
+ACTION=make-smp-build-branch
+#ACTION=make-build-branch
+#ACTION=make-build-unstable-branch
+#ACTION=checkout
+#ACTION=checkout-smp
+#ACTION=checkout-smp-build
+#ACTION=checkout-build
+ACTION=build
+
+SPECIAL_PACKAGE=" \
+  los-kernel-source--los-debian"
+
+SOURCE_PACKAGES=" \
+  acx100-source--los-debian--0 \
+  adm8211-source--los-debian--0 \
+  ati-driver-source--los-debian--0 \
+  atmelwlandriver-source--los-debian--0 \
+  dazuko-source--los-debian--0 \
+  hsflinmodem-source--los-debian--0 \
+  intel536ep-source--los-debian--0 \
+  intel537ep-source--los-debian--0 \
+  ipw2100-source--los-changes--0 \
+  ipw2200-source--los-debian--0 \
+  ivtv-source--los-debian--0 \
+  linux-wlan-ng-source--los-debian--0 \
+  ltmodem-source--los-debian--0 \
+  madwifi-source--los-debian--0 \
+  ndiswrapper-source--los-debian--0 \
+  nvidia-driver-source--los-debian--0 \
+  slmdm-source--los-debian--0"
+
+# los-kernel-source is included here because like the module package
+# its version number matches the kernel.
+
+MODULE_PACKAGES=" \
+  los-kernel-image--los-debian \
+  acx100-modules--los-debian \
+  adm8211-modules--los-debian \
+  alsa-modules--debian-los \
+  ati-driver-modules--los-debian \
+  atmelwlandriver-modules--los-debian \
+  bcm5700-modules--los-debian \
+  cloop-modules--los-debian \
+  dazuko-modules--los-debian \
+  drm-modules--los-debian \
+  hostap-modules--los-debian \
+  hsflinmodem-modules--los-debian \
+  intel536ep-modules--los-debian \
+  intel537ep-modules--los-debian \
+  ipw2100-modules--los-debian \
+  ipw2200-modules--los-debian \
+  ivtv-modules--los-debian \
+  linux-wlan-ng-modules--los-debian \
+  ltmodem-modules--los-debian \
+  madwifi-modules--los-debian \
+  ndiswrapper-modules--los-debian \
+  nvidia-driver-modules--los-debian \
+  realtime-modules--los-debian \
+  slmdm-modules--los-debian \
+  los-kernel-suite--los-debian"
+
+TARGETS=" \
+  acx100-modules-2.6.10 \
+  adm8211-modules-2.6.10 \
+  alsa-modules-2.6.10-smp-1.0.7 \
+  ati-driver-modules-2.6.10 \
+  atmelwlandriver-modules-2.6.10 \
+  bcm5700-modules-2.6.10 \
+  cloop-modules-2.6.10 \
+  dazuko-modules-2.6.10 \
+  drm-modules-2.6.10 \
+  hostap-modules-2.6.10 \
+  hsflinmodem-modules-2.6.10 \
+  intel536ep-modules-2.6.10 \
+  intel537ep-modules-2.6.10 \
+  ipw2100-modules-2.6.10 \
+  ipw2200-modules-2.6.10 \
+  ivtv-modules-2.6.10 \
+  linux-wlan-ng-modules-2.6.10 \
+  ltmodem-modules-2.6.10 \
+  madwifi-modules-2.6.10 \
+  ndiswrapper-modules-2.6.10 \
+  nvidia-driver-modules-2.6.10 \
+  realtime-modules-2.6.10 \
+  pctel-modules-2.6.10 \
+  rt2570-modules-2.6.10 \
+  rt2500-modules-2.6.10 \
+  slmdm-modules-2.6.10"
+
+ARCHIVE=tos@lindows.com--2004
+
+if [ "$ACTION" = "build" ]; then
+    aut
+
+for i in $MODULE_PACKAGES; do
+
+    #if [ "${i%--0}" = "${i}" ]; then i=${i}--2.6.10; fi
+
+    case $ACTION in
+	make-branch)
+
+	SOURCE=2.6.10
+	TAG=2.6.11
+
+	if tla revisions $ARCHIVE/$i--$TAG > /dev/null 2>&1 ; then
+	    echo "ok:     $i" 1>&2
+	else
+	    echo tla tag --setup \"$ARCHIVE/$i--$SOURCE\" \"$ARCHIVE/$i--$TAG\"
+	fi
+	;;
+
+	make-smp-branch)
+
+	TAG=2.6.11
+	CATEGORY=$i
+	CATEGORY=${CATEGORY%--los-debian}
+	CATEGORY=${CATEGORY%--debian-los}
+	BRANCH=${i#$CATEGORY--}
+
+	if tla revisions $ARCHIVE/$CATEGORY-smp--$BRANCH--$TAG > /dev/null 2>&1 ; then
+	    echo "ok:     $i-smp" 1>&2
+	else
+	    echo tla tag --setup \"$ARCHIVE/$CATEGORY--$BRANCH--$TAG\" \"$ARCHIVE/$CATEGORY-smp--$BRANCH--$TAG\"
+	fi
+	;;
+
+	make-build-branch)
+
+	SOURCE=2.6.11
+	TAG=build-marlin--2.6.11
+	BASE=$i
+	BASE=${BASE%--los-debian}
+	BASE=${BASE%--debian-los}
+	if tla revisions $ARCHIVE/$BASE--$TAG > /dev/null 2>&1 ; then
+	    echo "ok:     $i" 1>&2
+	else
+	    echo tla tag --setup \"$ARCHIVE/$i--$SOURCE\" \"$ARCHIVE/$BASE--$TAG\"
+	fi
+	;;
+
+	make-smp-build-branch)
+
+	TAG=2.6.11
+	CATEGORY=$i
+	CATEGORY=${CATEGORY%--los-debian}
+	CATEGORY=${CATEGORY%--debian-los}
+	BRANCH=${i#$CATEGORY--}
+
+	if tla revisions $ARCHIVE/$CATEGORY-smp--build-marlin--$TAG > /dev/null 2>&1 ; then
+	    echo "ok:     $i-smp" 1>&2
+	else
+	    echo tla tag --setup \"$ARCHIVE/$CATEGORY-smp--$BRANCH--$TAG\" \"$ARCHIVE/$CATEGORY-smp--build-marlin--$TAG\"
+	fi
+	;;
+
+
+	make-build-unstable-branch)
+
+	SOURCE=2.6.10
+	TAG=build-marlin-unstable--2.6.10
+	BASE=$i
+	BASE=${BASE%--los-debian}
+	BASE=${BASE%--debian-los}
+	if tla revisions $ARCHIVE/$BASE--$TAG > /dev/null 2>&1 ; then
+	    echo "ok:     $i" 1>&2
+	else
+	    echo tla tag --setup \"$ARCHIVE/$i--$SOURCE\" \"$ARCHIVE/$BASE--$TAG\"
+	fi
+	;;
+
+	checkout)
+	DIR=$HOME/tla
+	TAG=2.6.10
+	if [ ! -e $DIR/$ARCHIVE/$i ]; then
+	    echo "cd $DIR && tla get -A \"$ARCHIVE\" \"$ARCHIVE/$i\" \"$DIR/$ARCHIVE/$i\""
+	else
+	    echo "cd \"$DIR/$ARCHIVE/$i\" && tla update"
+	fi
+	;;
+
+	checkout-smp)
+	DIR=$HOME/tla
+	VER=2.6.10
+	CATEGORY=$i
+	CATEGORY=${CATEGORY%--los-debian}
+	CATEGORY=${CATEGORY%--debian-los}
+	BRANCH=${i#$CATEGORY--}
+	NAME=$ARCHIVE/$CATEGORY-smp--$BRANCH--$VER
+	LOC=$DIR/$NAME
+	
+	if [ ! -e $LOC ]; then
+	    echo "cd $DIR && tla get -A \"$ARCHIVE\" \"$NAME\" \"$LOC\""
+	else
+	    echo "cd \"$DIR/$NAME\" && tla update"
+	fi
+	;;
+
+	checkout-smp-build)
+	DIR=$HOME/tla
+	VER=2.6.10
+	CATEGORY=$i
+	CATEGORY=${CATEGORY%--los-debian}
+	CATEGORY=${CATEGORY%--debian-los}
+	BRANCH=${i#$CATEGORY--}
+	NAME=$ARCHIVE/$CATEGORY-smp--build-marlin--$VER
+	
+	if [ ! -e $NAME ]; then
+	    echo "cd $DIR && tla get -A \"$ARCHIVE\" \"$NAME\" \"$DIR/$NAME\""
+	else
+	    echo "cd \"$DIR/$NAME\" && tla update"
+	fi
+	;;
+
+	checkout-build)
+	DIR=$HOME/tla
+	BASE=$i
+	BASE=${BASE%--los-debian}
+	BASE=${BASE%--debian-los}
+	TAG=2.6.11
+	
+	if [ ! -e $ARCHIVE/$BASE--build-marlin--$TAG ]; then
+	    echo "cd $DIR && tla get -A \"$ARCHIVE\" \"$ARCHIVE/$BASE--build-marlin--$TAG\" \"$DIR/$ARCHIVE/$BASE--build-marlin--$TAG\""
+	else
+	    echo "cd \"$DIR/$ARCHIVE/$BASE--build-marlin--$TAG\" && tla update"
+	fi
+	;;
+
+esac
+
+done

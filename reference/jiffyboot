@@ -1,0 +1,63 @@
+SENDING A DIAGNOSTIC REPORT FROM A FAILED INSTALL
+
+I would like to get a diagnostic report that includes your install log from that failed install.  You will need to know the device name of the partition you installed to.  It will start with "/dev/", next comes "hd" for IDE drives and "sd" for SATA drives.  Then comes a letter, usually a or b, and finally the partition number, 1, 2, 3, etc.  So if you do a take over install to the first ide drive, the partition name is /dev/hda1.
+
+Here is how to do it: after you get the 219 error, reboot the system with the install disk still in the CDROM drive.  Go into the Advanced menu and select "Boot HDA1".  Now type "e" to edit the entry, and move the cursor to the line starting with "kernel" and type "e" to edit that.  You want to change the "hda1" in "root=/dev/hda1" to the name of your install partition.  Then hit enter, and then b to boot.  When the system comes up, send the diagnostic report as usual.
+
+Be sure to put in a comment that will let me connect the sysreport with the problem you are seeing.
+
+-----
+
+Notes on booting an existing Linspire installation from a Live CD or
+installer disk:
+
+1. BOOT: Insert an installer disk and use the cursor keys to move to the
+   Diagnostic boot entry.  Then hit the tab key to get a text screen.
+   Type a space and add the words "LindowsLive" and "LindowsCD" after
+   "boot: Diagnostics" and hit enter.  You should eventually see this:
+
+	Run "exec /sbin/init 2" to start system
+	root@(none):/#
+
+   (On Marlin systems 
+
+2. MAKE THE DAMAGED PARTITION YOUR ROOT.  Usually, your root file system
+   is /dev/hda3, or possibly /dev/hda1 for newer installs.  Assuming it
+   is /dev/hda3, type the following commands:
+
+	mkdir -p /disks/root
+	mount /dev/hda3 /disks/root
+	mkdir -p /disks/root/oldroot
+	pivot_root /disks/root /disks/root/oldroot
+
+3. Mount all the file systems.  This may be as easy as typing "mount -a".
+   However, this won't work if your file system table (/etc/fstab) is
+   missing or damaged.  Try "mount -a" and see if there are files in /dev
+   and /proc and /boot.  If not, try these commands:
+
+	mount -t proc none /proc
+	mount -t devfs none /dev
+	mount /dev/hda1 /boot
+	mount -a
+
+4. Start the desktop:
+
+	exec /sbin/init 2
+
+   If you get the message "fsck failed.  Please repair manually" just type
+   ^D to continue.
+
+4. START NETWORKING: (assuming that you have a broadband internet
+   connection attached to your ethernet port)
+
+	modprobe af_packet
+	/etc/init.d/networking start
+
+   If this doesn't work you may need to look for a network module
+   to probe in /etc/devices/devices.inf.  Look for a section named
+   network.1, and a line in that section starting with "driver =".
+   If that line says something like "driver = 8139too" then run
+
+	modprobe 8139too
+
+   This should cause a line starting with eth0 to appear in /proc/net/dev

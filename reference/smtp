@@ -1,0 +1,14 @@
+Getting local mail delivery to work:
+
+(Not sure if these steps helped)
+
+* Edit /etc/mailname
+* Set router forwarding for port 25 to the correct machine
+* Install mail transport agent (e.g. exim)
+	configuration:
+
+	Split configuration into small files? no
+	General type of mail configuration: 1 (internet site)
+	System mail name: foxthompson.net
+	IP-addresses to listen on for incoming SMTP connections: (empty)
+	Other destinations for which mail is accepted: (empty)

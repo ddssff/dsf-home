@@ -1,0 +1,51 @@
+Create a database of motherboard models, when they came out, their
+componentry, etc.
+
+Brands
+
+http://www.directron.com/motherboards-coming-soon.html
+
+http:://www.giga-byte.com
+
+Intel
+ASUS
+ABIT
+Biostar
+EPoX
+Gigabyte
+MicroStar
+Aopen
+Chaintech
+Soyo
+Tyan
+FIC
+VIA
+Shuttle
+DFI
+Supermicro
+Jetway
+
+Manu.	Model	Format		Socket	Compatibility
+-----	-----	------		------	-------------
+ASUS	K8S-MXe	Mini-atx	754?	Poor
+
+-----------------
+
+Mini-ATX socket 754 notebook search:
+
+Newegg:
+
+PC CHIPS M871G V1.5 Socket 754 SiS 760 GX Micro ATX AMD Motherboard 
+ECS K8M800-M2 Socket 754 VIA K8M800 Micro ATX AMD Motherboard 
+PC CHIPS M861G V1.6 Socket 754 VIA K8M800 Micro ATX AMD
+ECS 760GX-M Socket 754 SiS 760 GX Micro ATX AMD
+JetWay K8M8MS Socket 754 VIA K8M800 Micro ATX AMD
+BIOSTAR K8VGAM Socket 754 VIA K8M800 Micro ATX AMD
+Foxconn 760GXK8MB-ERS Socket 754 SiS 760 GX Micro ATX AMD
+CHAINTECH MK8M800 Socket 754 VIA K8M800 Micro ATX AMD
+MSI K8M800-CE Socket 754 VIA K8M800 Micro ATX AMD
+GIGABYTE GA-K8VM800M Socket 754 VIA K8M800 Micro ATX
+CHAINTECH MBAV-MK8T890 Socket 754 VIA K8T890 Micro ATX
+DFI K8M800-MLVF Socket 754 VIA K8M800 Micro ATX AMD Motherboard - Retail
+MSI K8MM-ILSR Socket 754 VIA K8M800 Micro ATX AMD Motherboard - Retail
+AOpen s760GXm-S Socket 754 SiS 760 GX Micro ATX AMD

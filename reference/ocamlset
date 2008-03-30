@@ -1,0 +1,14 @@
+module OrderedString = (* ordered set of strings *)
+    struct
+      type t = string
+      let compare x y = if x = y then 0 else if x < y then -1 else 1
+    end;;
+
+module StringSet = Set.Make(OrderedString);;
+
+let s = StringSet.add "foo" StringSet.empty
+
+StringSet.mem "foo" s;;
+- : bool = true
+StringSet.mem "bar" s;;
+- : bool = false

@@ -1,0 +1,53 @@
+Diagnosing problems - create a test plan from this dialog:
+
+(13:37:31) LindowsCliff: Any idea...
+(13:37:48) LindowsCliff: ...why HP laptop i810 video working on 2.6.10 but not 2.6.11?
+(13:38:05) LindowsCliff: what does [EE] No devices found
+(13:38:06) LindowsCliff: mean
+(13:38:15) LindowsDavid: /dev/dri/card0 not created?
+(13:38:21) LindowsDavid: no
+(13:38:30) LindowsDavid: mismatched drm modules?
+(13:38:36) LindowsCliff: you are correct
+(13:39:22) LindowsDavid: there is supposed to be a file in /etc/devfs...
+(13:39:58) LindowsDavid: /etc/modprobe.d/drm-utils
+(13:40:10) LindowsDavid: it says alias /dev/dri* drm-chipset-module
+(13:40:19) LindowsDavid: then there should be a file /etc/modprobe.d/video.1
+(13:40:31) LindowsCliff: yes
+(13:40:34) LindowsDavid: that says alias drm-chipset-module i810
+(13:40:40) LindowsDavid: video.1.alias
+(13:40:53) LindowsCliff: video.1 is not there.
+(13:41:29) LindowsDavid: in /etc/pcimap.d/46drm there should be a line for the card that says drm-driver=i810
+(13:41:51) LindowsDavid: look in /etc/devices.d section [video.1] to see if it is set
+(13:41:59) LindowsDavid: no
+(13:42:02) LindowsDavid: /etc/devices/devices.inf
+(13:43:18) LindowsCliff: pcimap there, Xdriver=i810, drm-driver=i915
+(13:44:25) LindowsCliff: devices.inf has video.1, drm-driver= i915, xdriver = i810
+(13:44:28) LindowsCliff: .1.1
+(13:44:43) LindowsCliff: Xdriver = i810
+(13:44:49) LindowsCliff: Xdriver.1 = i810
+(13:45:05) LindowsCliff: bar and .1 all look right
+(13:45:17) LindowsDavid: /etc/pcimap.d/46drm?
+(13:45:35) LindowsDavid: oh, never mind that last q
+(13:46:24) LindowsDavid: all the right config files are there, when you try to touch /dev/dri/card0 everything should happen.
+(13:48:10) LindowsCliff: i added /etc/modprob.d/video.1
+(13:48:16) LindowsCliff: as you said.
+(13:48:26) LindowsCliff: It says drm Initialized.
+(13:48:31) LindowsCliff: but /dev/dri does not appear
+(13:48:46) LindowsDavid: oh, /etc/modprobe.d/video.1.alias wasn't there?  That would be my fault
+(13:48:47) LindowsCliff: I got a message about card 1 not found, I think.
+(13:48:56) LindowsCliff: But when I put it there...
+(13:49:00) LindowsCliff: ...it still didn't work.
+(13:49:09) LindowsDavid: did it get further?
+(13:50:07) LindowsCliff: no
+(13:50:12) LindowsCliff: same errors starting X
+(13:50:26) LindowsCliff: dmesg shows only the message about drm initialized.
+(14:02:34) LindowsDavid: it should say what sort of device it found too
+(14:02:40) LindowsDavid: everything up to date?
+(14:03:12) LindowsCliff: 5.0.215
+(14:03:29) LindowsDavid: can I log in?
+(14:03:41) LindowsCliff: I updated /etc/modprobe.d/video.1 to say i915
+(14:03:48) LindowsCliff: but it still doesn't create dri
+(14:03:53) LindowsCliff: working on ssh
+(14:03:54) LindowsDavid: oh, I thought it said that
+(14:04:24) LindowsCliff: I got it wrong
+(14:04:41) LindowsDavid: you can look and see if the drm device exists in /proc/devices

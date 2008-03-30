@@ -1,0 +1,25 @@
+#!/bin/sh
+
+# Script that attempts to build a DRM source tarball from the CVS
+# directory.  This is not currently working.
+
+cd /home/dsf/cvs
+
+#rm -rf drm
+#cvs -z3 -d:pserver:anonymous@dri.freedesktop.org:/cvs/dri co drm
+rm -rf modules/xorg-drm
+mkdir -p modules/xorg-drm
+
+make -C drm/linux-core drm_pciids.h
+
+#cp -p drm/shared/* modules/xorg-drm/
+#cp -p drm/linux/* modules/xorg-drm/
+
+cp -p drm/shared-core/* modules/xorg-drm/
+cp -p drm/linux-core/* modules/xorg-drm/
+
+#cp -p drm/linux-2.6/* modules/xorg-drm/
+
+ln -f modules/xorg-drm/Makefile modules/xorg-drm/Makefile.linux
+cd modules && tar cfj /usr/src/modules/xorg-drm.tar.bz2 xorg-drm
+rm -rf /usr/src/modules/xorg-drm

@@ -1,0 +1,288 @@
+#!/bin/sh
+
+install_ssh () {
+if [ ! -e /usr/bin/ssh ]; then
+sudo ftp -p -n ftp.debian.org >/dev/null <<XXX
+user anonymous dsf
+cd debian/pool/main/o/openssh
+mget ssh_*_i386.deb
+y
+n
+n
+n
+n
+n
+n
+n
+quit
+XXX
+DEBIAN_FRONTEND=noninteractive sudo dpkg -i ssh_*.deb
+fi
+if sudo [ ! -e /root/.ssh/id_rsa.pub ]; then yes "" | sudo ssh-keygen -t rsa; fi
+}
+
+configure_ssh () {
+    if [ ! -e "/usr/sbin/sshd" ]; then
+	sudo apt-get update
+	sudo apt-get install openssh-server
+    fi
+    if [ -e /etc/ssh/sshd_not_to_be_run ]; then
+      sudo rm -f /etc/ssh/sshd_not_to_be_run
+      echo 'ssh ssh/run_sshd boolean true' | sudo debconf-set-selections -v
+      sudo /etc/init.d/ssh start || true
+    fi
+}
+
+# Set up ssh access to source code repositories
+
+ssh_access () {
+    local LOGNAME=$1
+    local ADDRESS=$2
+    if [ "$LOGNAME" = "root" ]; then LOGHOME=/root; else LOGHOME=/home/$LOGNAME; fi
+    sudo -u $LOGNAME mkdir -p $LOGHOME/.ssh
+    sudo -u $LOGNAME touch $LOGHOME/.ssh/authorized_keys2
+    PORT=22
+    ssh -o "BatchMode yes" -p $PORT $ADDRESS pwd >/dev/null && return 0
+    if [ ! -e $LOGHOME/.ssh/id_rsa.pub ]; then yes '' | sudo -u $LOGNAME ssh-keygen -t rsa -N ''; fi
+    cat $LOGHOME/.ssh/id_rsa.pub | 
+    ssh $ADDRESS "set -x && mkdir -p \$HOME/.ssh &&
+    chmod 700 .ssh &&
+    cat >> \$HOME/.ssh/authorized_keys2 &&
+    chmod 600 \$HOME/.ssh/authorized_keys2"
+}
+
+# Configure sources.list and install some packages
+
+set_stan_ip () {
+    if ! grep -q -w stan /etc/hosts; then
+	LOCATION=external
+	ping -w 3 -c 1 198.172.200.225 || LOCATION=internal
+	echo "LOCATION=$LOCATION"
+        cp /etc/hosts /tmp/hosts
+	if [ "$LOCATION" = "internal" ]; then 
+	    echo '192.168.1.225 stan # Added by dsf setup' >> /tmp/hosts
+	else
+	    echo '198.172.200.225 stan # Added by dsf setup' >> /tmp/hosts
+	fi
+	sudo cp /tmp/hosts /etc/hosts
+	rm /tmp/hosts
+    fi
+}
+
+# Configure ssh for X11 forwarding
+
+ssh_x11 () {
+    grep -q 'X11Forwarding yes' /etc/ssh/sshd_config && return 0
+    sed 's/X11Forwarding no/X11Forwarding yes/' < \
+	/etc/ssh/sshd_config > /tmp/sshd_config.new &&
+    sudo mv /tmp/sshd_config.new /etc/ssh/sshd_config
+    sudo /etc/init.d/ssh restart
+}
+
+write_sources_list () {
+    if [ ! -e /etc/apt/apt.conf ]; then
+	echo 'APT::Cache-Limit 30000000;' > /tmp/apt.conf
+	sudo mv /tmp/apt.conf /etc/apt/apt.conf
+    fi
+    if [ ! -e /etc/apt/sources.list.$DISTRO ]; then
+	ssh dsf@stan "curl -s http://fattushis/cgi-bin/dist_sources_list.cgi?dist=marlin/$DISTRO\&mode=raw\&location=$LOCATION" | sed 's/sbw9\*/sbw9/' > /tmp/sources.list || exit 1
+	sudo mv /tmp/sources.list /etc/apt/sources.list.$DISTRO
+    fi
+    if [ -e /etc/apt/sources.list -a ! -L /etc/apt/sources.list ]; then
+	sudo rm -f /etc/apt/sources.list.orig
+	sudo mv /etc/apt/sources.list /etc/apt/sources.list.orig
+	sudo ln -s sources.list.$DISTRO /etc/apt/sources.list
+    fi
+}
+
+install_dsf_packages () {
+    sudo apt-get update
+    sudo apt-get -y install tla xtla # los-dev-tlatools
+    sudo apt-get -y install debian-el dpkg-dev-el
+    sudo apt-get -y install haskell-mode sudo build-essential
+    sudo apt-get -y install openssh-server
+    if [ -z "$QUICK" ]; then
+	sudo apt-get -y install tuareg-mode man-db manpages-dev haskell-mode # ghc6-doc ghc6-libsrc
+    fi
+}    
+
+# Create user dsf, check out and install my personal configuration
+
+useradd_dsf () {
+    grep -q "dsf:" /etc/passwd && return 0
+    sudo useradd -m -G users,disk,dialout,cdrom,audio,dip,video,cnr,lpadmin,desktop,camera,admin -p '' -s /bin/bash dsf
+    ID=`grep "^dsf:" /etc/passwd | awk -F: '{print $3}'`
+    sudo groupadd -g $ID dsf
+    sudo usermod -g dsf dsf
+}
+
+configure_dsf () {
+
+#    if [ ! -e /home/dsf/elisp/start.d ]; then
+#	apt-get -y install cvs vc-el
+#	cd /home/dsf
+#	set -x
+#	cvs -d :ext:dsf@foxthompson.net:/home/dsf/cvs co dsf >/dev/null
+#	set +x
+#	mv dsf/* dsf/.??* .
+#    fi
+
+    cd
+
+}
+
+get_dsfhome () {
+    cd
+    
+    for dir in tla tmp env; do
+ 	if [ ! -e $HOME-$dir ]; then
+ 	    sudo mkdir $HOME-$dir;
+	    sudo chown $USER.$USER $HOME-$dir;
+ 	    ln -s $HOME-$dir $HOME/$dir;
+ 	fi
+    done
+
+    tla my-id 'David Fox <ddssff@gmail.com>'
+    for LOC in \
+	sftp://david@foxthompson.net/home/{archives}/dsf@foxthompson.net--2004; do
+      tla register-archive -f $LOC
+      ARCHIVE=`echo $LOC | sed -n 's:^.*/\([^/]*\)$:\1:p'`
+      if [ ! -e $HOME/tla/$ARCHIVE ]; then mkdir -p $HOME/tla/$ARCHIVE; fi
+    done
+    tla my-default-archive 'dsf@foxthompson.net--2004'
+    if [ ! -e tla/dsf@foxthompson.net--2004/dsfhome--upstream--1 ]; then
+	tla get dsf@foxthompson.net--2004/dsfhome--upstream--1 $HOME/tla/dsf@foxthompson.net--2004/dsfhome--upstream--1
+	tla my-default-archive 'tos@lindows.com--2004'
+    fi
+    (cd tla/dsf@foxthompson.net--2004/dsfhome--upstream--1; ls -1a) |
+    while read i; do
+	case "$i" in
+	    \.|\.\.|\.arch-ids|{arch}|*~|+*|,,*) continue;;
+	    \.procmailrc) continue;;
+	    *) if [ ! -e $i ]; then ln -s tla/dsf@foxthompson.net--2004/dsfhome--upstream--1/$i .; fi;;
+	esac
+    done
+    # This doesn't exist until the browser runs
+#    for i in .linspire/lbrowser/*.default/bookmarks.html; do
+#	rm -f .linspire/lbrowser/*.default/bookmarks.html
+#	ln -s ../../../tla/dsf@foxthompson.net--2004/dsfhome--upstream--1/reference/bookmarks.html $i
+#    done
+    #for file in .emacs elisp bin .Xdefaults reference; do
+    #    ln -sf $TLAHOME/$file $HOME/$file
+    #done
+    xrdb $HOME/.Xdefaults
+}
+
+# Configure KDE (if we are in the correct environment)
+
+set_kde_option () {
+    FILE=$1
+    SECTION=$2
+    ATTR=$3
+    VALUE=$4
+
+    if [ ! -e $FILE ]; then
+      touch $FILE
+      (echo "[$SECTION]";
+       echo "	$ATTR=$VALUE") > $FILE.new
+    elif grep -q "^\[$SECTION\]$" $FILE; then
+      sed "/^\[$SECTION\]$/,/^$/d" < $FILE > $FILE.new &&
+      sed -n "/^\[$SECTION\]$/,/^$/p" < $FILE | grep -v '^$' > $FILE.tmp &&
+      if grep -q "^$ATTR=" $FILE.tmp; then
+	  sed "s|^$ATTR=.*$|$ATTR=$VALUE|" < $FILE.tmp >> $FILE.new
+      else
+	  echo "$ATTR=$VALUE" >> $FILE.tmp &&
+	  cat $FILE.tmp >> $FILE.new
+      fi
+    else
+      cat $FILE > $FILE.new &&
+      { echo ""; echo "[$SECTION]"; echo "$ATTR=$VALUE"; } >> $FILE.new
+    fi &&
+    cp -p $FILE $FILE.orig && mv $FILE.new $FILE
+    chown --reference=$FILE.orig $FILE
+    if cmp $FILE.orig $FILE; then diff -u $FILE.orig $FILE; fi
+ }
+
+configure_kde () {
+    set_kde_option $HOME/.kde/share/config/kxkbrc 'Layout' 'Options' 'ctrl:nocaps'
+    set_kde_option $HOME/.kde/share/config/kxkbrc 'Layout' 'Use' 'true'
+    if [ -z "$QUICK" ]; then
+	set_kde_option $HOME/.kde/share/config/kwinrc 'Windows' 'RollOverDesktops' 'false'
+	set_kde_option $HOME/.kde/share/config/kwinrc 'Windows' 'FocusPolicy' 'FocusStrictlyUnderMouse'
+	set_kde_option $HOME/.kde/share/config/kwinrc 'Windows' 'FocusPolicy' 'FocusStrictlyUnderMouse'
+	set_kde_option $HOME/.kde/share/config/kwinrc 'Style' 'ShadowEnabled' 'false'
+	set_kde_option $HOME/.kde/share/config/kdeglobals 'Global Shortcuts' 'Switch to Next Desktop' 'Ctrl+Right'
+	set_kde_option $HOME/.kde/share/config/kdeglobals 'Global Shortcuts' 'Switch to Previous Desktop' 'Ctrl+Left'
+	set_kde_option $HOME/.kde/share/config/kdeglobals 'Global Shortcuts' 'Toggle Window Raise/Lower' 'F1'
+	set_kde_option $HOME/.kde/share/config/kdeglobals 'Global Shortcuts' 'Window Maximize' 'F2'
+	set_kde_option $HOME/.kde/share/config/kdeglobals 'Global Shortcuts' 'Window Maximize Vertical' 'F3'
+	set_kde_option $HOME/.kde/share/config/kdeglobals 'Shortcuts' 'Help' 'none'
+	set_kde_option $HOME/.kde/share/config/kdeglobals 'Shortcuts' 'FindNext' 'none'
+	set_kde_option $HOME/.kde/share/config/ktaskbarrc 'General' 'GroupTasks' 'Always'
+
+	# panel size
+	set_kde_option $HOME/.kde/share/config/kdeglobals 'PanelIcons' 'Size' '16'
+	set_kde_option $HOME/.kde/share/config/kickerrc 'General' 'Size' '1'
+
+	# pager
+	#set_kde_option $HOME/.kde/share/config/kickerrc 'Applet_5' 'ConfigFile' 'minipager_panelapplet_ovhwhwtgfsaf7tlglj9z_rc'
+	#set_kde_option $HOME/.kde/share/config/kickerrc 'DesktopFile' 'minipagerapplet.desktop'
+	#set_kde_option $HOME/.kde/share/config/kickerrc 'FreeSpace' '1'
+	#set_kde_option $HOME/.kde/share/config/kickerrc 'WidthForHeightHint' '26'
+
+	# background
+	set_kde_option $HOME/.kde/share/config/kdesktoprc 'Desktop0' 'Wallpaper' '/usr/share/wallpapers/durango6.jpg'
+    fi
+
+    xrdb $HOME/.Xdefaults
+    dcop kwin KWinInterface reconfigure
+    dcop kdesktop KDesktopIface configure
+    dcop kicker Panel configure
+}
+
+# Main
+
+set -e
+
+PATH=/bin:/usr/bin:/sbin:/usr/sbin:/usr/X11R6/bin
+TLAHOME=$HOME/tla/dsf@foxthompson.net--2004/dsfhome--upstream--1
+
+while [ "$#" -gt 2 ]; do
+    case "$1" in
+	-q) QUICK=yes; shift;;
+	*)  shift;;
+    esac
+done
+
+VERSION=`sed -n 's/^Version: //p' /etc/linspire-version`
+
+if [ "${VERSION#5.0.}" != "$VERSION" ]; then DISTRO=cooked;
+elif [ "${VERSION#5.1.}" != "$VERSION" ]; then DISTRO=cooked-unstable;
+elif [ "${VERSION#0.0.}" != "$VERSION" ]; then DISTRO=cooked-freespire;
+elif [ "${VERSION#1.1.}" != "$VERSION" ]; then DISTRO=CNRDebian;
+elif [ "${VERSION#1.2.}" != "$VERSION" ]; then DISTRO=CNRUbuntu;
+elif [ "${VERSION#2.0.}" != "$VERSION" ]; then DISTRO=CNRUbuntu;
+else echo "Unfamiliar version: $VERSION"; exit 1; fi
+
+install_ssh
+configure_ssh
+
+#set_stan_ip
+
+#ssh_access $LOGNAME dsf@stan
+ssh_access $LOGNAME david@foxthompson.net
+#ssh_access $LOGNAME dsf@src.linspire.com
+#ssh_access $LOGNAME upload@sandbox.linspire.com
+#ssh_access root upload@sandbox.linspire.com
+#ssh_access root apt@apt.freespire.org
+
+set -x
+
+#write_sources_list
+install_dsf_packages
+ssh_x11
+#if [ ! -z "$QUICK" ]; then useradd_dsf; fi
+
+get_dsfhome
+if [ "$USER" = "dsf" ]; then configure_dsf; fi
+configure_kde

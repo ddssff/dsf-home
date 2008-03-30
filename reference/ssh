@@ -1,0 +1,52 @@
+ssh -o StrictHostKeyChecking=no	
+
+=============================
+
+	run "ssh-keygen -t rsa"
+
+	Generates ~/.ssh/id_rsa and ~/.ssh/id_rsa.pub.  ~/.ssh should be
+	chmod 755.  When it asks for passphrase just hit enter!  id_rsa
+	must be chmod 600.
+
+	Copy ~/.ssh/id_rsa.pub to ~/.ssh/authorized_keys2 on remote machine.
+	~/.ssh must be chmod 700 and authorized_keys2 must be chmod 600. 
+
+	Start ssh-agent on the local machine:
+
+	  eval `ssh-agent -s`
+
+	It sets three environment variables that must be seen when ssh,
+	so do it in .xsession.  When done kill it with ssh-agent -k, after
+	window manager exits.
+
+There is a thread that seems to address the problem on google groups:
+
+http://groups.google.com/groups?hl=en&safe=off&th=6093199741820db9,20&start=10&ic=1
+
+Note to self:  Never kill sshd on remote system.
+
+============================
+
+> start on your local box
+> 1. ssh-keygen
+> 2. use default identity location, press enter
+> 3. blank passphrase, enter twice
+> 4. Copy ~/.ssh/identity.pub to ~/.ssh/authorized_keys on the remote machine
+> 5. chmod go-w ~/.ssh ~/.ssh/authorized
+
+=============================
+
+Lets say you are at home and you need to look at a websever running on
+192.168.1.232. Here is a simple two step process:
+
+>From your lindows machine at home:
+
+ssh -L 8080:192.168.1.232:80 dsf@207.67.194.2 
+
+Now, on your lindows machine at home goto:
+
+http://localhost:8080/
+
+You should now be connected to the webserver on 192.168.1.226:80.
+
+jeremy shaw.

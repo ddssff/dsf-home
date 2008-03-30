@@ -1,0 +1,59 @@
+1. Converting xosview from C++ to ocaml
+
+After doing a straightforward conversion using ocaml's object oriented
+constructs, I eliminated their use using an ad-hoc object system where
+each object looked like this:
+
+  type t = {
+    parent: Parent.t;		(* The parent object instance *)
+    method1 : method1_sig;	(* The methods *)
+    method2 : method2_sig;
+  }
+  
+  let make constructor_arg1 constructor_arg2 =
+    let rec p = Parent.make constructor_arg1 constructor_arg2
+  
+    and field1 = field1init
+    and field2 = field2init
+  
+    and method1 = (fun parm1 parm2 -> method_1_implementation)
+    and method2 = (fun parm1 parm2 -> method_2_implementation) in
+  
+    let ob = {
+      parent =	
+        (* override some of the parent methods *)
+        {p with Parent.method2 = method2};
+      method1 = method1} in
+  
+    (* Perform any additional initialization here *)
+    ob.method1 argument;
+    ob
+
+This leads to code which has many long expressions to access values in
+the parent classes, like
+
+  meter.Fieldmetergraph.meter.Fieldmeter.setfieldcolor 0 warnloadcol_
+
+This I take as a sign that the classes need to be decoupled.  Indeed,
+the fact that the namespaces of all the classes and their parent
+classes are flattened into one is probably my main objection to the
+object oriented style.  The namespaces can get quite large at the top
+levels unless "private" and "protected" are used, and there is no
+mechanism to see or control the coupling between them.  By writing the
+expressions out you can see where the trouble spots are.
+
+The code is also in an extraordinarily imperitive state.  All of the
+methods are modifying the field values, there is very little
+functional code.
+
+HYPOTHESIS: could this be reduced by adding arguments to the methods
+to eliminate the reliance on captured values?  It is the setters that
+are the real problem.
+
+STRATEGIES:
+  1. try to eliminate reference members from classes
+  2. Replace getter/setters with functions - for example, there
+     was a color_ array and setfieldcolor and getfieldcolor operations,
+     they were replaced by passing a field_color function to the constructor.
+  3. Eliminate all the fields in type t, then have the make function
+     return the parent object instead of wrapping it in a struct.

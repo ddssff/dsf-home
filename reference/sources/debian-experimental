@@ -1,0 +1,4 @@
+deb ftp://ftp.us.debian.org/debian experimental main contrib non-free
+deb ftp://ftp.us.debian.org/debian etch main contrib non-free
+deb-src ftp://ftp.us.debian.org/debian experimental main contrib non-free
+deb-src ftp://ftp.us.debian.org/debian etch main contrib non-free

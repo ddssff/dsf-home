@@ -1,0 +1,79 @@
+#!/bin/sh
+
+# Perform my daily backups.
+
+ssh () {
+    /usr/bin/ssh -o 'PreferredAuthentications hostbased,publickey' $* || exit 1
+}
+
+scp () {
+    /usr/bin/scp -o 'PreferredAuthentications hostbased,publickey' $* || exit 1
+}
+
+# Use the archive command to perform backups.  Assumes we are on the
+# backup machine.
+
+if [ "$USER" != "root" ]; then echo "You must be root to run this."; exit 1; fi
+
+DSF=dsf; HOSTS="$DSF $HOSTS"
+LDT=lydia; HOSTS="$LDT $HOSTS"
+SERVER=server; HOSTS="$SERVER $HOSTS"
+#T22=t22; HOSTS="$T22 $HOSTS"
+
+#BACKUPS=server
+
+# Make sure we have all the ssh public key access we need
+
+for HOST in $HOSTS; do
+    echo -n "Testing connection to $HOST ... ";
+    ssh root@$HOST echo -n || sshexport root@$HOST
+    echo "ok"
+done
+
+ARCHIVE=/home/dsf/bin/archive
+#scp /home/dsf/bin/archive root@$SERVER:/usr/bin
+
+elapsed () {
+    T0=`date +%s`
+    # $@ within quotes expands to a quoted argument list: "$1" "$2" "$3"
+    "$@"
+    T1=`date +%s`
+    DT=$(($T1-$T0))
+    echo "  elapsed: $DT" 1>&2
+}
+
+#set -xv
+
+V=-v
+#OPTS=--unlink
+
+DEST=/home/backups
+
+# This should be merged with ldt@$LDT
+elapsed $ARCHIVE $OPTS "root@$DSF:/mnt/hdb3/ldt" "$DEST/ldt-dsf"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS --exclude '/.mozilla/**/Cache/' --exclude '/.kde/share/cache/' "root@$LDT:/mnt/hda2/root" "$DEST/ldt1"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS --exclude '/.mozilla/**/Cache/' --exclude '/.kde/share/cache/' "root@$LDT:/mnt/hdb3/ldt" "$DEST/ldt2"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS "root@$LDT:/var/mail" "$DEST/ldtmail"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+
+#elapsed $ARCHIVE $V $OPTS "root@$T22:/root/My*Documents" "$DEST/t22-docs"
+#echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS "root@$DSF:/mnt/hdb3/cdroms" "$DEST/cdroms"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS "root@$SERVER:/home/dsf/{archives}" "$DEST/tla"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS "root@$DSF:/home/dsf/cvs" "$DEST/dsfcvs"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS "root@$SERVER:/var/lib/geneweb" "$DEST/geneweb"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS "root@$SERVER:/var/mail" "$DEST/dsfmail"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS "root@$SERVER:/var/www" "$DEST/www"
+#elapsed archive $OPTS root@$LDT:/home/audio $DEST/audio
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS "root@$SERVER:/home/audio" "$DEST/audio"
+echo -n "continue? "; read answer; if [ "$answer" != y ]; then exit 0; fi
+elapsed $ARCHIVE $OPTS --exclude '/.mozilla/**/Cache/' --exclude '/.kde/share/cache/' --exclude '/tmp/' "root@$DSF:/home/dsf" "$DEST/dsf"

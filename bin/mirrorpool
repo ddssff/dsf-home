@@ -1,0 +1,166 @@
+#!/bin/sh -x
+
+set -e
+
+# I think the reason other mirror scripts are so complex is because
+# they are trying to run on a "live" mirror, while people are downloading
+# from it.  That seems like a dumb idea to me, but What Do I Know (tm).
+
+RSYNC="/usr/bin/rsync"
+RSYNC="$RSYNC --verbose"
+#RSYNC="$RSYNC --dry-run"
+
+# Accuracy options - these affect the fidelity of the copy
+
+#RSYNC="$RSYNC -a"		# --archive = -rlptgoD (we omit goD)
+RSYNC="$RSYNC -r"		# --recursive
+RSYNC="$RSYNC -l"		# --links - Create symlinks
+RSYNC="$RSYNC -p"		# --perms
+RSYNC="$RSYNC -t"		# --times
+#RSYNC="$RSYNC -g"		# --group
+#RSYNC="$RSYNC -o"		# --owner
+RSYNC="$RSYNC -D"		# --devices
+
+#RSYNC="$RSYNC --copy-unsafe-links"	# Causes rsync to crash.  Really!
+RSYNC="$RSYNC -H"		# --hard-links
+RSYNC="$RSYNC -S"		# --sparse
+RSYNC="$RSYNC --force"
+RSYNC="$RSYNC --delete"
+RSYNC="$RSYNC --delete-excluded"
+
+# Inaccuracy options - make rsync copy less perfect (therefore disabled.)
+
+#RSYNC="$RSYNC -L"		# --copy-links - Follow symlinks (bad idea)
+
+# Paranoia options - options to avoid extremely unlikely problems
+
+#RSYNC="$RSYNC -I"		# --ignore-times
+#RSYNC="$RSYNC --size-only"
+#RSYNC="$RSYNC -c"		# --checksum
+
+# Temporal options - saving time, using time wisely...
+
+RSYNC="$RSYNC --delete-after"	# Keep pool valid until new indexes arrive
+RSYNC="$RSYNC --timeout=300"	# Without this we might hang forever.
+RSYNC="$RSYNC --partial"	# Resume downloading partial transfers
+
+# Exclusions
+
+#RSYNC="$RSYNC --exclude Debian2.2r7"	# some of these still in use?
+RSYNC="$RSYNC --exclude *alpha.deb"
+RSYNC="$RSYNC --exclude *arm.deb"
+RSYNC="$RSYNC --exclude *hppa.deb"
+RSYNC="$RSYNC --exclude *hurd-i386.deb"
+RSYNC="$RSYNC --exclude *ia64.deb"
+RSYNC="$RSYNC --exclude *m68k.deb"
+RSYNC="$RSYNC --exclude *mips.deb"
+RSYNC="$RSYNC --exclude *mipsel.deb"
+RSYNC="$RSYNC --exclude *powerpc.deb"
+RSYNC="$RSYNC --exclude *s390.deb"
+RSYNC="$RSYNC --exclude *sparc.deb"
+
+RSYNC="$RSYNC --exclude binary-alpha"
+RSYNC="$RSYNC --exclude binary-arm"
+RSYNC="$RSYNC --exclude binary-hppa"
+RSYNC="$RSYNC --exclude binary-hurd-i386"
+RSYNC="$RSYNC --exclude binary-ia64"
+RSYNC="$RSYNC --exclude binary-m68k"
+RSYNC="$RSYNC --exclude binary-mips"
+RSYNC="$RSYNC --exclude binary-mipsel"
+RSYNC="$RSYNC --exclude binary-powerpc"
+RSYNC="$RSYNC --exclude binary-sparc"
+RSYNC="$RSYNC --exclude binary-s390"
+
+RSYNC="$RSYNC --exclude disks-alpha"
+RSYNC="$RSYNC --exclude disks-arm"
+RSYNC="$RSYNC --exclude disks-hppa"
+RSYNC="$RSYNC --exclude disks-i386"
+RSYNC="$RSYNC --exclude disks-hurd-i386"
+RSYNC="$RSYNC --exclude disks-ia64"
+RSYNC="$RSYNC --exclude disks-m68k"
+RSYNC="$RSYNC --exclude disks-mips"
+RSYNC="$RSYNC --exclude disks-mipsel"
+RSYNC="$RSYNC --exclude disks-powerpc"
+RSYNC="$RSYNC --exclude disks-sparc"
+RSYNC="$RSYNC --exclude disks-s390"
+
+RSYNC="$RSYNC --exclude Contents-alpha.gz"
+RSYNC="$RSYNC --exclude Contents-arm.gz"
+RSYNC="$RSYNC --exclude Contents-hppa.gz"
+RSYNC="$RSYNC --exclude Contents-hurd-i386.gz"
+RSYNC="$RSYNC --exclude Contents-m68k.gz"
+RSYNC="$RSYNC --exclude Contents-powerpc.gz"
+RSYNC="$RSYNC --exclude Contents-sparc.gz"
+RSYNC="$RSYNC --exclude Contents-ia64.gz"
+RSYNC="$RSYNC --exclude Contents-mips.gz"
+RSYNC="$RSYNC --exclude Contents-mipsel.gz"
+RSYNC="$RSYNC --exclude Contents-s390.gz"
+
+RSYNC="$RSYNC --exclude installer-alpha"
+RSYNC="$RSYNC --exclude installer-arm"
+RSYNC="$RSYNC --exclude installer-hppa"
+RSYNC="$RSYNC --exclude installer-ia64"
+RSYNC="$RSYNC --exclude installer-m68k"
+RSYNC="$RSYNC --exclude installer-mipsel"
+RSYNC="$RSYNC --exclude installer-s390"
+RSYNC="$RSYNC --exclude installer-sparc"
+RSYNC="$RSYNC --exclude installer-powerpc"
+
+SYNC_HOST=ftp.us.debian.org
+SYNC_ARCHIVE=debian
+
+SYNC_HOST2=non-us.debian.org
+SYNC_ARCHIVE2=debian-non-US
+
+ROOT1=/build/packages/cnr-debian/debian
+ROOT2=/build/packages/cnr-debian/debian-non-US
+DIR=pool
+
+# First do the lengthy pool update, which usually leaves the old package
+# indexes usable.  Then update the index files.  Repeat for non-us.
+
+#${RSYNC} ${SYNC_HOST}::${SYNC_ARCHIVE}/pool/* ${ROOT1}/pool
+#echo "rsync exit code: $?"
+${RSYNC} ${SYNC_HOST}::${SYNC_ARCHIVE}/* ${ROOT1}
+echo "rsync exit code: $?"
+#${RSYNC} ${SYNC_HOST2}::${SYNC_ARCHIVE2}/pool/* ${ROOT2}/pool
+#echo "rsync exit code: $?"
+${RSYNC} ${SYNC_HOST2}::${SYNC_ARCHIVE2}/* ${ROOT2}
+echo "rsync exit code: $?"
+
+# Also mirror kalyxo.org, which has some stuff the OS team wants
+# They don't have rsync support, so simulate it (poorly) using wget
+
+WGET="/usr/bin/wget"
+WGET="$WGET -nH"                # Don't include hostname in path
+WGET="$WGET --cut-dirs=1"       # Don't include directory root in path
+WGET="$WGET -r"                 # Recurse
+WGET="$WGET --no-parent"        # Never go above the dir we specify
+WGET="$WGET -R index.html*"     # Don't retrieve index files (the server auto-
+                                # generates these for directory entries)
+
+WGET_HOST=http://www.kalyxo.org
+WGET_HOSTROOT=debian
+WGET_DIR1=pool
+WGET_DIR2=dists
+
+WGET_ROOT=/build/packages/cnr-kalyxo
+WGET_MIRROR_DIR="$WGET_ROOT/mirror"
+
+WGET="$WGET -P $WGET_MIRROR_DIR"
+
+# Make a mirror dir, sync into it, and then clobber the real dirs
+# with it.
+
+mkdir -p ${WGET_MIRROR_DIR}
+
+${WGET} ${WGET_HOST}/${WGET_HOSTROOT}/${WGET_DIR1}
+${WGET} ${WGET_HOST}/${WGET_HOSTROOT}/${WGET_DIR2}
+
+rm -rf ${WGET_ROOT}/${WGET_DIR1}
+mv ${WGET_MIRROR_DIR}/${WGET_DIR1} ${WGET_ROOT} || true
+
+rm -rf ${WGET_ROOT}/${WGET_DIR2}
+mv ${WGET_MIRROR_DIR}/${WGET_DIR2} ${WGET_ROOT} || true
+
+rmdir ${WGET_MIRROR_DIR}

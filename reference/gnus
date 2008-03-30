@@ -1,0 +1,5 @@
+In *Group* buffer: A A lists all groups
+
+Save image displayed in buffer: M-x gnus-summary-save-parts
+Save image not displayed in buffer: M-x gnus-mime-save-part
+Save uuencoded series: X U (make sure sharutils is installed)

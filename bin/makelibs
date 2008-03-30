@@ -1,0 +1,17 @@
+#!/bin/sh
+
+set -o pipefail
+set -x
+
+LIBS="$LIBS tos@lindows.com--2004/los-ocaml--los-debian--6"
+LIBS="$LIBS tos@lindows.com--2004/los-log-ocaml--los-debian--1"
+LIBS="$LIBS tos@lindows.com--2004/los-unixutils-ocaml--los-debian--1"
+LIBS="$LIBS tos@lindows.com--2004/los-debutils-ocaml--los-debian--1"
+LIBS="$LIBS tos@lindows.com--2004/los-detectlib--los-debian--1"
+
+for lib in $LIBS; do
+  cd /home/dsf/tla/$lib &&
+  tla update &&
+  make clean &&
+  make install || break
+done
