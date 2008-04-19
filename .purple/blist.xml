@@ -1,0 +1,1381 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<purple version='1.0'>
+	<blist>
+		<group name='AIM Bots'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>MovieFone</name>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>ShoppingBuddy</name>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>david</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>Prof Gilzot</name>
+					<alias>Test your world record knowledge now!</alias>
+					<setting name='buddy_icon' type='string'>1bd272aca7bdfb6ec8a178273db13f1c58d30b44.gif</setting>
+					<setting name='icon_checksum' type='string'>2c67696c7a6f7469636f6e</setting>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>Sharethisdotcom</name>
+					<setting name='buddy_icon' type='string'>36a9d97648002d3b965806ac35feb5cd0cfe29ed.gif</setting>
+					<setting name='icon_checksum' type='string'>2c73686172655f69636f6e</setting>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>Spleak</name>
+					<setting name='buddy_icon' type='string'>ec0740070db0ee4faafbcffb4ec5f4f1f6262683.gif</setting>
+					<setting name='icon_checksum' type='string'>2c73706c65616b5f69636f6e</setting>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>WSJ</name>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>IM Street</name>
+					<setting name='buddy_icon' type='string'>f016d4848188c78657e2751909f3b6c69257205b.gif</setting>
+					<setting name='icon_checksum' type='string'>2c494d53747265657469636f6e</setting>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>HotSpot</name>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>McLovin12Four</name>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+		</group>
+		<group name='Co-Workers'/>
+		<group name='SeeReason'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>greenlion@chat.seereason.org</name>
+					<setting name='buddy_icon' type='string'>b30b5bba3eb229cec3986548d218a81622c344b3.jpg</setting>
+					<setting name='icon_checksum' type='string'>b30b5bba3eb229cec3986548d218a81622c344b3</setting>
+					<setting name='last_seen' type='int'>1208534637</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>beshers@chat.seereason.org</name>
+					<setting name='buddy_icon' type='string'>df8643688f4d30aa678baa011ef9c9aacb20e957.png</setting>
+					<setting name='icon_checksum' type='string'>df8643688f4d30aa678baa011ef9c9aacb20e957</setting>
+					<setting name='last_seen' type='int'>1208598919</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>jeremy@chat.seereason.org</name>
+					<setting name='last_seen' type='int'>1208598919</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>george.beshers@chat.seereason.org</name>
+					<setting name='last_seen' type='int'>1208598919</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>dylan@chat.seereason.org</name>
+					<setting name='last_seen' type='int'>1208133878</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>clifftest@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>conal@chat.seereason.org</name>
+					<setting name='last_seen' type='int'>1204487951</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='dsf@chat.seereason.org/Notebook' proto='prpl-jabber'>
+					<name>george.beshers@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='dsf@chat.seereason.org/Notebook' proto='prpl-jabber'>
+					<name>greenlion@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='dsf@chat.seereason.org/Notebook' proto='prpl-jabber'>
+					<name>beshers@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='dsf@chat.seereason.org/Notebook' proto='prpl-jabber'>
+					<name>jeremy@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='dsf@chat.seereason.org/Notebook' proto='prpl-jabber'>
+					<name>clifftest@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='dsf@chat.seereason.org/Notebook' proto='prpl-jabber'>
+					<name>conal@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='dsf@chat.seereason.org/Notebook' proto='prpl-jabber'>
+					<name>dylan@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='dsf@chat.seereason.org/Notebook' proto='prpl-jabber'>
+					<name>david@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>dsf@chat.seereason.org</name>
+					<setting name='last_seen' type='int'>1207718682</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>adam@chat.seereason.org</name>
+					<setting name='last_seen' type='int'>1208598919</setting>
+				</buddy>
+			</contact>
+		</group>
+		<group name='seereason'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
+				<component name='channel'>#haskell</component>
+			</chat>
+			<chat proto='prpl-jabber' account='david@chat.seereason.org/Garage'>
+				<component name='room'>public</component>
+				<component name='server'>conference.chat.seereason.org</component>
+				<component name='handle'>david</component>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
+			</chat>
+			<chat proto='prpl-jabber' account='david@chat.seereason.org/Garage'>
+				<component name='room'>seereason</component>
+				<component name='server'>conference.chat.seereason.org</component>
+				<component name='handle'>david</component>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
+				<setting name='gtk-autojoin' type='bool'>1</setting>
+			</chat>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>beshers@seereason.org</name>
+					<alias>cliff</alias>
+					<setting name='buddy_icon' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff.png</setting>
+					<setting name='icon_checksum' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff</setting>
+					<setting name='last_seen' type='int'>1189541362</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Garage' proto='prpl-jabber'>
+					<name>jeremy@seereason.org</name>
+					<alias>jeremy</alias>
+					<setting name='last_seen' type='int'>1189541362</setting>
+				</buddy>
+			</contact>
+		</group>
+		<group name='[Linspire, Inc]'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<chat proto='prpl-jabber' account='david.fox@chat.linspire.com/Home'>
+				<alias>tgab</alias>
+				<component name='room'>tgab</component>
+				<component name='server'>conference.chat.linspire.com</component>
+				<component name='handle'>david.fox</component>
+			</chat>
+			<chat proto='prpl-jabber' account='david.fox@chat.linspire.com/Home'>
+				<alias>lambda</alias>
+				<component name='room'>lambda</component>
+				<component name='server'>conference.chat.linspire.com</component>
+				<component name='handle'>david.fox</component>
+			</chat>
+			<chat proto='prpl-jabber' account='david.fox@chat.linspire.com/Home'>
+				<alias>tos</alias>
+				<component name='room'>tos</component>
+				<component name='server'>conference.chat.linspire.com</component>
+				<component name='handle'>david.fox</component>
+			</chat>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>denis.angleton@chat.linspire.com</name>
+					<alias>Denis Angleton</alias>
+					<setting name='last_seen' type='int'>1186416463</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>kevin.carmony@chat.linspire.com</name>
+					<alias>kevin.carmony</alias>
+					<setting name='last_seen' type='int'>1185301521</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>theresa.brennan@chat.linspire.com</name>
+					<alias>theresa.brennan</alias>
+					<setting name='last_seen' type='int'>1183855080</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>naomi.chen@chat.linspire.com</name>
+					<alias>naomi.chen</alias>
+					<setting name='last_seen' type='int'>1186416463</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>joey.wu@chat.linspire.com</name>
+					<alias>joey.wu</alias>
+					<setting name='last_seen' type='int'>1186205701</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>jeremy.norris@chat.linspire.com</name>
+					<alias>jeremy.norris</alias>
+					<setting name='buddy_icon' type='string'>46e539c56dbe4d1507ad9ed7f6bf0e8fd0609ee1.png</setting>
+					<setting name='icon_checksum' type='string'>46e539c56dbe4d1507ad9ed7f6bf0e8fd0609ee1</setting>
+					<setting name='last_seen' type='int'>1186182908</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>adam.wang@chat.linspire.com</name>
+					<alias>adam.wang</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>larry.kettler@chat.linspire.com</name>
+					<alias>larry.kettler</alias>
+					<setting name='last_seen' type='int'>1186416463</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>bill.long@chat.linspire.com</name>
+					<alias>bill.long</alias>
+					<setting name='last_seen' type='int'>1182384576</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>tim.cook@chat.linspire.com</name>
+					<alias>tim.cook</alias>
+					<setting name='last_seen' type='int'>1185301521</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>aurelia.negrerie@chat.linspire.com</name>
+					<alias>aurelia.negrerie</alias>
+					<setting name='last_seen' type='int'>1186185254</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>clifford.beshers@chat.linspire.com</name>
+					<alias>clifford.beshers</alias>
+					<setting name='buddy_icon' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff.png</setting>
+					<setting name='icon_checksum' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff</setting>
+					<setting name='last_seen' type='int'>1186205701</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>michael.robertson@chat.linspire.com</name>
+					<alias>michael.robertson</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>laura.kilcoyne@chat.linspire.com</name>
+					<alias>laura.kilcoyne</alias>
+					<setting name='last_seen' type='int'>1186193041</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>carla.camargo@chat.linspire.com</name>
+					<alias>carla.camargo</alias>
+					<setting name='buddy_icon' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff.png</setting>
+					<setting name='icon_checksum' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff</setting>
+					<setting name='last_seen' type='int'>1185301521</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>chad.olson@chat.linspire.com</name>
+					<alias>chad.olson</alias>
+					<setting name='last_seen' type='int'>1185301521</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>everaldo.coelho@chat.linspire.com</name>
+					<alias>everaldo.coelho</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>sherief@chat.linspire.com</name>
+					<alias>sherief</alias>
+					<setting name='last_seen' type='int'>1186186405</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>eric.hou@chat.linspire.com</name>
+					<alias>eric.hou</alias>
+					<setting name='last_seen' type='int'>1185301521</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>david.fox@chat.linspire.com</name>
+					<alias>david.fox</alias>
+					<setting name='buddy_icon' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff.png</setting>
+					<setting name='icon_checksum' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff</setting>
+					<setting name='last_seen' type='int'>1186416463</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>michael.umansky@chat.linspire.com</name>
+					<alias>michael.umansky</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>joe.fox@chat.linspire.com</name>
+					<alias>joe.fox</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>john.sanborn@chat.linspire.com</name>
+					<alias>john.sanborn</alias>
+					<setting name='last_seen' type='int'>1186187553</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>piyush.kothari@chat.linspire.com</name>
+					<alias>piyush.kothari</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>cary.harper@chat.linspire.com</name>
+					<alias>cary.harper</alias>
+					<setting name='last_seen' type='int'>1186416463</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>ingolfur.haraldsson@chat.linspire.com</name>
+					<alias>ingolfur.haraldsson</alias>
+					<setting name='buddy_icon' type='string'>f9b4bd5c9d058ba3afab712b153c2cad94d4b76c.jpg</setting>
+					<setting name='icon_checksum' type='string'>f9b4bd5c9d058ba3afab712b153c2cad94d4b76c</setting>
+					<setting name='last_seen' type='int'>1186186258</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>john.lin@chat.linspire.com</name>
+					<alias>john lin</alias>
+					<setting name='last_seen' type='int'>1185249908</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>kendall.dawson@chat.linspire.com</name>
+					<alias>kendall.dawson</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>adam.fonseca@chat.linspire.com</name>
+					<alias>adam.fonseca</alias>
+					<setting name='last_seen' type='int'>1186416463</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>alex.stoneham@chat.linspire.com</name>
+					<alias>alex.stoneham</alias>
+					<setting name='last_seen' type='int'>1186186230</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>george.beshers@chat.linspire.com</name>
+					<alias>george.beshers</alias>
+					<setting name='last_seen' type='int'>1186416463</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>camille.wood@chat.linspire.com</name>
+					<alias>camille.wood</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>randy.linnell@chat.linspire.com</name>
+					<alias>randy.linnell</alias>
+					<setting name='last_seen' type='int'>1185301521</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>jeremy.shaw@chat.linspire.com</name>
+					<alias>jeremy.shaw</alias>
+					<setting name='last_seen' type='int'>1186416463</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>ken.jones@chat.linspire.com</name>
+					<alias>ken.jones</alias>
+					<setting name='buddy_icon' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff.png</setting>
+					<setting name='icon_checksum' type='string'>b009c5ee7b852f5ac21955c7f583351df71b8aff</setting>
+					<setting name='last_seen' type='int'>1186416463</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>brian.thomason@chat.linspire.com</name>
+					<alias>brian.thomason</alias>
+					<setting name='last_seen' type='int'>1183519761</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>ryan.hass@chat.linspire.com</name>
+					<alias>ryan.hass</alias>
+					<setting name='buddy_icon' type='string'>838079ca726a82bac5321364e27d3e0411b8aa29.png</setting>
+					<setting name='icon_checksum' type='string'>838079ca726a82bac5321364e27d3e0411b8aa29</setting>
+					<setting name='last_seen' type='int'>1186191059</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david.fox@chat.linspire.com/Home' proto='prpl-jabber'>
+					<name>sam.hornedo@chat.linspire.com</name>
+					<alias>sam.hornedo</alias>
+					<setting name='last_seen' type='int'>1183771663</setting>
+				</buddy>
+			</contact>
+		</group>
+		<group name='Buddies'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>spock5643</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>rwglajolla</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>calitess</name>
+					<setting name='buddy_icon' type='string'>aa2c5c59614165baad348438d872b310fb3eedd1.jpg</setting>
+					<setting name='icon_checksum' type='string'>fc706880a5a4a1a803979fab07aee7cc</setting>
+					<setting name='last_seen' type='int'>1183769106</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>hyperpoem</name>
+					<setting name='buddy_icon' type='string'>9a98d32a339f1af1b5d93d8966d651fffd1b498f.jpg</setting>
+					<setting name='icon_checksum' type='string'>4f31bdc15409316173e8e6301fe409f5</setting>
+					<setting name='last_seen' type='int'>1187349880</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>enrgetic1</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>WBradfordPaley</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>RichardPetarRak</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>GeoBesh</name>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>kool sexy crazy</name>
+					<setting name='buddy_icon' type='string'>305cd07841774df376ed1f8326f5a0859862abe8.gif</setting>
+					<setting name='icon_checksum' type='string'>2b0000071f</setting>
+					<setting name='last_seen' type='int'>1189903779</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>MoonieRocx</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>PinkSmokey</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>MoonieRocks</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>MoonieRox</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>juicy jewel738</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>rwglajolla</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>LindowsCliff</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>LindowsTheresa</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>calitess</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>kagurarules</name>
+					<alias>Natasha</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>LindowsDavid</name>
+				</buddy>
+			</contact>
+		</group>
+		<group name='Mobile Device'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>M4ri4na</name>
+				</buddy>
+			</contact>
+		</group>
+		<group name='Family'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>pinksmokey222</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>lydiadthompson</name>
+					<setting name='last_seen' type='int'>1189822731</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>pinksmokey222</name>
+					<alias>Anne</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>thomtone</name>
+					<alias>tone thompson</alias>
+					<setting name='buddy_icon' type='string'>2d41959eb2f9ddc34933b77cf84a4feae0052c68.gif</setting>
+					<setting name='icon_checksum' type='string'>0201d20c5c</setting>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>Tqmpropmgm</name>
+					<setting name='buddy_icon' type='string'>2fcd6134dba9fc40912ca5ce35cc6368e737f480.gif</setting>
+					<setting name='icon_checksum' type='string'>0201d205a1</setting>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>sandi0313</name>
+					<alias>mom</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>thompsatom</name>
+					<alias>TWT</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>LindowsDavid</name>
+					<alias>david</alias>
+				</buddy>
+			</contact>
+		</group>
+		<group name='Not in your contact list'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>aolsystemmsg</name>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+		</group>
+		<group name='Recent Buddies'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>lindowschrishall</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>theboard222</name>
+					<setting name='buddy_icon' type='string'>1eff81fa17dbc2081e586dcd83c518ea53195eb5.jpg</setting>
+					<setting name='icon_checksum' type='string'>072638e40c9eedaaa36d0f332844a07a</setting>
+					<setting name='last_seen' type='int'>1189911526</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>linspirewill</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>lindowsmikeg</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>lindowsscottmc</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>cliffordbeshers</name>
+					<setting name='buddy_icon' type='string'>78b886a45f09780187e8cb5f5c32067d10bf8878.jpg</setting>
+					<setting name='icon_checksum' type='string'>8ca3b4fbbc85326052f5977b8b7ab7b0</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>blackfam972</name>
+					<setting name='buddy_icon' type='string'>83da22c76fd5e2875bc447335d8d7578bb1fce2d.jpg</setting>
+					<setting name='icon_checksum' type='string'>f2d8569b048c0eed658d75d8c30250c1</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>lindowscarlac</name>
+					<setting name='buddy_icon' type='string'>c0580df92d008cdcf2a616c22800ce4f08e8c68c.gif</setting>
+					<setting name='icon_checksum' type='string'>2b0000015d</setting>
+					<setting name='last_seen' type='int'>1189819804</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>jeremy@seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>cliffordbeshers</name>
+					<setting name='buddy_icon' type='string'>3c276a66abe5d2a110ca6eca6f4837d289934448.jpg</setting>
+					<setting name='icon_checksum' type='string'>bb3fd739fd8d5349728c05ff2d83e2e2</setting>
+					<setting name='last_seen' type='int'>1208308558</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='GerboaDavid' proto='prpl-aim'>
+					<name>cliffordbeshers</name>
+					<setting name='buddy_icon' type='string'>78b886a45f09780187e8cb5f5c32067d10bf8878.jpg</setting>
+					<setting name='icon_checksum' type='string'>8ca3b4fbbc85326052f5977b8b7ab7b0</setting>
+					<setting name='last_seen' type='int'>1189546708</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>lydiadthompson</name>
+					<setting name='buddy_icon' type='string'>aa2c5c59614165baad348438d872b310fb3eedd1.jpg</setting>
+					<setting name='icon_checksum' type='string'>fc706880a5a4a1a803979fab07aee7cc</setting>
+					<setting name='last_seen' type='int'>1208558764</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>geobesh</name>
+					<setting name='last_seen' type='int'>1208371141</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>yogitess</name>
+					<setting name='buddy_icon' type='string'>de115f67bf829f207c13dbe645d467cac2299cea.jpg</setting>
+					<setting name='icon_checksum' type='string'>d249b4604b204de175858978eb67322e</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>lindowsjeremy</name>
+					<setting name='last_seen' type='int'>1208533637</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>yogitess</name>
+					<setting name='buddy_icon' type='string'>8c2e8e638b957e61235d4d3cf453372ee3ddf887.jpg</setting>
+					<setting name='icon_checksum' type='string'>0a38f99a9f61ca42dc5fdb8b22087088</setting>
+					<setting name='last_seen' type='int'>1208574807</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>theboard222</name>
+					<setting name='buddy_icon' type='string'>1eff81fa17dbc2081e586dcd83c518ea53195eb5.jpg</setting>
+					<setting name='icon_checksum' type='string'>072638e40c9eedaaa36d0f332844a07a</setting>
+					<setting name='last_seen' type='int'>1208583881</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>stepcut251</name>
+					<setting name='last_seen' type='int'>1208533714</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>conalwa</name>
+					<setting name='last_seen' type='int'>1201031922</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>ldupt@yahoo.com</name>
+					<setting name='buddy_icon' type='string'>16c56560c0aa9fda51729d8091c8519bb1f53f47.gif</setting>
+					<setting name='icon_checksum' type='string'>2b00002b40</setting>
+					<setting name='last_seen' type='int'>1197943560</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='elenatfox@gmail.com' proto='prpl-aim'>
+					<name>davidstfox</name>
+					<setting name='last_seen' type='int'>1197655570</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='elenatfox@gmail.com' proto='prpl-aim'>
+					<name>cliffordbeshers</name>
+					<setting name='buddy_icon' type='string'>78b886a45f09780187e8cb5f5c32067d10bf8878.jpg</setting>
+					<setting name='icon_checksum' type='string'>8ca3b4fbbc85326052f5977b8b7ab7b0</setting>
+					<setting name='last_seen' type='int'>1197655570</setting>
+				</buddy>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
+			</contact>
+			<contact>
+				<buddy account='elenatfox@gmail.com' proto='prpl-aim'>
+					<name>theboard222</name>
+					<setting name='buddy_icon' type='string'>1eff81fa17dbc2081e586dcd83c518ea53195eb5.jpg</setting>
+					<setting name='icon_checksum' type='string'>072638e40c9eedaaa36d0f332844a07a</setting>
+					<setting name='last_seen' type='int'>1197439110</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='elenatfox@gmail.com' proto='prpl-aim'>
+					<name>lindowsdavid</name>
+					<setting name='buddy_icon' type='string'>aa2c5c59614165baad348438d872b310fb3eedd1.jpg</setting>
+					<setting name='icon_checksum' type='string'>fc706880a5a4a1a803979fab07aee7cc</setting>
+					<setting name='last_seen' type='int'>1197234351</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='elenatfox@gmail.com' proto='prpl-aim'>
+					<name>annatfox@gmail.com</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='elenatfox@gmail.com' proto='prpl-aim'>
+					<name>thebord222</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>elenatfox@gmail.com</name>
+					<setting name='buddy_icon' type='string'>9e98440b93a84dbe509ff84d80c8f34d15c046bb.jpg</setting>
+					<setting name='icon_checksum' type='string'>6c5d262234c584c6db5868ebf0dc4909</setting>
+					<setting name='last_seen' type='int'>1204996842</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='DavidStFox' proto='prpl-aim'>
+					<name>annatfox@gmail.com</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>davidstfox</name>
+					<setting name='last_seen' type='int'>1197929693</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LydiaDThompson' proto='prpl-aim'>
+					<name>sraartes</name>
+					<alias>Natasha</alias>
+				</buddy>
+			</contact>
+		</group>
+		<group name='Lindows'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsCliff</name>
+					<setting name='buddy_icon' type='string'>78b886a45f09780187e8cb5f5c32067d10bf8878.jpg</setting>
+					<setting name='icon_checksum' type='string'>8ca3b4fbbc85326052f5977b8b7ab7b0</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsMerle</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsJeremy</name>
+					<setting name='buddy_icon' type='string'>792712945da3c4cd339e0f3123f60dcf89623404.jpg</setting>
+					<setting name='icon_checksum' type='string'>103c37d1b350fdc241519c4d3fdb22f8</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsKevin</name>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsKev</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>lindowsmr</name>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsTom</name>
+					<setting name='buddy_icon' type='string'>09608db03a41246e011a8e2f77cb625aadc7dbd9.jpg</setting>
+					<setting name='icon_checksum' type='string'>3b07771a81854b159220b3621ad01898</setting>
+					<setting name='last_seen' type='int'>1189806881</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsTheresa</name>
+					<setting name='buddy_icon' type='string'>a70ad86243e463f990d18ecce381386dc38f7d34.jpg</setting>
+					<setting name='icon_checksum' type='string'>0edebd4b58285f5f2e848c48c34789e8</setting>
+					<setting name='last_seen' type='int'>1189462989</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsTina</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsLarry</name>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsHerb</name>
+					<setting name='last_seen' type='int'>1187032951</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsNorris</name>
+					<setting name='buddy_icon' type='string'>3a1763274340dd066db43521e4339aab66eb99f8.jpg</setting>
+					<setting name='icon_checksum' type='string'>4846e1fa80be907185cce650d11aa79c</setting>
+					<setting name='last_seen' type='int'>1189815941</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsMichaelC</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsScott</name>
+					<setting name='buddy_icon' type='string'>68931fbfcbe5950f199a1699bbe67c6de5de1900.jpg</setting>
+					<setting name='icon_checksum' type='string'>be20434cb8d3fc8bbeefbcddc2067a5c</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsDoug</name>
+					<setting name='last_seen' type='int'>1189210203</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsChris</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsWill</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>lindowstommy</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsDave</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsTim</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsAlex</name>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsAllyson</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsBrian</name>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsCary</name>
+					<setting name='buddy_icon' type='string'>f0939ca0b9acb2475aee9b594cc02d53959cea4e.jpg</setting>
+					<setting name='icon_checksum' type='string'>41524aff6156cb40874c3e461346c220</setting>
+					<setting name='last_seen' type='int'>1189814613</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsChad</name>
+					<setting name='last_seen' type='int'>1187973095</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsCheryl</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsChrisT</name>
+					<setting name='buddy_icon' type='string'>a1897b60b250b739afb132341479f0be51bed406.jpg</setting>
+					<setting name='icon_checksum' type='string'>0f7a0709a860a898b782f10b9e937817</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsClay</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsClint</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsDan</name>
+					<setting name='buddy_icon' type='string'>c617805342d9b7f4fea60b38f96424bf0a67aed7.jpg</setting>
+					<setting name='icon_checksum' type='string'>5d344f2ed20a83cd59409c1069278166</setting>
+					<setting name='last_seen' type='int'>1189696522</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsDarryl</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsEmily</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsEvan</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsIngo</name>
+					<setting name='buddy_icon' type='string'>8d31c9103f07436eb4eadcc2efff3127b0954a36.jpg</setting>
+					<setting name='icon_checksum' type='string'>77fc6da280eccfbae954870f9ade6417</setting>
+					<setting name='last_seen' type='int'>1187451187</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsJoe</name>
+					<setting name='buddy_icon' type='string'>25e4789bc0b8a9620991ef7ce33b4e3e3a499889.gif</setting>
+					<setting name='icon_checksum' type='string'>3c651881133cff447d607c0f03e6ede6</setting>
+					<setting name='last_seen' type='int'>1187884473</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsJustin</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsKai</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsKendall</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsKarla</name>
+					<setting name='last_seen' type='int'>1189801427</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsLarue</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsKevinM</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsMarvin</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsMaryAnn</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsPeter</name>
+					<setting name='buddy_icon' type='string'>af575977a79b00fdaa890cc662ee4b9add6f0fbf.jpg</setting>
+					<setting name='icon_checksum' type='string'>60c713470f7735d8a19a3637fff027e9</setting>
+					<setting name='last_seen' type='int'>1189894822</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsRandy</name>
+					<setting name='last_seen' type='int'>1189701680</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsYvan</name>
+					<setting name='last_seen' type='int'>1187732127</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsDavid</name>
+					<setting name='buddy_icon' type='string'>aa2c5c59614165baad348438d872b310fb3eedd1.jpg</setting>
+					<setting name='icon_checksum' type='string'>fc706880a5a4a1a803979fab07aee7cc</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsSean</name>
+					<setting name='buddy_icon' type='string'>2d70c99d2eb7db3e0946932cbe3bc8a74f7de02c.gif</setting>
+					<setting name='icon_checksum' type='string'>706a1c016509346f18f3ca41d41fc71c</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsVijay</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsRob</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsRussel</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsRussell</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsKD</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>lindowssharon</name>
+					<setting name='buddy_icon' type='string'>83de91e039b66e73109350d2efcd451d0f2aee00.jpg</setting>
+					<setting name='icon_checksum' type='string'>9b7d76402a4f0aaaaf6686500241d3d9</setting>
+					<setting name='last_seen' type='int'>1189813854</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsDuane</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsAdam</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsWil</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsDarin</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsPeace</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsJohnB</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsTroy</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsDerek</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsSusanR</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsRosanna</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsWilVR</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsJohnBl</name>
+					<setting name='buddy_icon' type='string'>37fbad2c4d6e4c0896f10e18741f82e0afb19937.gif</setting>
+					<setting name='icon_checksum' type='string'>5262daf38592f0a037d44b11c7a043c2</setting>
+					<setting name='last_seen' type='int'>1189814744</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LinspireDavid</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LinspireJustin</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsJohnS</name>
+					<setting name='buddy_icon' type='string'>b86a3cf991236601b872698687f2317ab0749193.gif</setting>
+					<setting name='icon_checksum' type='string'>1e4a42bc0c0e64c6c0a7534c097752d5</setting>
+					<setting name='last_seen' type='int'>1189819542</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>linspiretroy</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LinspireKen</name>
+					<setting name='buddy_icon' type='string'>aa2c5c59614165baad348438d872b310fb3eedd1.jpg</setting>
+					<setting name='icon_checksum' type='string'>fc706880a5a4a1a803979fab07aee7cc</setting>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsHolly</name>
+					<setting name='buddy_icon' type='string'>8c4cd09e63d108642e5c85d9b3bc078efec69270.gif</setting>
+					<setting name='icon_checksum' type='string'>2b000019b5</setting>
+					<setting name='last_seen' type='int'>1189822731</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LindowsJoeC</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>morpher59</name>
+					<setting name='buddy_icon' type='string'>bf4a8a6551a6aa2ab12aa7e36869683ab20b3111.jpg</setting>
+					<setting name='icon_checksum' type='string'>ac23948a8ebde5556228175ba7a449ea</setting>
+					<setting name='last_seen' type='int'>1189813739</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>lindowswillvr</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LinspireErnie</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LinspireScottMc</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LinspireDuane</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='LindowsDavid' proto='prpl-aim'>
+					<name>LinspireRama</name>
+					<setting name='last_seen' type='int'>1189915513</setting>
+				</buddy>
+			</contact>
+		</group>
+	</blist>
+	<privacy>
+		<account proto='prpl-aim' name='LindowsDavid' mode='1'>
+			<block>blackfam972</block>
+		</account>
+		<account proto='prpl-jabber' name='david.fox@chat.linspire.com/Home' mode='1'/>
+		<account proto='prpl-jabber' name='david@chat.seereason.org/Garage' mode='1'/>
+		<account proto='prpl-aim' name='DavidStFox' mode='1'/>
+		<account proto='prpl-aim' name='GerboaDavid' mode='1'/>
+		<account proto='prpl-irc' name='dsfox@irc.freenode.net' mode='1'/>
+		<account proto='prpl-aim' name='elenatfox@gmail.com' mode='1'/>
+		<account proto='prpl-aim' name='LydiaDThompson' mode='1'/>
+		<account proto='prpl-jabber' name='dsf@chat.seereason.org/Notebook' mode='1'/>
+	</privacy>
+</purple>
