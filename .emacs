@@ -1,5 +1,10 @@
 (load-library "cl")		; Includes remove-if-not used below
 
+;; do not display a splash screen on startup.  If you use emacs as a
+;; mime type, the file you click on won't appear without this.  Before
+;; emacs 21 it would appear after a short wait.
+(setq inhibit-splash-screen t)
+
 (apply 'debian-run-directories
  (remove-duplicates
   (remove-if-not
@@ -8,7 +13,7 @@
   :test 'string-equal))
 
 ;(load-library "xtla-dired")
-(load-library "vc-darcs")
+;(load-library "vc-darcs")
 (load-library "vc-darcs-dired")
 
 ;; http://www.emacswiki.org/cgi-bin/wiki/CustomizeAquamacs#toc17

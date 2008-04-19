@@ -129,7 +129,7 @@ the listings to reflect arch version control"
     ))
 
 (defun darcs--edit-dired-line (top subdir inventory-alist changes)
-  (let* ((file (dired-get-filename 'no-dir))
+  (let* ((file (dired-get-filename 'no-dir t))
 	 (elem (assoc (concat subdir file) inventory-alist))
 	 (changed (assoc file changes))
 	 (mark (darcs--make-tag file elem changed)))

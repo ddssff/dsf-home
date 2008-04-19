@@ -1,0 +1,144 @@
+## MAILBOXES IN USE:
+## $DEFAULT
+## 01-bugzilla
+## 01-wlan-user
+## 05-ocaml
+## 09-wfmu-gab
+## 11-acpi
+## 91-junk
+## 91-foxthompson
+
+PATH="/bin:/usr/bin:$HOME/bin"
+MAILDIR=$HOME/Mail
+#DEFAULT=$MAILDIR/dsf
+DEFAULT=/var/mail/dsf
+LOGFILE=$MAILDIR/from
+
+##
+## JUNK and SPAM
+##
+
+:0
+* ^Subject: M..M..M..M
+91-junk
+
+:0
+* ^Subject: =\?(Windows-1251|Windows-1255|iso-8859-1)\?
+91-junk
+
+
+##
+## MAILING LISTS
+##
+
+:0
+* ^TO(caml-announce@inria\.fr|caml-list@inria\.fr|caml-list@pauillac\.inria\.fr|caml-list@margaux\.inria\.fr|caml-list@yquem\.inria\.fr)
+05-ocaml
+
+:0
+* ^Subject:.*\[ACPI\]
+11-acpi
+
+:0
+* ^TO(gab@wfmu)
+09-wfmu-gab
+
+##
+## Mail to the Lindows insider feedback lists
+##
+
+#:0
+#* ^From:.*bugzilla-daemon
+#01-bugzilla
+
+:0
+* ^Subject: \[Bug 7178\] Linspire 5.0 Release$
+91-junk
+
+:0
+* ^TO(z505hs)
+91-junk
+
+:0
+* ^Subject:.*\[wlan-user\]
+01-wlan-user
+
+:0
+* ^Subject:.*\[lwlan-user\]
+01-wlan-user
+
+##
+## Autobuilder, warehouse, etc.
+##
+
+:0
+* ^Subject: Autobuilder
+50-autobuilder
+
+:0
+* ^Subject: Refinery:
+50-refinery
+
+:0
+* ^From:.*warehouse@warehouse\.sd\.lindows\.com
+50-warehouse
+
+#:0
+#* ^Subject: diagnostic-report-
+#01-sysreport
+
+##
+## Mail that seems to be addressed to me
+##
+
+:0
+* ^TO(dsfox@cogsci\.ucsd\.edu)
+$DEFAULT
+
+:0
+* ^TO(david\.fox@lindows\.com)
+91-lindows
+
+:0
+* ^TO(dsf@foxthompson\.net)
+$DEFAULT
+
+:0
+* ^From:.*(david@linspireinc\.com|david.fox@linspireinc\.com)
+$DEFAULT
+
+:0
+* ^TO(.*@linspireinc\.com)
+$DEFAULT
+
+:0
+* ^From:.*@(zappos\.com|wholelattelove\.com)
+$DEFAULT
+
+##
+## Known senders
+
+:0
+* ^From:.*(\
+	register\.com|\
+	@scherman\.com|\
+	hastecho@pacbell\.net|\
+	economist\.com|\
+	TiVo@|\
+	Tqmpropmgm@|\
+	etacuisinaire|\
+	TiVo)
+$DEFAULT
+
+## These senders can send me mail without a personal From: line if they wish
+
+:0
+* ^From: .*(beshers@|brad@|ldupt@|ken@wfmu)
+$DEFAULT
+
+##
+## UNCLASSIFIED
+##
+
+:0
+$DEFAULT

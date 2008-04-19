@@ -1,0 +1,20 @@
+! Swap control and caps lock
+
+remove Lock = Caps_Lock
+remove Control = Control_L
+keysym Control_L = Caps_Lock
+keysym Caps_Lock = Control_L
+add Lock = Caps_Lock
+add Control = Control_L
+
+! Turn caps lock into a control key
+
+!keycode 66 = Control_L
+!!keycode 37 = Control_L
+!add Control = Control_L
+
+! Assign keysums to the Windows keys
+
+!keycode 115 = F13
+!keycode 116 = F14
+!keycode 117 = F15

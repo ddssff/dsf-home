@@ -1,0 +1,351 @@
+/*
+ * Last Edited:
+ *
+ * Sat Jul  7 11:25:14 2001 by  (dsf at dsf.foxthompson.net)
+ * 	 Beware of whitespace at the end of property lines!  Some
+ * 	 applications won't understand the value.
+ *
+ * Sat Jul  7 11:14:34 2001 by  (dsf at dsf.foxthompson.net)
+ * 	 Added some global settings.
+ *
+ * Sat Jul  7 08:58:05 2001 by  (dsf at dsf.foxthompson.net)
+ * 	 Initial entry.  Use cpp to give nice defaults for various
+ * 	 screens, rather than ad-hoc method I was using before.  The
+ * 	 old settings are becoming a historical document!
+ */
+
+#define FIXED10C -misc-fixed-medium-r-normal--*-100-*-*-c-*-*-1
+#define FIXED8 -misc-fixed-medium-r-*--*-100-*-*-*-80-*-*
+#define FIXED10 -*-lucidatypewriter-medium-r-normal-sans-10-*-*-*-m-*-*-*
+#define FIXED12 -*-lucidatypewriter-medium-r-normal-sans-12-*-*-*-m-*-*-*
+#define FIXED14 -*-lucidatypewriter-*-r-normal-sans-14-140-75-75-m-90-iso8859-1
+!#define FIXED14 -adobe-courier-bold-r-normal--14-140-75-75-m-90-iso8859-1
+#define FIXED18 -adobe-courier-*-r-*--20-140-100-100-m-110-*-*
+!#define FIXED18 -*-lucidatypewriter-medium-r-normal-sans-18-*-*-*-*-*-*-*
+#define FIXED18B  -adobe-courier-bold-r-normal--18-180-75-75-m-110-iso8859-1
+
+#if HEIGHT == 1600
+  emacs*font:FIXED12
+  emacs21*font:FIXED12
+  emacs*geometry: 132x90+800+0
+  emacs21*geometry: 132x90+800+0
+  xterm.vt100.Font:FIXED12
+  xterm.vt100.geometry: 132x90+0-0
+
+  emacs*BorderWidth:	2
+  emacs21*BorderWidth:	2
+  xterm.borderWidth:	3
+  xterm.internalBorder:	3
+
+  xdvi*geometry: 1040x1254+0-0
+  xdvi.sideMargin: 8cm
+  xdvi.topMargin: 3.5cm
+  xdvi.shrinkFactor: 2
+
+  xosview*geometry: 236x91+439+22
+  xclock*geometry: 80x80+150+5
+
+  mailbox*font:	-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*
+  iclock*font:	*times-bold-r*-18-*
+#endif
+
+#if HEIGHT == 1200
+  emacs*font:FIXED18
+  emacs21*font:FIXED18
+  emacs*geometry: 80x48-0+0
+  emacs21*geometry: 80x48-0+0
+  xterm.vt100.Font:FIXED18
+  xterm.vt100.geometry: 80x48+0-0
+
+  emacs*BorderWidth:	2
+  emacs21*BorderWidth:	2
+  xterm.borderWidth:	3
+  xterm.internalBorder:	3
+
+  xdvi*geometry: 1040x1254+0-0
+  xdvi.sideMargin: 8cm
+  xdvi.topMargin: 3.5cm
+  xdvi.shrinkFactor: 2
+
+  xosview*geometry: 236x91+439+22
+  xclock*geometry: 80x80+150+5
+
+  mailbox*font:	-adobe-helvetica-bold-r-normal--*-120-*-*-*-*-*-*
+  iclock*font:	*times-bold-r*-18-*
+#endif
+
+#if HEIGHT == 1280
+  emacs*font:FIXED18
+  emacs21*font:FIXED18
+  emacs*geometry: 80x48-0+0
+  emacs21*geometry: 80x48-0+0
+  xterm.vt100.Font:FIXED18
+  xterm.vt100.geometry: 80x48+0-0
+
+  emacs*BorderWidth:	2
+  emacs21*BorderWidth:	2
+  xterm.borderWidth:	3
+  xterm.internalBorder:	3
+
+  xdvi*geometry: 1040x1254+0-0
+  xdvi.sideMargin: 8cm
+  xdvi.topMargin: 3.5cm
+  xdvi.shrinkFactor: 2
+
+  xosview*geometry: 236x91+439+22
+  xclock*geometry: 80x80+150+5
+#endif
+
+#if HEIGHT == 1152
+  emacs*font:FIXED18B
+  emacs21*font:FIXED18B
+  emacs*geometry: 80x52-0+0
+  emacs21*geometry: 80x52-0+0
+  xterm.vt100.Font:FIXED18B
+  xterm.vt100.geometry: 80x56+0-0
+
+  xdvi*geometry: 875x1125+0-0
+  xdvi.sideMargin: 8cm
+  xdvi.topMargin: 4cm
+  xdvi.shrinkFactor: 3
+
+  xosview*geometry: 171x91+209+5
+  xclock*geometry: 80x80+120+0
+#endif
+
+#if HEIGHT == 1050
+  emacs*font:FIXED14
+  emacs21*font:FIXED14
+  emacs*geometry: 80x64+524-0
+  emacs21*geometry: 80x64+524-0
+  !emacs*geometry: 80x60-0-0
+  !21emacs*geometry: 80x60-0-0
+
+  xterm.vt100.Font:FIXED14
+  xterm.vt100.geometry: 80x58+0-0
+
+  xdvi*geometry: 837x994+0+0
+  xdvi.sideMargin: 8cm
+  xdvi.topMargin: 3cm
+  xdvi.shrinkFactor: 3
+  xosview*geometry: 171x91+209+5
+  xclock*geometry: 80x80+120+0
+#endif
+
+#if HEIGHT == 1024
+  emacs*font:FIXED14
+  emacs21*font:FIXED14
+  emacs*geometry: 80x64+524-0
+  emacs21*geometry: 80x64+524-0
+
+  xterm.vt100.Font:FIXED14
+  xterm.vt100.geometry: 80x58+0-0
+
+  aterm.vt100.Font:FIXED14
+  aterm.vt100.geometry: 80x58+0-0
+
+  xdvi*geometry: 837x994+0+0
+  xdvi.sideMargin: 8cm
+  xdvi.topMargin: 3cm
+  xdvi.shrinkFactor: 3
+! xosview*geometry: 171x91+209+5
+  xosview*geometry: 400x200
+  xclock*geometry: 80x80+120+0
+#endif
+
+#if HEIGHT == 800
+  emacs*font:FIXED12
+  emacs21*font:FIXED12
+  emacs*geometry: 80x48-0+0
+  emacs21*geometry: 80x48-0+0
+  xterm.vt100.Font:FIXED12
+  xterm.vt100.geometry: 80x54+0-0
+
+  emacs*BorderWidth:	2
+  emacs21*BorderWidth:	2
+  xterm.borderWidth:	3
+  xterm.internalBorder:	3
+  xdvi*geometry: 690x870+0-0
+  xdvi.sideMargin: 9cm
+  xdvi.topMargin: 8cm
+  xdvi.shrinkFactor: 3
+  !xosview*geometry: 150x100+175+0
+  xclock*geometry: 80x80+85+0
+#endif
+
+#if HEIGHT == 768
+  emacs*font:FIXED12
+  emacs21*font:FIXED12
+  xterm.vt100.Font:FIXED12
+  xterm.vt100.geometry: 80x48+0-0
+  emacs*geometry: 80x54-0-0
+  emacs21*geometry: 80x54-0-0
+  xclock*geometry: 80x80+15+0
+  !xosview*geometry: 125x60+0+0
+#endif
+
+#if HEIGHT == 600
+  emacs*font:FIXED10
+  emacs21*font:FIXED10
+  emacs*geometry: 80x49-0+0
+  emacs21*geometry: 80x49-0+0
+  xterm.vt100.Font:FIXED10
+  xterm.vt100.geometry:80x43+0-0
+  !xosview*geometry: 125x60+0+0
+  xclock*geometry: 80x80+15+0
+#endif
+
+#if HEIGHT == 480
+  emacs*font:FIXED10C
+  emacs21*font:FIXED10C
+  emacs*geometry:80x43-0-0
+  emacs21*geometry:80x43-0-0
+  xterm.vt100.Font:FIXED10C
+  xterm.vt100.geometry:80x38+0-0
+  !xosview*geometry: 125x60+0+0
+  xclock*geometry: 80x80+15+0
+#endif
+
+#if BITS_PER_RGB == 1
+#endif
+
+#if BITS_PER_RGB == 4
+#endif
+
+#if BITS_PER_RGB == 8
+  emacs*background: antiqueWhite
+  emacs21*background: antiqueWhite
+  emacs*borderColor: blue
+  emacs21*borderColor: blue
+  emacs*foreground: black
+  emacs21*foreground: black
+  emacs*Highlight:	blue
+  emacs21*Highlight:	blue
+  !.Highlight:		yellow
+  !.Cursor:		blue
+  !.Mouse:		orange
+  !.Border:		red
+#endif
+
+#if BITS_PER_RGB == 15
+#endif
+
+#if BITS_PER_RGB == 16
+  emacs*borderColor: blue
+  emacs21*borderColor: blue
+  emacs*foreground:  black
+  emacs21*foreground:  black
+  #emacs*background: antiquewhite
+  emacs*Highlight:   blue
+  emacs21*Highlight:   blue
+#endif
+
+#if BITS_PER_RGB == 24
+  emacs*borderColor: blue
+  emacs21*borderColor: blue
+  emacs*foreground: black
+  emacs21*foreground: black
+  emacs*Highlight:	blue
+  emacs21*Highlight:	blue
+#endif
+
+#if BITS_PER_RGB == 32
+#endif
+
+! XOSView Colors:
+
+!xosview*background: navy
+xosview*loadIdleColor: steelblue
+xosview*loadProcColor: lawngreen
+xosview*cpuFreeColor: steelblue
+xosview*cpuUserColor: lawngreen
+xosview*memFreeColor: steelblue
+xosview*memUsedColor: lawngreen
+xosview*netBackground: steelblue
+xosview*netInColor: lawngreen
+xosview*netOutColor: orange
+xosview*serialOffColor: steelblue
+xosview*intOffColor: steelblue
+xosview*batteryUsedColor: steelblue
+xosview*diskUsedColor: lawngreen
+xosview*diskIdleColor: steelblue
+
+xosview*captions: false
+xosview*graphNumCols: 256
+
+xosview*RAID: false
+
+xosview*battery: false
+
+xosview*cpu: true
+xosview*cpuDecay: false
+xosview*cpuGraph: true
+
+xosview*disk: true
+xosview*diskDecay: false
+xosview*diskGraph: false
+
+xosview*gfx: true
+xosview*gfxDecay: false
+xosview*gfxGraph: false
+
+xosview*lmstemp: false
+
+xosview*load: true
+xosview*loadDecay: false
+xosview*loadGraph: true
+
+xosview*mem: false
+xosview*memDecay: false
+xosview*memGraph: true
+
+xosview*net: true
+xosview*netDecay: false
+xosview*netGraph: true
+xosview*networkBandwidth: 150000
+
+xosview*page: false
+xosview*pageDecay: false
+xosview*pageGraph: true
+
+xosview*swap: false
+xosview*swapDecay: false
+xosview*swapGraph: true
+
+xosview*interrupts: false
+
+ljwm.border: (lambda (screen) \
+                   ((<screen>-Size screen) \
+    		     (lambda (width height) \
+    		       (max (inexact->exact (round (* .005 height))) 3))))
+ljwm.button1: emacs
+
+ljwm.leftdock: 1%
+ljwm.topdock: 0
+ljwm.bottomdock: 2%
+ljwm.rightdock: 0
+
+ljwm.noTitle: (lambda (c) (prefix=? ((<client>-get-name c)) "xosview"))
+
+//Emacs.Fontset-0: -*-fixed-medium-r-normal-*-24-*-*-*-*-*-fontset-24
+
+emacs21.Foreground:			Black
+emacs21.Background:			White
+emacs21.region.attributeForeground:	AntiqueWhite
+emacs21.region.attributeBackground:	SteelBlue
+emacs21.pointerColor:                     Orchid
+emacs21.cursorColor:                      Orchid
+
+emacs.Foreground:			Black
+emacs.Background:			White
+emacs.region.attributeForeground:	AntiqueWhite
+emacs.region.attributeBackground:	SteelBlue
+emacs.pointerColor:                     Orchid
+emacs.cursorColor:                      Orchid
+
+XTerm*cursorColor:			blue
+XTerm*eightBitInput:			false
+XTerm*metaSendsEscape:			false
+XTerm*eightBitControl:			false
+XTerm*eightBitOutput:			false
+XTerm*backarrowKeyIsErase:		true

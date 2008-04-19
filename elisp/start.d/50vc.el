@@ -11,3 +11,11 @@
   (vc-directory dired-directory nil))
 
 (global-set-key [f8] 'vc-dired-recurse-toggle)
+;(add-to-list 'vc-handled-backends 'SVN)
+(require 'psvn)
+
+(defun svn-dired-hook ()
+  (if (file-exists-p (concat default-directory "/.svn"))
+      (svn-status default-directory)))
+
+(add-hook 'dired-before-readin-hook 'svn-dired-hook)
