@@ -92,10 +92,11 @@ before it is modified.")
     ))
 
 (defun merge-inventory (whatsnew manifest)
-  (cond ((null manifest) whatsnew)
-	((null (assoc (car manifest) whatsnew))
-	 (merge-inventory (cons (list (car manifest)) whatsnew) (cdr manifest)))
-	(t (merge-inventory whatsnew (cdr manifest)))))	 
+  "Merge the manifest and whatsnew to get an inventory."
+  (append whatsnew (mapcar 'list (my-filter (lambda (x) (not (member x (mapcar 'car whatsnew)))) manifest))))
+
+(defun my-filter (condp lst)
+  (delq nil (mapcar (lambda (x) (and (funcall condp x) x)) lst)))
 
 ;(file-name-directory (directory-file-name (vc-darcs-_darcs-dir (dired-current-directory))))
 

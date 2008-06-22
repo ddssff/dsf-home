@@ -22,3 +22,152 @@ How to persuade customers of backup / directory merging software to trust you:
 1. Provide source for key components: "This is the heart of the directory
    merging program.  It has been verified using formal code reviews with
    xxx and yyy, blah blah."
+
+======== BACKUP DATABASE =======
+------ BACKUPS ----------
+
+-- CDROMS
+/media/disk4v1/backups/cdroms/20060403
+
+-- AUDIO
+/media/disk1v2/backups/audio/20071210	(/Music)
+
+/media/disk4v1/backups/audio/20060327
+/media/disk4v1/backups/audio/20060403
+/media/disk4v1/backups/audio/20060603
+/media/disk4v1/backups/audio/20060814
+
+/media/disk2v2/backups/audio/20051226
+
+-- TLA ARCHVIES
+
+/media/disk1v2/backups/{archives}/20071027
+/media/disk1v2/backups/{archives}/20071028
+/media/disk1v2/backups/{archives}/20071117
+/media/disk1v2/backups/{archives}/20071204
+/media/disk1v2/backups/{archives}/20071206
+/media/disk1v2/backups/{archives}/20080101
+/media/disk1v2/backups/{archives}/20080103
+/media/disk1v2/backups/{archives}/20060317
+/media/disk1v2/backups/{archives}/20060318
+/media/disk1v2/backups/{archives}/20060324
+/media/disk1v2/backups/{archives}/20060326
+/media/disk1v2/backups/{archives}/20060403
+/media/disk1v2/backups/{archives}/20060603
+/media/disk1v2/backups/{archives}/20060814
+/media/disk1v2/backups/{archives}/20060815
+/media/disk1v2/backups/{archives}/20051127
+/media/disk1v2/backups/{archives}/20051226
+
+-- GENEWEB
+/media/disk1v2/backups/geneweb/20071026
+/media/disk1v2/backups/geneweb/20071027
+/media/disk1v2/backups/geneweb/20071028
+/media/disk1v2/backups/geneweb/20071030
+/media/disk1v2/backups/geneweb/20071117
+/media/disk1v2/backups/geneweb/20071206
+/media/disk1v2/backups/geneweb/20051226
+/media/disk1v2/backups/geneweb/20060317
+/media/disk1v2/backups/geneweb/20060324
+/media/disk1v2/backups/geneweb/20060326
+/media/disk1v2/backups/geneweb/20060403
+/media/disk1v2/backups/geneweb/20060603
+/media/disk1v2/backups/geneweb/20060814
+
+-- IMAGES
+
+/media/disk1v2/backups/images/20071027
+/media/disk1v2/backups/images/20071117
+/media/disk1v2/backups/images/20071204
+/media/disk1v2/backups/images/20071206
+/media/disk1v2/backups/images/20080101
+/media/disk1v2/backups/images/20051127
+/media/disk1v2/backups/images/20051226
+/media/disk1v2/backups/images/20060317
+/media/disk1v2/backups/images/20060603
+/media/disk1v2/backups/images/20060814
+
+-- MOVIES
+/media/disk4v1/backups/movies/20060603
+/media/disk4v1/backups/movies/20060814
+
+-- DAVID
+/media/disk1v2/backups/david4/20071030
+
+/media/disk4v1/backups/dsf/20060317	* - Not transferred
+/media/disk4v1/backups/dsf/20060318	* - Not transferred
+/media/disk4v1/backups/dsf/20060324	* - Not transferred
+/media/disk4v1/backups/dsf/20060326	* - Not transferred
+/media/disk4v1/backups/dsf/20060403	* - Not transferred
+/media/disk4v1/backups/dsf/20060603	* - Not transferred
+/media/disk4v1/backups/dsf/20060814
+
+/media/disk7v2/backups/david2@dsf/20071030
+/media/disk7v2/backups/david3@dsf/20071030
+/media/disk7v2/backups/david@dsf/20071027	* - Not transferred
+/media/disk7v2/backups/david@dsf/20071118	* - Not transferred
+/media/disk7v2/backups/david@dsf/20080103
+/media/disk7v2/backups/dsfmail/20051127
+/media/disk7v2/backups/dsfmail/20051226
+
+/media/disk1v2/david
+/media/disk1v2/david2
+/media/disk1v2/dsf2
+
+-- LYDIA
+
+/media/disk1v2/backups/lydia/20071029		B (very small)
+/media/disk1v2/backups/lydia2/20071030		A (1inga28.l.jpg etc)
+
+/media/disk4v1/backups/ldt/20060327		A
+/media/disk4v1/backups/lydia/20060814		A
+/media/disk4v1/backups/lydia/20060815		A
+/media/disk4v1/backups/lydia/20060903		A
+/media/disk4v1/backups/lydia2/20060907		C (documents2 subdir of A)
+
+/media/disk7v2/backups/lydia-windows/20070606	D (many .doc files)
+
+/media/disk1v2/ldt				A
+/media/disk1v2/ldt2				A
+/media/disk1v2/lydia				E (Documents - Documents8)
+/media/disk4v1/lydia-documents			F
+
+-- WWW
+
+/media/disk1v2/backups/www/20071030
+/media/disk1v2/backups/www/20071206
+/media/disk1v2/backups/www/20071210
+/media/disk1v2/backups/www/20080101
+
+/media/disk2v2/backups/www/20051127
+/media/disk2v2/backups/www/20051226
+
+/media/disk4v1/backups/www/20060317
+/media/disk4v1/backups/www/20060324
+/media/disk4v1/backups/www/20060326
+/media/disk4v1/backups/www/20060403
+/media/disk4v1/backups/www/20060603
+/media/disk4v1/backups/www/20060814
+
+ -- CVS
+
+/media/disk1v2/backups/cvs/20051127
+/media/disk1v2/backups/cvs/20051226
+/media/disk1v2/backups/cvs/20060317
+
+-- CLIFF
+
+/media/disk4v1/backups/cliff/20060403
+
+-- MYSQL
+/media/disk4v1/backups/mysql/20060318
+/media/disk4v1/backups/mysql/20060324
+/media/disk4v1/backups/mysql/20060326
+/media/disk4v1/backups/mysql/20060403
+/media/disk4v1/backups/mysql/20060603
+/media/disk4v1/backups/mysql/20060814
+
+-- PAM
+/media/disk4v1/backups/pam/20060403
+
+================================
