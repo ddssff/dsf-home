@@ -9,8 +9,9 @@
 # export DSFRAISELOWER=yes
 
 export PATH="$HOME/bin:$PATH:/sbin:/usr/sbin"
-export EDITOR="emacs -nw"
-export VISUAL="emacs -nw"
+export EDITOR="emacsclient"
+export ALTERNATE_EDITOR=emacs
+export VISUAL="emacsclient"
 export CVS_RSH=ssh
 
 exec x-session-manager
