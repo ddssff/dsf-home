@@ -184,6 +184,6 @@ If there is no associated filename, it finds the parent of (pwd)."
   )
 
 (if (string< "19" emacs-version)
-    (add-hook 'dired-load-hook 'dired-setup)
+    (add-hook 'dired-mode-hook 'dired-setup)
   (load-library "dired")
   (dired-setup))

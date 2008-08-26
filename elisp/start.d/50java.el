@@ -1,5 +1,5 @@
 (custom-set-variables
- ('javascript-indent-level 2))
+ '(javascript-indent-level 2))
 
 (autoload 'javascript-mode "javascript" nil t)
 (add-to-list 'auto-mode-alist '("\\.js$" . javascript-mode))
