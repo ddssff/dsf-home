@@ -1,0 +1,11 @@
+Packages installed after a fresh 
+
+emacs22
+medibuntu-keyring
+seereason-keyring
+ubuntu-restricted-extras
+darcs
+dpkg-dev
+libdvdread3 (need to run /usr/share/doc/libdvdread3/install-css.sh to get the decoder)
+gxine
+openssh-server
