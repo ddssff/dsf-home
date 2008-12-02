@@ -9,3 +9,5 @@ dpkg-dev
 libdvdread3 (need to run /usr/share/doc/libdvdread3/install-css.sh to get the decoder)
 gxine
 openssh-server
+nfs-common    (to mount remote nfs file systems)
+
