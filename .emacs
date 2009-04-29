@@ -37,6 +37,8 @@
   ;; Your init file should contain only one such instance.
  )
 
+;(setq comint-scroll-show-maximum-output nil)
+
 (put 'upcase-region 'disabled nil)
 
 (put 'scroll-left 'disabled nil)
