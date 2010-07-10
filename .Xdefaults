@@ -14,15 +14,73 @@
  * 	 old settings are becoming a historical document!
  */
 
-#define FIXED10C -misc-fixed-medium-r-normal--*-100-*-*-c-*-*-1
-#define FIXED8 -misc-fixed-medium-r-*--*-100-*-*-*-80-*-*
-#define FIXED10 -*-lucidatypewriter-medium-r-normal-sans-10-*-*-*-m-*-*-*
-#define FIXED12 -*-lucidatypewriter-medium-r-normal-sans-12-*-*-*-m-*-*-*
-#define FIXED14 -*-lucidatypewriter-*-r-normal-sans-14-140-75-75-m-90-iso8859-1
-!#define FIXED14 -adobe-courier-bold-r-normal--14-140-75-75-m-90-iso8859-1
-#define FIXED18 -adobe-courier-*-r-*--20-140-100-100-m-110-*-*
-!#define FIXED18 -*-lucidatypewriter-medium-r-normal-sans-18-*-*-*-*-*-*-*
-#define FIXED18B  -adobe-courier-bold-r-normal--18-180-75-75-m-110-iso8859-1
+#define FIXED0   -adobe-courier-bold-r-normal--0-0-100-100-m-0-iso10646-1
+!#define FIXED0   -adobe-courier-bold-r-normal--0-0-100-100-m-0-iso8859-1
+!#define FIXED0   -adobe-courier-bold-r-normal--0-0-75-75-m-0-iso10646-1
+!#define FIXED0   -adobe-courier-bold-r-normal--0-0-75-75-m-0-iso8859-1
+#define FIXED8   -adobe-courier-bold-r-normal--8-80-75-75-m-50-iso10646-1
+!#define FIXED8   -adobe-courier-bold-r-normal--8-80-75-75-m-50-iso10646-1
+!#define FIXED8   -adobe-courier-bold-r-normal--8-80-75-75-m-50-iso8859-1
+!#define FIXED8   -adobe-courier-bold-r-normal--8-80-75-75-m-50-iso8859-1
+#define FIXED10   -adobe-courier-bold-r-normal--10-100-75-75-m-60-iso10646-1
+!#define FIXED10   -adobe-courier-bold-r-normal--10-100-75-75-m-60-iso10646-1
+!#define FIXED10   -adobe-courier-bold-r-normal--10-100-75-75-m-60-iso8859-1
+!#define FIXED10   -adobe-courier-bold-r-normal--10-100-75-75-m-60-iso8859-1
+#define FIXED11   -adobe-courier-bold-r-normal--11-80-100-100-m-60-iso10646-1
+!#define FIXED11   -adobe-courier-bold-r-normal--11-80-100-100-m-60-iso10646-1
+!#define FIXED11   -adobe-courier-bold-r-normal--11-80-100-100-m-60-iso8859-1
+!#define FIXED11   -adobe-courier-bold-r-normal--11-80-100-100-m-60-iso8859-1
+#define FIXED12   -adobe-courier-bold-r-normal--12-120-75-75-m-70-iso10646-1
+!#define FIXED12   -adobe-courier-bold-r-normal--12-120-75-75-m-70-iso10646-1
+!#define FIXED12   -adobe-courier-bold-r-normal--12-120-75-75-m-70-iso8859-1
+!#define FIXED12   -adobe-courier-bold-r-normal--12-120-75-75-m-70-iso8859-1
+#define FIXED14   -adobe-courier-bold-r-normal--14-100-100-100-m-90-iso10646-1
+!#define FIXED14   -adobe-courier-bold-r-normal--14-100-100-100-m-90-iso8859-1
+!#define FIXED14   -adobe-courier-bold-r-normal--14-140-75-75-m-90-iso10646-1
+!#define FIXED14   -adobe-courier-bold-r-normal--14-140-75-75-m-90-iso8859-1
+#define FIXED17   -adobe-courier-bold-r-normal--17-120-100-100-m-100-iso10646-1
+!#define FIXED17   -adobe-courier-bold-r-normal--17-120-100-100-m-100-iso10646-1
+!#define FIXED17   -adobe-courier-bold-r-normal--17-120-100-100-m-100-iso8859-1
+!#define FIXED17   -adobe-courier-bold-r-normal--17-120-100-100-m-100-iso8859-1
+#define FIXED18   -adobe-courier-bold-r-normal--18-180-75-75-m-110-iso10646-1
+!#define FIXED18   -adobe-courier-bold-r-normal--18-180-75-75-m-110-iso10646-1
+!#define FIXED18   -adobe-courier-bold-r-normal--18-180-75-75-m-110-iso8859-1
+!#define FIXED18   -adobe-courier-bold-r-normal--18-180-75-75-m-110-iso8859-1
+#define FIXED20   -adobe-courier-bold-r-normal--20-140-100-100-m-110-iso10646-1
+!#define FIXED20   -adobe-courier-bold-r-normal--20-140-100-100-m-110-iso10646-1
+!#define FIXED20   -adobe-courier-bold-r-normal--20-140-100-100-m-110-iso8859-1
+!#define FIXED20   -adobe-courier-bold-r-normal--20-140-100-100-m-110-iso8859-1
+#define FIXED24   -adobe-courier-bold-r-normal--24-240-75-75-m-150-iso10646-1
+!#define FIXED24   -adobe-courier-bold-r-normal--24-240-75-75-m-150-iso10646-1
+!#define FIXED24   -adobe-courier-bold-r-normal--24-240-75-75-m-150-iso8859-1
+!#define FIXED24   -adobe-courier-bold-r-normal--24-240-75-75-m-150-iso8859-1
+#define FIXED25   -adobe-courier-bold-r-normal--25-180-100-100-m-150-iso10646-1
+!#define FIXED25   -adobe-courier-bold-r-normal--25-180-100-100-m-150-iso10646-1
+!#define FIXED25   -adobe-courier-bold-r-normal--25-180-100-100-m-150-iso8859-1
+!#define FIXED25   -adobe-courier-bold-r-normal--25-180-100-100-m-150-iso8859-1
+#define FIXED34   -adobe-courier-bold-r-normal--34-240-100-100-m-200-iso10646-1
+!#define FIXED34   -adobe-courier-bold-r-normal--34-240-100-100-m-200-iso10646-1
+!#define FIXED34   -adobe-courier-bold-r-normal--34-240-100-100-m-200-iso8859-1
+!#define FIXED34   -adobe-courier-bold-r-normal--34-240-100-100-m-200-iso8859-1
+
+
+! #define FIXED10C -misc-fixed-medium-r-normal--*-100-*-*-c-*-*-1
+! #define FIXED8 -misc-fixed-medium-r-*--*-100-*-*-*-80-*-*
+! #define FIXED10 -adobe-courier-bold-r-normal--10-100-75-75-m-60-iso10646-1
+! !#define FIXED10 -*-lucidatypewriter-medium-r-normal-sans-10-*-*-*-m-*-*-*
+! !#define FIXED12 -*-lucidatypewriter-medium-r-normal-sans-12-*-*-*-m-*-*-*
+! #define FIXED12 -adobe-courier-bold-r-normal--12-120-75-75-m-70-iso10646-1
+! !#define FIXED12 -sun-open look glyph-----12-120-75-75-p-113-sunolglyph-1
+! !#define FIXED12 -unknown-freemono-medium-r-normal--0-0-0-0-m-0-iso8859-13
+! !#define FIXED12 -unknown-freemono-bold-r-normal--0-0-0-0-m-0-iso8859-13
+! !#define FIXED14 -*-lucidatypewriter-*-r-normal-sans-14-140-75-75-m-90-iso8859-1
+! !#define FIXED14 -adobe-courier-bold-r-normal--14-140-75-75-m-90-iso8859-1
+! !#define FIXED14 -adobe-courier-bold-r-normal--14-100-100-100-m-90-iso8859-1
+! !#define FIXED14 -unknown-freemono-bold-r-normal--0-0-0-0-m-0-iso8859-14
+! #define FIXED14 -adobe-courier-bold-r-normal--10-100-75-75-m-60-iso10646-1
+! #define FIXED18 -adobe-courier-*-r-*--20-140-100-100-m-110-*-*
+! !#define FIXED18 -*-lucidatypewriter-medium-r-normal-sans-18-*-*-*-*-*-*-*
+! #define FIXED18B  -adobe-courier-bold-r-normal--18-180-75-75-m-110-iso8859-1
 
 #if HEIGHT == 1600
   emacs*font:FIXED12
@@ -151,6 +209,26 @@
 ! xosview*geometry: 171x91+209+5
   xosview*geometry: 400x200
   xclock*geometry: 80x80+120+0
+#endif
+
+#if HEIGHT == 900
+  emacs*font:FIXED12
+  emacs21*font:FIXED12
+  emacs*geometry: 80x48-0+0
+  emacs21*geometry: 80x48-0+0
+  xterm.vt100.Font:FIXED12
+  xterm.vt100.geometry: 80x54+0-0
+
+  emacs*BorderWidth:	2
+  emacs21*BorderWidth:	2
+  xterm.borderWidth:	3
+  xterm.internalBorder:	3
+  xdvi*geometry: 690x870+0-0
+  xdvi.sideMargin: 9cm
+  xdvi.topMargin: 8cm
+  xdvi.shrinkFactor: 3
+  !xosview*geometry: 150x100+175+0
+  xclock*geometry: 80x80+85+0
 #endif
 
 #if HEIGHT == 800
