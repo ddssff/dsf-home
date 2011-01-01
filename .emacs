@@ -6,7 +6,7 @@
 (setq inhibit-splash-screen t)
 
 ;; Fix emacs23 window splitting behavior
-(setq split-width-threshold most-positive-fixnum)
+(setq split-width-threshold nil)
 
 (apply 'debian-run-directories
  (remove-duplicates
