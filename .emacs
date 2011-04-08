@@ -8,6 +8,9 @@
 ;; Fix emacs23 window splitting behavior
 (setq split-width-threshold nil)
 
+;; Fix emacs23 line-move behavior
+(setq line-move-visual nil)
+
 (apply 'debian-run-directories
  (remove-duplicates
   (remove-if-not
