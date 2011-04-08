@@ -40,6 +40,7 @@
     (message "case sensitive")))
 
 ;(setq-default case-fold-search nil)
+(setq-default auto-hscroll-mode nil)
 
 (defun insert-date ()
   "Insert current date in abbreviated format."
