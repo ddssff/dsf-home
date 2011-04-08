@@ -83,15 +83,18 @@
 ! #define FIXED18B  -adobe-courier-bold-r-normal--18-180-75-75-m-110-iso8859-1
 
 #if HEIGHT == 1600
-  emacs*font:FIXED12
-  emacs21*font:FIXED12
+  emacs*font:FIXED18B
+  emacs21*font:FIXED18B
+  emacs22*font:FIXED18B
   emacs*geometry: 132x90+800+0
   emacs21*geometry: 132x90+800+0
-  xterm.vt100.Font:FIXED12
+  emacs22*geometry: 132x90+800+0
+  xterm.vt100.Font:FIXED18B
   xterm.vt100.geometry: 132x90+0-0
 
   emacs*BorderWidth:	2
   emacs21*BorderWidth:	2
+  emacs22*BorderWidth:	2
   xterm.borderWidth:	3
   xterm.internalBorder:	3
 
