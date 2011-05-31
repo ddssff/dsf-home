@@ -5,8 +5,9 @@
 ;; emacs 21 it would appear after a short wait.
 (setq inhibit-splash-screen t)
 
-;; Fix emacs23 window splitting behavior
+;; "Fix" emacs23 window splitting behavior.
 (setq split-width-threshold nil)
+(setq split-height-threshold nil)
 
 ;; Fix emacs23 line-move behavior
 (setq line-move-visual nil)
