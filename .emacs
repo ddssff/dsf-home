@@ -1,5 +1,7 @@
 (load-library "cl")		; Includes remove-if-not used below
 
+(setq-default show-trailing-whitespace t)
+
 ;; do not display a splash screen on startup.  If you use emacs as a
 ;; mime type, the file you click on won't appear without this.  Before
 ;; emacs 21 it would appear after a short wait.
