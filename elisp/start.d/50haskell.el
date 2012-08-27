@@ -1,3 +1,6 @@
+(remove-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+(add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+
 ;; Jeremy Shaw's Haskell setup
 
 (setq auto-mode-alist
