@@ -24,6 +24,7 @@
 ;(load-library "xtla-dired")
 ;(load-library "vc-darcs")
 (load-library "vc-darcs-dired")
+(load-library "vc-git-dired")
 
 ;; http://www.emacswiki.org/cgi-bin/wiki/CustomizeAquamacs#toc17
 (if (not (string< emacs-version "22"))
