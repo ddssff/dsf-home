@@ -1,0 +1,146 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+
+<purple version='1.0'>
+	<blist>
+		<group name='Family'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>lydia.thompson@gmail.com</name>
+					<alias>Lydia</alias>
+					<setting name='last_seen' type='int'>1417451776</setting>
+					<setting name='buddy_icon' type='string'>2bbf729907342343724addbd6a48c9fe79d548b4.jpg</setting>
+					<setting name='icon_checksum' type='string'>2bbf729907342343724addbd6a48c9fe79d548b4</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>anna.atf@gmail.com</name>
+					<alias>Anna</alias>
+					<setting name='last_seen' type='int'>1416863532</setting>
+					<setting name='buddy_icon' type='string'>41ddf07c9565507aab726807c5d94aaebca0ecf3.jpg</setting>
+					<setting name='icon_checksum' type='string'>41ddf07c9565507aab726807c5d94aaebca0ecf3</setting>
+				</buddy>
+			</contact>
+		</group>
+		<group name='SeeReason'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>lydia@chat.seereason.org</name>
+					<setting name='last_seen' type='int'>1417061285</setting>
+					<setting name='buddy_icon' type='string'>50a849df72d27c27b821899175bf53182d24e18a.jpg</setting>
+					<setting name='icon_checksum' type='string'>50a849df72d27c27b821899175bf53182d24e18a</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>greenlion@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>adam@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>elliot@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>beshers@chat.seereason.org</name>
+					<setting name='last_seen' type='int'>1417283776</setting>
+					<setting name='buddy_icon' type='string'>4f6c0df1b3149a89f19e19650fbe6c846f1f67d3.jpg</setting>
+					<setting name='icon_checksum' type='string'>4f6c0df1b3149a89f19e19650fbe6c846f1f67d3</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>fakelydia@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>dsf@chat.seereason.org</name>
+					<alias>David Fox</alias>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>dpad@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>garrett@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>david4@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>clifftest@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>thomashartman@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>notgarrett@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>conal@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>dylan@chat.seereason.org</name>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>jeremy@chat.seereason.org</name>
+					<alias>Mini</alias>
+					<setting name='last_seen' type='int'>1417442623</setting>
+					<setting name='buddy_icon' type='string'>2af31c97ee0ac2a74f18fb5080f55ee03c136992.jpg</setting>
+					<setting name='icon_checksum' type='string'>2af31c97ee0ac2a74f18fb5080f55ee03c136992</setting>
+				</buddy>
+			</contact>
+			<contact>
+				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
+					<name>george.beshers@chat.seereason.org</name>
+					<alias>george.beshers@chat.seereason.org</alias>
+				</buddy>
+			</contact>
+		</group>
+		<group name='Chats'>
+			<setting name='collapsed' type='bool'>0</setting>
+			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
+				<component name='channel'>#debian</component>
+			</chat>
+			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
+				<component name='channel'>#happs</component>
+			</chat>
+			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
+				<component name='channel'>#haskell</component>
+			</chat>
+			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
+				<component name='channel'>#haskell-lens</component>
+			</chat>
+		</group>
+	</blist>
+	<privacy>
+		<account proto='prpl-jabber' name='david@chat.seereason.org/Office' mode='1'/>
+		<account proto='prpl-irc' name='dsfox@irc.freenode.net' mode='1'/>
+	</privacy>
+</purple>
