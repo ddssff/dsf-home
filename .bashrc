@@ -91,8 +91,4 @@ if [ -f /etc/bash_completion ]; then
     . /etc/bash_completion
 fi
 
-export PATH="$HOME/bin:$PATH:/sbin:/usr/sbin"
-export EDITOR="emacsclient"
-export ALTERNATE_EDITOR=emacs
-export VISUAL="emacsclient"
-export CVS_RSH=ssh
+. .ssh/environment
