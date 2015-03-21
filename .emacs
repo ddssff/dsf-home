@@ -32,19 +32,25 @@
 
 ;(load-library "vc-svn")
 (custom-set-variables
-  ;; custom-set-variables was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  '(canlock-password "ec0c9cfaca1de928df7e15c5b644fd9469dfe82e")
  '(display-time-format (concat "dsf" "@" "server" " - %H:%M%p"))
  '(display-time-interval 10)
+ '(haskell-literate-default (quote tex))
+ '(javascript-indent-level 2)
  '(vc-cvs-diff-switches "-u")
  '(vc-cvs-stay-local t)
  '(vc-diff-switches "-b")
  '(vc-dired-recurse nil)
  '(vc-dired-terse-display (quote vc)))
 (custom-set-faces
-  ;; custom-set-faces was added by Custom -- don't edit or cut/paste it!
-  ;; Your init file should contain only one such instance.
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
  )
 
 ;(setq comint-scroll-show-maximum-output nil)
