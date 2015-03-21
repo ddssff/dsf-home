@@ -8,19 +8,21 @@
 				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
 					<name>lydia.thompson@gmail.com</name>
 					<alias>Lydia</alias>
-					<setting name='last_seen' type='int'>1417451776</setting>
+					<setting name='last_seen' type='int'>1426893234</setting>
 					<setting name='buddy_icon' type='string'>2bbf729907342343724addbd6a48c9fe79d548b4.jpg</setting>
 					<setting name='icon_checksum' type='string'>2bbf729907342343724addbd6a48c9fe79d548b4</setting>
 				</buddy>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</contact>
 			<contact>
 				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
 					<name>anna.atf@gmail.com</name>
 					<alias>Anna</alias>
-					<setting name='last_seen' type='int'>1416863532</setting>
+					<setting name='last_seen' type='int'>1426873482</setting>
 					<setting name='buddy_icon' type='string'>41ddf07c9565507aab726807c5d94aaebca0ecf3.jpg</setting>
 					<setting name='icon_checksum' type='string'>41ddf07c9565507aab726807c5d94aaebca0ecf3</setting>
 				</buddy>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</contact>
 		</group>
 		<group name='SeeReason'>
@@ -28,7 +30,7 @@
 			<contact>
 				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
 					<name>lydia@chat.seereason.org</name>
-					<setting name='last_seen' type='int'>1417061285</setting>
+					<setting name='last_seen' type='int'>1425060835</setting>
 					<setting name='buddy_icon' type='string'>50a849df72d27c27b821899175bf53182d24e18a.jpg</setting>
 					<setting name='icon_checksum' type='string'>50a849df72d27c27b821899175bf53182d24e18a</setting>
 				</buddy>
@@ -51,10 +53,11 @@
 			<contact>
 				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
 					<name>beshers@chat.seereason.org</name>
-					<setting name='last_seen' type='int'>1417283776</setting>
+					<setting name='last_seen' type='int'>1426946561</setting>
 					<setting name='buddy_icon' type='string'>4f6c0df1b3149a89f19e19650fbe6c846f1f67d3.jpg</setting>
 					<setting name='icon_checksum' type='string'>4f6c0df1b3149a89f19e19650fbe6c846f1f67d3</setting>
 				</buddy>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</contact>
 			<contact>
 				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
@@ -111,9 +114,9 @@
 				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
 					<name>jeremy@chat.seereason.org</name>
 					<alias>Mini</alias>
-					<setting name='last_seen' type='int'>1417442623</setting>
-					<setting name='buddy_icon' type='string'>2af31c97ee0ac2a74f18fb5080f55ee03c136992.jpg</setting>
-					<setting name='icon_checksum' type='string'>2af31c97ee0ac2a74f18fb5080f55ee03c136992</setting>
+					<setting name='last_seen' type='int'>1426946561</setting>
+					<setting name='buddy_icon' type='string'>7a3c8086585b32dd259caea0711c52e5c9c11d1f.jpg</setting>
+					<setting name='icon_checksum' type='string'>7a3c8086585b32dd259caea0711c52e5c9c11d1f</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -126,21 +129,41 @@
 		<group name='Chats'>
 			<setting name='collapsed' type='bool'>0</setting>
 			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
+				<component name='channel'>#ghcjs</component>
+				<setting name='gtk-mute-sound' type='bool'>1</setting>
+			</chat>
+			<chat proto='prpl-jabber' account='david@chat.seereason.org/Office'>
+				<component name='server'>conference.chat.seereason.org</component>
+				<component name='room'>seereason</component>
+				<component name='handle'>david</component>
+			</chat>
+			<chat proto='prpl-jabber' account='david@chat.seereason.org/Office'>
+				<component name='server'>conference.chat.seereason.org</component>
+				<component name='room'>public</component>
+				<component name='handle'>david</component>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
+			</chat>
+			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
 				<component name='channel'>#debian</component>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</chat>
 			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
 				<component name='channel'>#happs</component>
+				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</chat>
 			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
 				<component name='channel'>#haskell</component>
+				<setting name='gtk-mute-sound' type='bool'>1</setting>
 			</chat>
 			<chat proto='prpl-irc' account='dsfox@irc.freenode.net'>
 				<component name='channel'>#haskell-lens</component>
+				<setting name='gtk-mute-sound' type='bool'>1</setting>
 			</chat>
 		</group>
 	</blist>
 	<privacy>
 		<account proto='prpl-jabber' name='david@chat.seereason.org/Office' mode='1'/>
 		<account proto='prpl-irc' name='dsfox@irc.freenode.net' mode='1'/>
+		<account proto='prpl-jabber' name='dsf@localhost/test' mode='1'/>
 	</privacy>
 </purple>
