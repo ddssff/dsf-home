@@ -1,6 +1,7 @@
 (load-library "cl")		; Includes remove-if-not used below
 
 (setq-default show-trailing-whitespace t)
+(setq isearch-lax-whitespace nil)
 
 ;; do not display a splash screen on startup.  If you use emacs as a
 ;; mime type, the file you click on won't appear without this.  Before
