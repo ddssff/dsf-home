@@ -22,12 +22,8 @@
 
 (if window-system
     (progn
-      (global-set-key [f11] 'toggle-modes)
-      (global-set-key [f9] 'backward-narrowed-page)
-      (global-set-key [f10] 'forward-narrowed-page))
-  (global-unset-key "\e[")
-  (define-key esc-map "[20~" 'backward-narrowed-page)	;; L9 via telnet
-  (define-key esc-map "[21~" 'forward-narrowed-page))	;; L10 via telnet
+      (global-set-key [f11] 'toggle-modes))
+  (global-unset-key "\e["))
 
 ;; I suppose these could go in language specific files.
 
