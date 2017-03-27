@@ -1,0 +1,10 @@
+#!/bin/bash
+
+ORIG="${PWD}"
+until [ -f "$(find .  -mindepth 1 -maxdepth 1 -name \*.cabal)" ] ; do
+      cd ..
+      if [ "$PWD" = "$HOME" ] ; then cd "${ORIG}" ; break ; fi
+done
+
+exec ghc --interactive
+
