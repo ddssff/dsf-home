@@ -7,4 +7,3 @@ until [ -f "$(find .  -mindepth 1 -maxdepth 1 -name \*.cabal)" ] ; do
 done
 
 exec ghc --interactive
-
