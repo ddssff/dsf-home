@@ -36,6 +36,7 @@
 (define-key esc-map "L" 'insert-changelog)
 (define-key esc-map "C" 'compile)
 (define-key global-map "\C-^" 'next-error)
+(define-key global-map (kbd "C-x C-b") 'buffer-menu-other-window) ; Restore old behavior?
 
 (setenv "PAGER" "cat") ;; don't try to use less/more in M-x shell
 (setenv "NIX_REMOTE_SYSTEMS" "/etc/nix/machines") ;; will be used when we have distributed builds
@@ -44,3 +45,4 @@
 
 ; Do this last so we notice errors
 (set-background-color "white")
+(electric-indent-mode -1) ; Restore old behavior
