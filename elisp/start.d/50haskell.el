@@ -7,8 +7,17 @@
 
 (add-hook 'haskell-mode-hook 'turn-on-font-lock)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
-(remove-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
+;(remove-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
+(add-hook 'haskell-mode-hook 'haskell-indentation-mode)
+(add-hook 'haskell-mode-hook 'inf-haskell-mode)
+
+(require 'inf-haskell)
+
+(defun inferior-haskell-find-project-root (buf)
+  (let* ((cabal-file (inferior-haskell-cabal-of-buf buf)))
+    (and cabal-file (file-name-directory cabal-file))))
+
 (add-hook 'haskell-mode-hook
    (function
     (lambda ()
@@ -17,7 +26,7 @@
            (inferior-haskell-load-file t)))
       (setq comint-prompt-regexp  "^\\(\\*?[A-Z][\\._a-zA-Z0-9]*\\( \\*?[A-Z][\\._a-zA-Z0-9]*\\)*> \\)")
 ;      (setq haskell-program-name "cabal repl")
-      (setq haskell-ghci-program-name "/home/dsf/git/dsf-home/bin/ghci")
+      ;(setq haskell-ghci-program-name "/home/dsf/git/dsf-home/bin/ghci")
     )))
 
 (require 'compile)
