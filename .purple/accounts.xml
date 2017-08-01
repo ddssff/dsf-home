@@ -16,9 +16,7 @@
 				<attributes/>
 			</status>
 			<status type='away' name='Away' active='false'>
-				<attributes>
-					<attribute id='message' value='I&apos;m not here right now'/>
-				</attributes>
+				<attributes/>
 			</status>
 			<status type='extended_away' name='Extended away' active='false'>
 				<attributes/>
@@ -54,9 +52,7 @@
 				<attributes/>
 			</status>
 			<status type='away' name='Away' active='false'>
-				<attributes>
-					<attribute id='message' value='I&apos;m not here right now'/>
-				</attributes>
+				<attributes/>
 			</status>
 			<status type='offline' name='Offline' active='false'>
 				<attributes/>

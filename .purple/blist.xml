@@ -9,8 +9,6 @@
 					<name>lydia.thompson@gmail.com</name>
 					<alias>Lydia</alias>
 					<setting name='last_seen' type='int'>1426893234</setting>
-					<setting name='buddy_icon' type='string'>2bbf729907342343724addbd6a48c9fe79d548b4.jpg</setting>
-					<setting name='icon_checksum' type='string'>2bbf729907342343724addbd6a48c9fe79d548b4</setting>
 				</buddy>
 				<setting name='gtk-mute-sound' type='bool'>0</setting>
 			</contact>
@@ -31,8 +29,6 @@
 				<buddy account='david@chat.seereason.org/Office' proto='prpl-jabber'>
 					<name>lydia@chat.seereason.org</name>
 					<setting name='last_seen' type='int'>1425060835</setting>
-					<setting name='buddy_icon' type='string'>50a849df72d27c27b821899175bf53182d24e18a.jpg</setting>
-					<setting name='icon_checksum' type='string'>50a849df72d27c27b821899175bf53182d24e18a</setting>
 				</buddy>
 			</contact>
 			<contact>
@@ -115,8 +111,6 @@
 					<name>jeremy@chat.seereason.org</name>
 					<alias>Mini</alias>
 					<setting name='last_seen' type='int'>1426946561</setting>
-					<setting name='buddy_icon' type='string'>7a3c8086585b32dd259caea0711c52e5c9c11d1f.jpg</setting>
-					<setting name='icon_checksum' type='string'>7a3c8086585b32dd259caea0711c52e5c9c11d1f</setting>
 				</buddy>
 			</contact>
 			<contact>
