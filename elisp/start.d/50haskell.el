@@ -59,3 +59,5 @@
      1 2 (4 . 5) 0)) ;; info locus
   "Regexps used for matching GHC compile messages.
 See `compilation-error-regexp-alist' for semantics.")
+
+(setq multibyte-syntax-as-symbol nil)
