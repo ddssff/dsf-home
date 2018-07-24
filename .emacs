@@ -1,10 +1,19 @@
+
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
+(package-initialize)
+
 (setq load-path (cons "~/git/dsf-home/elisp" load-path))
 (setq load-path (cons "~/git/dsf-home/elisp/start.d" load-path))
 
-(load-library "50vi")
 (load-library "50dired")
 (load-library "50haskell")
 (load-library "50narrow")
+(load-library "50shell")
+(load-library "50vi")
+
 (load-library "vc-git-dired")
 
 ;; "Fix" emacs23 window splitting behavior.
@@ -28,7 +37,6 @@
 (put 'downcase-region 'disabled nil)
 (put 'scroll-left 'disabled nil)
 
-(define-key esc-map "Z" 'shell)
 (define-key esc-map "M" 'manual-entry)
 (define-key esc-map "K" 'bury-buffer)
 (define-key ctl-x-map "|" 'split-window-horizontally)

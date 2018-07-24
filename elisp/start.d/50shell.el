@@ -1,7 +1,7 @@
 ; shell with pop-to-buffer replaced by pop-to-buffer-same-window (as in emacs-24.3)
 
 ;;;###autoload
-(defun shell (&optional buffer)
+(defun my-shell (&optional buffer)
   "Run an inferior shell, with I/O through BUFFER (which defaults to `*shell*').
 Interactively, a prefix arg means to prompt for BUFFER.
 If `default-directory' is a remote file name, it is also prompted
@@ -90,3 +90,5 @@ Otherwise, one argument `-i' is passed to the shell.
 	       '("-i")))
       (shell-mode)))
   buffer)
+
+(define-key esc-map "Z" 'my-shell)
