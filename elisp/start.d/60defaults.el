@@ -60,4 +60,4 @@
 ; Interesting but a little funky.  Use -r flags.
 ;(setq grep-command "find . -type f | xargs grep -n -e ")
 ; Process apparantly binary files
-(setq grep-command "grep -a -n -e ")
+(setq grep-command "grep -r --exclude=all.js --exclude=out.js -n -e ")   ; vs "grep -nH -e "
