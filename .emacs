@@ -23,7 +23,7 @@
 ;; Fix emacs23 line-move behavior
 (setq line-move-visual nil)
 
-(setq grep-command "grep -r --exclude=all.js --exclude=out.js -n -e ")   ; vs "grep -nH -e "
+(setq grep-command "grep -r '--include=*.hs' '--include=*.cabal' -n -e ")
 (setq-default show-trailing-whitespace t)
 (setq require-final-newline nil)
 (setq isearch-lax-whitespace nil)
