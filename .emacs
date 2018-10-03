@@ -13,6 +13,7 @@
 (load-library "50narrow")
 (load-library "50shell")
 (load-library "50vi")
+(load-library "my-next-window")
 
 (load-library "vc-git-dired")
 
@@ -44,43 +45,6 @@
 (define-key esc-map "L" 'insert-changelog)
 (define-key esc-map "C" 'compile)
 (define-key global-map "\C-^" 'next-error)
-;(define-key global-map (kbd "C-x C-b") 'buffer-menu-other-window) ; Restore old behavior?
-
-;(defun my-buffer-menu-other-window ()
-;  "Pop up the buffer menu in other window"
-;  (interactive)
-;  (other-window 1)
-;  (buffer-menu)
-;  (other-window -1))
-;
-;(define-key global-map (kbd "C-x C-b") 'my-buffer-menu-other-window)
-
-(setq my-switch-to-buffer-alist t)
-
-(defun switch-to-buffer-other-window (buffer-or-name &optional norecord)
-  "Select the buffer specified by BUFFER-OR-NAME in another window.
-BUFFER-OR-NAME may be a buffer, a string (a buffer name), or
-nil.  Return the buffer switched to.
-
-If called interactively, prompt for the buffer name using the
-minibuffer.  The variable `confirm-nonexistent-file-or-buffer'
-determines whether to request confirmation before creating a new
-buffer.
-
-If BUFFER-OR-NAME is a string and does not identify an existing
-buffer, create a new buffer with that name.  If BUFFER-OR-NAME is
-nil, switch to the buffer returned by `other-buffer'.
-
-Optional second argument NORECORD non-nil means do not put this
-buffer at the front of the list of recently selected ones.
-
-This uses the function `display-buffer' as a subroutine; see its
-documentation for additional customization information."
-  (interactive
-   (list (read-buffer-to-switch "Switch to buffer in other window: ")))
-  (message "foo")
-  (let ((pop-up-windows t))
-    (pop-to-buffer buffer-or-name my-switch-to-buffer-alist norecord)))
 
 (setenv "PAGER" "cat") ;; don't try to use less/more in M-x shell
 (setenv "NIX_REMOTE_SYSTEMS" "/etc/nix/machines") ;; will be used when we have distributed builds
@@ -104,15 +68,7 @@ documentation for additional customization information."
  ;; If there is more than one, they won't work right.
  )
 
-;(defun read-buffer-to-switch (prompt)
-;  "Read the name of a buffer to switch to, prompting with PROMPT.
-;Return the name of the buffer as a string.
-;
-;This function is intended for the `switch-to-buffer' family of
-;commands since these need to omit the name of the current buffer
-;from the list of completions and default values."
-;  (read-buffer prompt))
-
+; Use next-buffer instead of other-buffer
 (defun read-buffer-to-switch (prompt)
   "Read the name of a buffer to switch to, prompting with PROMPT.
 Return the name of the buffer as a string.
@@ -133,7 +89,7 @@ from the list of completions and default values."
               (set (make-local-variable 'icomplete-with-completion-tables)
                    (cons rbts-completion-table
                          icomplete-with-completion-tables))))
-      (read-buffer prompt (other-buffer)
+      (read-buffer prompt (next-buffer)
                    (confirm-nonexistent-file-or-buffer)))))
 
 ;; Set default font
