@@ -37,3 +37,52 @@ documentation for additional customization information."
    (list (my-read-buffer-to-switch "Switch to buffer in other window: ")))
   (let ((pop-up-windows t))
     (pop-to-buffer buffer-or-name my-switch-to-buffer-alist norecord)))
+
+(defun display-buffer-next-window (buffer alist)
+  "display-buffer-same-window with a next-window added"
+  (unless (or (cdr (assq 'inhibit-same-window alist))
+	      (window-minibuffer-p)
+	      (window-dedicated-p))
+    (window--display-buffer buffer (next-window (selected-window)) 'reuse alist)))
+
+;(defun display-buffer-next-window (buffer alist)
+;  "Display BUFFER in the window returned by next-window.
+;Search for a usable window, set that window to the buffer, and
+;return the window.  If no suitable window is found, return nil.
+;
+;If ALIST has a non-nil `inhibit-switch-frame' entry, then in the
+;event that a window in another frame is chosen, avoid raising
+;that frame."
+;  (let* ((window (next-window))
+;	 (quit-restore (and (window-live-p window)
+;			    (window-parameter window 'quit-restore)))
+;	 (quad (nth 1 quit-restore)))
+;    (when (window-live-p window)
+;      ;; If the window was used by `display-buffer' before, try to
+;      ;; resize it to its old height but don't signal an error.
+;      (when (and (listp quad)
+;		 (integerp (nth 3 quad))
+;		 (> (nth 3 quad) (window-total-height window)))
+;	(condition-case nil
+;	    (window-resize window (- (nth 3 quad) (window-total-height window)))
+;	  (error nil)))
+;
+;      (prog1
+;	  (window--display-buffer buffer window 'reuse alist)
+;	(window--even-window-sizes window)
+;	(unless (cdr (assq 'inhibit-switch-frame alist))
+;	  (window--maybe-raise-frame (window-frame window)))))))
+
+; Haven't tried this yet
+;(defun my-list-buffers (&optional arg)
+;  "Display a list of existing buffers.
+;The list is displayed in a buffer named \"*Buffer List*\".
+;See `buffer-menu' for a description of the Buffer Menu.
+;
+;By default, all buffers are listed except those whose names start
+;with a space (which are for internal use).  With prefix argument
+;ARG, show only buffers that are visiting files."
+;  (interactive "P")
+;  (display-buffer-in-previous-window (list-buffers-noselect arg)))
+
+;(define-key global-map (kbd "C-x C-b") 'buffer-menu-other-window)
