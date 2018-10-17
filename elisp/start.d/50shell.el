@@ -1,6 +1,5 @@
 ; shell with pop-to-buffer replaced by pop-to-buffer-same-window (as in emacs-24.3)
 
-;;;###autoload
 (defun my-shell (&optional buffer)
   "Run an inferior shell, with I/O through BUFFER (which defaults to `*shell*').
 Interactively, a prefix arg means to prompt for BUFFER.

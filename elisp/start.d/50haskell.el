@@ -2,7 +2,7 @@
 
 ; ^C^L - go haskell
 ; ^C^R - reload
-(setq haskell-program-name "ghci")
+;(setq haskell-program-name "ghci")
 ;(setq haskell-program-name "ghcjsi")
 
 (add-hook 'haskell-mode-hook 'turn-on-font-lock)
@@ -11,8 +11,6 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'inf-haskell-mode)
-
-(require 'inf-haskell)
 
 (defun inferior-haskell-find-project-root (buf)
   (let* ((cabal-file (inferior-haskell-cabal-of-buf buf)))

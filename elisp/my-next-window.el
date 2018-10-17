@@ -6,7 +6,7 @@ By default, all buffers are listed except those whose names start
 with a space (which are for internal use).  With prefix argument
 ARG, show only buffers that are visiting files."
   (interactive "P")
-  (switch-to-buffer-other-window (list-buffers-noselect arg))
+  (switch-to-buffer-next-window (list-buffers-noselect arg))
   (message
    "Commands: d, s, x, u; f, o, 1, 2, m, v; ~, %%; q to quit; ? for help."))
 
@@ -43,6 +43,8 @@ documentation for additional customization information."
   (unless (or (cdr (assq 'inhibit-same-window alist))
 	      (window-minibuffer-p)
 	      (window-dedicated-p))
+    (message "this-window: %s" (selected-window))
+    (message "next-window: %s" (next-window (selected-window)))
     (window--display-buffer buffer (next-window (selected-window)) 'reuse alist)))
 
 ;(defun display-buffer-next-window (buffer alist)
