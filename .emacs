@@ -219,3 +219,10 @@ If there is no associated filename, it finds the parent of (pwd)."
         ;; previous entry with more specific actions.
         ("." nil (reusable-frames . visible))
 	))
+
+;; Set 14pt default font
+(set-face-attribute 'default nil
+                    :family "Monospace"
+                    :height 140
+                    :weight 'normal
+                    :width 'normal)
