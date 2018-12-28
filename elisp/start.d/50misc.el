@@ -71,3 +71,6 @@
   (interactive "*")
   (insert-date)
   (insert (substring (current-time-string) 10 16)))
+
+(define-key esc-map "D" 'insert-date)
+(define-key esc-map "T" 'insert-date-and-time)

@@ -226,3 +226,18 @@ If there is no associated filename, it finds the parent of (pwd)."
                     :height 140
                     :weight 'normal
                     :width 'normal)
+
+;; Configure `display-buffer' behaviour for some special buffers
+(setq display-buffer-alist
+      `(;; Open shell in a single window
+        (,(rx bos "*shell")
+         (display-buffer-same-window)
+         (reusable-frames . nil))
+        (,(rx bos "*grep")
+         (display-buffer-next-window)
+         (reusable-frames . nil))
+        ;; Let `display-buffer' reuse visible frames for all buffers. This must
+        ;; be the last entry in `display-buffer-alist', because it overrides any
+        ;; previous entry with more specific actions.
+        ("." nil (reusable-frames . visible))
+	))
