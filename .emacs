@@ -241,3 +241,11 @@ If there is no associated filename, it finds the parent of (pwd)."
         ;; previous entry with more specific actions.
         ("." nil (reusable-frames . visible))
 	))
+
+;;;;;;;;;;;
+;; OTHER ;;
+;;;;;;;;;;;
+
+(add-to-list 'load-path "~/elisp")
+(add-to-list 'load-path "~/elisp/start.d")
+(load-library "my-next-window")
