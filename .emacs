@@ -33,6 +33,7 @@
 (setq require-final-newline nil)
 (setq isearch-lax-whitespace nil)
 (setq grep-command "grep -r -n -e ")
+(put 'downcase-region 'disabled nil)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; BEHAVIOR FIXES ;;
