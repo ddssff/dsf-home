@@ -249,3 +249,4 @@ If there is no associated filename, it finds the parent of (pwd)."
 (add-to-list 'load-path "~/elisp")
 (add-to-list 'load-path "~/elisp/start.d")
 (load-library "my-next-window")
+(load-library "50narrow")
