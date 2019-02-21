@@ -22,6 +22,9 @@
 ;; PACKAGES ;;
 ;;;;;;;;;;;;;;
 
+(add-to-list 'load-path "~/elisp")
+;(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
 (load-library "vc-git-dired")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -85,6 +88,7 @@
 ;; HASKELL MODE ;;
 ;;;;;;;;;;;;;;;;;;
 
+; 16.1-3 includes this
 (require 'inf-haskell)
 
 ; ^C^L - go haskell
@@ -227,6 +231,17 @@ If there is no associated filename, it finds the parent of (pwd)."
                     :height 140
                     :weight 'normal
                     :width 'normal)
+
+;;;;;;;;;
+;; NIX ;;
+;;;;;;;;;
+
+(setenv "PAGER" "cat") ;; don't try to use less/more in M-x shell. Alternatively you can set `NIX_PAGER` to only affect nix
+(setenv "NIX_REMOTE_SYSTEMS" "/etc/nix/machines") ;; will be used when we have distributed builds
+(package-initialize)
+(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp") ;; so we can find `nix-mode`
+(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20181212.1342")
+(require 'nix-mode) ;; might be required to get nix-mode to run automatically for .nix files, not sure.
 
 ;;;;;;;;;;;
 ;; OTHER ;;

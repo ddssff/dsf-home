@@ -2,7 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
 
-echo "Entering .bash_profile on $HOSTNAME, PATH=$PATH"
+# echo "Entering .bash_profile on $HOSTNAME, PATH=$PATH"
 
 [ -f ~/.bashrc ] && . ~/.bashrc
 
@@ -16,4 +16,4 @@ echo "Entering .bash_profile on $HOSTNAME, PATH=$PATH"
 [ -f git/dsf-home/bash/completion ] && . git/dsf-home/bash/completion
 [ -f git/dsf-home/bash/umask ] && . git/dsf-home/bash/umask
 
-echo "Finishing .bash_profile on $HOSTNAME, PATH=$PATH"
+# echo "Finishing .bash_profile on $HOSTNAME, PATH=$PATH"
