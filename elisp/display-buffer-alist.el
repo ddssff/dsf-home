@@ -98,6 +98,9 @@ documentation for additional customization information."
         (,(rx bos "*grep")
          (display-buffer-next-window)
          (reusable-frames . nil))
+        (,(rx bos "*vc")
+         (display-buffer-next-window)
+         (reusable-frames . nil))
         ;; Let `display-buffer' reuse visible frames for all buffers. This must
         ;; be the last entry in `display-buffer-alist', because it overrides any
         ;; previous entry with more specific actions.

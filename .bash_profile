@@ -2,32 +2,18 @@
 # see /usr/share/doc/bash/examples/startup-files for examples.
 # the files are located in the bash-doc package.
 
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
+echo "Entering .bash_profile on $HOSTNAME, PATH=$PATH"
 
-# the default umask is set in /etc/login.defs
-#umask 022
+[ -f ~/.bashrc ] && . ~/.bashrc
 
-# the rest of this file is commented out.
+[ -f git/dsf-home/bash/history ] && . git/dsf-home/bash/history
+[ -f git/dsf-home/bash/winsize ] && . git/dsf-home/bash/winsize
+[ -f git/dsf-home/bash/lessopts ] && . git/dsf-home/bash/lessopts
+[ -f git/dsf-home/bash/chroot ] && . git/dsf-home/bash/chroot
+[ -f git/dsf-home/bash/color ] && . git/dsf-home/bash/color
+[ -f git/dsf-home/bash/title ] && . git/dsf-home/bash/title
+[ -f git/dsf-home/bash/aliases ] && . git/dsf-home/bash/aliases
+[ -f git/dsf-home/bash/completion ] && . git/dsf-home/bash/completion
+[ -f git/dsf-home/bash/umask ] && . git/dsf-home/bash/umask
 
-# include .bashrc if it exists
-
-#if [ -f ~/.bashrc ]; then
-#    source ~/.bashrc
-#fi
-
-# set PATH so it includes user's private bin if it exists
-#if [ -d ~/bin ] ; then
-#    PATH=~/bin:"${PATH}"
-#fi
-
-# do the same with MANPATH
-#if [ -d ~/man ]; then
-#    MANPATH=~/man:"${MANPATH}"
-#fi
+echo "Finishing .bash_profile on $HOSTNAME, PATH=$PATH"
