@@ -1,0 +1,3 @@
+To remove a package:
+
+   newdist --root=/srv/deb/ubuntu --remove=bionic-seereason,main,ghc-th-boot=
