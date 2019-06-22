@@ -24,8 +24,10 @@
 
 (add-to-list 'load-path "~/elisp")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp")
+(add-to-list 'load-path "~/elisp/start.d")
 ;(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
+(load-library "50haskell")
 (load-library "vc-git-dired")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -252,3 +254,4 @@ If there is no associated filename, it finds the parent of (pwd)."
 (add-to-list 'load-path "~/elisp/start.d")
 (load-library "display-buffer-alist")
 (load-library "50narrow")
+(put 'scroll-left 'disabled nil)

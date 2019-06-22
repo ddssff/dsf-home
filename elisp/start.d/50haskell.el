@@ -1,3 +1,4 @@
+(require 'haskell)
 (require 'inf-haskell)
 
 ; ^C^L - go haskell
