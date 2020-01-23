@@ -25,7 +25,7 @@
 (add-to-list 'load-path "~/elisp")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp")
 (add-to-list 'load-path "~/elisp/start.d")
-;(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
+(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20190926.313")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
 (load-library "50haskell")
 (load-library "vc-git-dired")
@@ -243,7 +243,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 (setenv "NIX_REMOTE_SYSTEMS" "/etc/nix/machines") ;; will be used when we have distributed builds
 (package-initialize)
 (add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp") ;; so we can find `nix-mode`
-(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20181212.1342")
+(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20190904.1440")
 (require 'nix-mode) ;; might be required to get nix-mode to run automatically for .nix files, not sure.
 
 ;;;;;;;;;;;
