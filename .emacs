@@ -116,7 +116,7 @@
         '(lambda () (interactive)
            (inferior-haskell-load-file t)))
       (setq comint-prompt-regexp  "^\\(\\*?[A-Z][\\._a-zA-Z0-9]*\\( \\*?[A-Z][\\._a-zA-Z0-9]*\\)*> \\)")
-;      (setq haskell-program-name "cabal repl")
+      (setq haskell-program-name "cabal new-repl")
       ;(setq haskell-ghci-program-name "/home/dsf/git/dsf-home/bin/ghci")
     )))
 
