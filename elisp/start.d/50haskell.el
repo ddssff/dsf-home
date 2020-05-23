@@ -17,6 +17,8 @@
   (let* ((cabal-file (inferior-haskell-cabal-of-buf buf)))
     (and cabal-file (file-name-directory cabal-file))))
 
+(setq haskell-process-type 'cabal-new-repl)
+
 (add-hook 'haskell-mode-hook
    (function
     (lambda ()

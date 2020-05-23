@@ -28,6 +28,7 @@
 ;(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/elpa-src/haskell-mode-16.1")
 ;(add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
+(load-library "50haskell")
 (load-library "vc-git-dired")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -117,7 +118,7 @@
         '(lambda () (interactive)
            (inferior-haskell-load-file t)))
       (setq comint-prompt-regexp  "^\\(\\*?[A-Z][\\._a-zA-Z0-9]*\\( \\*?[A-Z][\\._a-zA-Z0-9]*\\)*> \\)")
-;      (setq haskell-program-name "cabal repl")
+      (setq haskell-program-name "cabal new-repl")
       ;(setq haskell-ghci-program-name "/home/dsf/git/dsf-home/bin/ghci")
     )))
 
@@ -243,7 +244,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 (setenv "PAGER" "cat") ;; don't try to use less/more in M-x shell. Alternatively you can set `NIX_PAGER` to only affect nix
 (setenv "NIX_REMOTE_SYSTEMS" "/etc/nix/machines") ;; will be used when we have distributed builds
 (package-initialize)
-;(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp") ;; so we can find `nix-mode`
+(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp") ;; so we can find `nix-mode`
 (add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20190119.125")
 (add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
 (require 'nix-mode) ;; might be required to get nix-mode to run automatically for .nix files, not sure.
