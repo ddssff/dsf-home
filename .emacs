@@ -22,12 +22,12 @@
 ;; PACKAGES ;;
 ;;;;;;;;;;;;;;
 
-(add-to-list 'load-path "~/elisp")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp")
-(add-to-list 'load-path "~/elisp/start.d")
-;(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
-(add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
-(load-library "50haskell")
+(add-to-list 'load-path "~dsf/elisp")
+(add-to-list 'load-path "dsf/usr/share/emacs/site-lisp")
+(add-to-list 'load-path "~dsf/elisp/start.d")
+;(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
+(add-to-list 'load-path "/usr/share/emacs/site-lisp/elpa-src/haskell-mode-16.1")
+;(add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
 (load-library "vc-git-dired")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -104,7 +104,8 @@
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
 (add-hook 'haskell-mode-hook 'inf-haskell-mode)
-
+(add-hook 'haskell-mode-after-save-hook t)
+(defun haskell-mode-after-save-handler ())
 (defun inferior-haskell-find-project-root (buf)
   (let* ((cabal-file (inferior-haskell-cabal-of-buf buf)))
     (and cabal-file (file-name-directory cabal-file))))
@@ -242,16 +243,17 @@ If there is no associated filename, it finds the parent of (pwd)."
 (setenv "PAGER" "cat") ;; don't try to use less/more in M-x shell. Alternatively you can set `NIX_PAGER` to only affect nix
 (setenv "NIX_REMOTE_SYSTEMS" "/etc/nix/machines") ;; will be used when we have distributed builds
 (package-initialize)
-(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp") ;; so we can find `nix-mode`
-(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20181212.1342")
+;(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp") ;; so we can find `nix-mode`
+(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20190119.125")
+(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
 (require 'nix-mode) ;; might be required to get nix-mode to run automatically for .nix files, not sure.
 
 ;;;;;;;;;;;
 ;; OTHER ;;
 ;;;;;;;;;;;
 
-(add-to-list 'load-path "~/elisp")
-(add-to-list 'load-path "~/elisp/start.d")
+(add-to-list 'load-path "~dsf/elisp")
+(add-to-list 'load-path "~dsf/elisp/start.d")
 (load-library "display-buffer-alist")
 (load-library "50narrow")
 (put 'scroll-left 'disabled nil)
