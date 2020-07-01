@@ -107,6 +107,8 @@
 (add-hook 'haskell-mode-hook 'inf-haskell-mode)
 (add-hook 'haskell-mode-after-save-hook t)
 (defun haskell-mode-after-save-handler ())
+(defun haskell-doc-current-info ())
+(defun turn-on-haskell-indent ())
 (defun inferior-haskell-find-project-root (buf)
   (let* ((cabal-file (inferior-haskell-cabal-of-buf buf)))
     (and cabal-file (file-name-directory cabal-file))))
@@ -264,7 +266,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"./happstack-ghcjs-client"
 	"./happstack-ghcjs-server"
 	"./happstack-ghcjs-common"
-	"./happstack-ghcjs-webmodule"
+	"./webmodule"
 	"./appraisalscribe-data"
 	"./image-cache"
 	"./alderon2"
@@ -275,7 +277,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../happstack-ghcjs-client"
 	"../happstack-ghcjs-server"
 	"../happstack-ghcjs-common"
-	"../happstack-ghcjs-webmodule"
+	"../webmodule"
 	"../appraisalscribe-data"
 	"../image-cache"
 	"../alderon2"
@@ -286,7 +288,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../../happstack-ghcjs-client"
 	"../../happstack-ghcjs-server"
 	"../../happstack-ghcjs-common"
-	"../../happstack-ghcjs-webmodule"
+	"../../webmodule"
 	"../../appraisalscribe-data"
 	"../../image-cache"
 	"../../alderon2"
@@ -297,7 +299,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../../../happstack-ghcjs-client"
 	"../../../happstack-ghcjs-server"
 	"../../../happstack-ghcjs-common"
-	"../../../happstack-ghcjs-webmodule"
+	"../../../webmodule"
 	"../../../appraisalscribe-data"
 	"../../../image-cache"
 	"../../../alderon2"
