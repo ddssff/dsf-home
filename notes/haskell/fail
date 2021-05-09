@@ -1,0 +1,3 @@
+fail :: Monad m => String -> m a
+
+Every monad has a fail method.

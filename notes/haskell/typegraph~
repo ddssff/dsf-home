@@ -1,0 +1,20 @@
+To Do:
+
+   4. Remove the Item(?)
+   5. Show instances for TypePath s a and TypeSPath s
+   6. Remove the IsString e constraint
+   7. Remove Proxy t arguments from functions that now take TypePath t or TypeSPath t
+   9. More quickcheck properties
+* 10. Restore schema migration mechanism
+  11. Eliminate the nested splice from makePaths so we can use the typegraph stuff in th-typegraph.
+      Currently the start type needs to be hard coded.
+  12. Implement goKey
+  13. Instead of a Proxy t argument can we add a t parameter to the monad?  Or to TypePath and TypeSPath?
+  14. Move the Path.TypeGraph modules to th-typegraph and re-implement the derive functions there
+
+
+  15. Would be nice to have a Ppr instance for TypeSPath s instead of (Proxy t, TypeSPath s).
+      The difficulty is applying the ViewType type function when necessary without the Q monad.
+  16. Renamed or replaced:
+         expandType' -> unE . expandType
+  17. Speed up diff

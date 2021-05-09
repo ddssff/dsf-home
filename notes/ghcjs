@@ -1,0 +1,6 @@
+Readme errors:
+
+0. Need to specify the branch when cloning ghcjs
+1. Add ghcjs-run to list of linked executables
+2. boot.tar appears in data/, show that in the ghcjs-boot command
+3. Need to put absolute paths in $PATH to run ghcjs-pkg etc

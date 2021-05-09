@@ -1,0 +1,16 @@
+How to set up a machine so it can ssh to upload@deb.seereason.com:
+
+Make sure this is in /etc/sudoers (using visudo):
+
+    Defaults        env_reset,env_keep=SSH_AUTH_SOCK
+eval `ssh-agent -s`
+ssh-add
+
+ssh-keygen (choose pass phrase)
+sudo cp .ssh/id_rsa* /root/.ssh/
+ssh-copy-id upload@deb.seereason.com
+ssh-add
+
+Allows logging in using the certificate AWS.pem:
+
+ssh-add ~/.ssh/AWS.pem

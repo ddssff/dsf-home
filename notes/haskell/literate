@@ -1,0 +1,8 @@
+A strategy for literate programming:
+
+1. Create a hacked up implementation of your idea
+2. Start writing a coherent story of the idea
+3. Drop relevant bits of code between the paragraphs of the story
+4. When you get to the end of the story you were able to write,
+   Look for left over bits of code and continue the story by
+   describing them.  Hopefully the coherent order/story will emerge.

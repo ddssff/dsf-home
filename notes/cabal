@@ -1,0 +1,5 @@
+To build typegraph with a modified safecopy:
+
+1. Edit safecopy and bump its version number (to 0.9.4.2 in this example)
+2. cd safecopy; cabal install
+3. cd ../typegraph; cabal install userid --force-reinstalls --constraint='safecopy == 0.9.4.2'

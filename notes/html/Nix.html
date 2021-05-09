@@ -1,0 +1,238 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { margin: 1in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+		a:link { so-language: zxx }
+	</style>
+</head>
+<body lang="en" dir="ltr">
+<p align="center" style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<b>Install</b></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	Download and install deb from
+	http://hydra.nixos.org/release/nix/nix-1.8</p>
+</ul>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p align="center" style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<b>Environment</b></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	Check out <a href="mailto:git@github.com"><font color="#1155cc"><u>git@github.com</u></font></a>:seereason/nixpkgs.git
+	and <a href="mailto:git@github.com"><font color="#1155cc"><u>git@github.com</u></font></a>:seereason/nix-seereason.git
+	in $HOME/git</p>
+</ul>
+<ul>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	PATH must include $HOME/.nix-profile/bin</p>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	NIX_PATH=nixpkgs=$HOME/git/nixpkgs:nix-seereason=$HOME/git/nix-seereason</p>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	~/.config.nix should point to $HOME/git/nix-seereason/config.nix</p>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	TMPDIR=/tmp</p>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	SSL_CERT_FILE=/etc/ssl/certs/ca-certificates.crt</p>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	BASH_ENV should point to a script that sets these variables</p>
+</ul>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+Nix configuration repos:</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p align="center" style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<b>Nix-izing</b></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	first you need a default.nix in your quandl-api directory that tells
+	nix how to build quandl-api
+	<a href="https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2"><font color="#1155cc"><u>https://us-west-2.console.aws.amazon.com/ec2/v2/home?region=us-west-2</u></font></a>,
+	<br/>
+<br/>
+
+	</p>
+</ul>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+so here is how you do that<br/>
+<br/>
+
+</p>
+<ul>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	go into the directory for your quandl-api version</p>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	nix-shell -p haskellEnv</p>
+	<li/>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+	cabal2nix . &gt; default.nix<br/>
+<br/>
+
+	</p>
+</ul>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+that should generate the build instructions from the existing .cabal
+file</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p align="center" style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<b>nix-shell</b></p>
+<p align="left" style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p align="left" style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+Starting nix-shell updates the environment to reflect the current
+nix-configuration.  This includes building all packages and running
+their test suites.</p>
+<p align="left" style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p align="center" style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<b>Using nix packages</b></p>
+<p align="center" style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+curl <a href="https://nixos.org/install"><font color="#1155cc"><u>https://nixos.org/nix/install</u></font></a>
+| sh</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+so, next in your ~ directory you should do, git clone
+git@github.com:seereason/nix-seereason.git and git clone
+https://github.com/seereason/nixpkgs-channels.git<br/>
+<br/>
+[1:50]
+￼<br/>
+Next you’ll want to updated your dot files. The nix
+install probably add some lines to the end of your .bashrc or
+.profile you’ll want to remove those, and install put the following
+at the top of your '~/.bashrc` file<br/>
+<br/>
+if [ -e
+/home/jeremy/.nix-profile/etc/profile.d/nix.sh ]; then .
+/home/jeremy/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix
+installer<br/>
+export
+NIX_PATH=nixpkgs=$HOME/nixpkgs-channels:nix-seereason=$HOME/nix-seereason:ssh-config-file=$HOME/.ssh/config<br/>
+export
+NIX_REMOTE=daemon<br/>
+(edited)<br/>
+<br/>
+[1:51] ￼<br/>
+you want
+that before this line,<br/>
+<br/>
+# If not running interactively,
+don't do anything<br/>
+[ -z &quot;$PS1&quot; ] &amp;&amp;
+return<br/>
+(edited)<br/>
+<br/>
+[1:52] ￼<br/>
+you may need to do
+touch ~/.ssh/config, if you don’t have a ~/.ssh/config
+already<br/>
+<br/>
+[1:53] ￼<br/>
+Finally, as root you’ll want
+do:<br/>
+mkdir /etc/nix<br/>
+(edited)<br/>
+<br/>
+[1:54] ￼<br/>
+and
+then edit /etc/nix/machines and add a line like
+this:<br/>
+jeremy@foxthompson.asuscomm.com x86_64-linux
+/Users/stepcut/.ssh/identity 1<br/>
+<br/>
+[1:54] ￼<br/>
+except the
+/Users/stepcut/.ssh/identity should point to a private key that
+allows you to connect from your trusty machine to gene<br/>
+<br/>
+[1:55]
+￼<br/>
+with that enabled, two things should happen, (1) you should
+be able to pull prebuilt packages from gene automatically<br/>
+<br/>
+[1:56]
+￼<br/>
+(2) if you need to build multiple packages, nix-build will
+automatically build some locally and some on gene in parallel to
+speed things up<br/>
+<br/>
+[2:00] ￼<br/>
+when you have done the
+prep work we can do some tests to make sure it is really working and
+not trying to rebuild everything locally</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+create ~/.nixpkgs if it does not already exist<br/>
+<br/>
+[11:59]
+￼<br/>
+and copy ~/nix-seereason/config.nix into ~/.nixpkgs/</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+and then try:<br/>
+nix-build '&lt;nixpkgs&gt;' -A
+haskell.packages.ghc802.clckwrks-plugin-stripe —dry-run</p>
+</body>
+</html>

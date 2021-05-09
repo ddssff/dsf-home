@@ -1,0 +1,15 @@
+import Control.Monad.Except (MonadError(throwError, catchError), ExceptT, withExceptT)
+
+MonadError e m is a type class of monads that have error type e.  So
+suppose we build a custom error type PathError (this name is from a
+project I am working on which has constructors for all our lowest
+level errors.  We write all the functions that throw PathError with
+the return type MonadError PathError m => m r.
+
+Now we need to use these functions to write a quickcheck property that
+returns Gen a.  We can use ExceptT to achieve this.  We use the
+functions that return (MonadError PathError m => m a) to build an
+expression of type ExceptT PathError Gen a, then run that to get Gen
+(Either PathError a), which we can then turn into a Gen a with either:
+
+   runExceptT <a computation> >>= either (error . show) return

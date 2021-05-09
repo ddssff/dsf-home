@@ -1,0 +1,10 @@
+NIX LANGUAGE - a (domain specific) language used to build NIX EXPRESSIONS.
+
+NIX EXPRESSION - a value written in the NIX LANGUAGE that describes
+how to build a package.  It describes all the inputs involved in
+building the package, such as dependencies, sources, and so on.
+
+NIX FUNCTION - a NIX EXPRESSION
+
+DERIVATION - a description of how to build a thing from other things.  The
+function stdenv.mkDerivation creates a derivation 

@@ -1,0 +1,10 @@
+1. Wrap a type you want to change with a Newtype and get things to recompile.
+   Then you can add fields to it, remove the old fields, then remove the newtype
+2. To merge two arguments, replace the first argument with the pair containing
+   both, and replace the second with ().  Get it to build, then remove the ().
+3. If you suspect a MonadError function has no failure mode, try changing its
+   error type to ().  Alternatively, comment out all the constructors in the error
+   type and restore each one as needed.
+4. Create an error type for each function, creating embedded error types for
+   each function it calls.  This lets you find out what errors are truly
+   possible for each function.

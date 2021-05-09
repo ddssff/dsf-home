@@ -1,0 +1,51 @@
+New technique
+
+When you have a type you want to split into several types, but you
+don’t know exactly what they are, create a union type for the
+several desired types:
+
+data AppraisalURL path
+    = A_Html AppraisalPage
+    | A_Partial AppraisalPage
+    | A_Lens path
+    | A_ImageUpload path
+    | A_ImageSideload path
+    | A_List ListOp
+    | A_Branding (BrandingOp path)
+    | A_PlaceHolder String
+    | A_File FilePath
+    | A_File2 FilePath FilePath
+    | ImageDir String
+    | JavaScript FilePath
+    | ProfileData ProfileDataMap.ProfileDataMap
+    | TODO String
+    | A_NullURL
+
++data PathUnion
++    = U1 (AppraisalPath OldT OldT)
++    | U2 (AppraisalPath OldT OldT)
++    | U3 (AppraisalPath OldT OldT)
++    | U4 (AppraisalPath OldT OldT)
+
+Now make each of the four path parameters expect one of the PathUnion
+constructors.
+
+data AppraisalURL path
+    = A_Html AppraisalPage
+    | A_Partial AppraisalPage
+    | A_Lens (PathUnion path)
+    | A_ImageUpload (PathUnionpath)
+    | A_ImageSideload (U3 path)
+    | A_List ListOp
+    | A_Branding (BrandingOp (P4 path))
+    | A_PlaceHolder String
+    | A_File FilePath
+    | A_File2 FilePath FilePath
+    | ImageDir String
+    | JavaScript FilePath
+    | ProfileData ProfileDataMap.ProfileDataMap
+    | TODO String
+    | A_NullURL
+
+Get it to compile.  Then change the types of each of PathUnion’s
+constructor’s type parameters to what you wanted.

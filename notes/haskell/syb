@@ -1,0 +1,6 @@
+-- Find all the values of type b within an a
+
+gFind :: (MonadPlus m, Data a, Typeable b) => a -> m b
+gFind = msum . map return . listify (const True)
+
+-- 

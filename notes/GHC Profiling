@@ -1,0 +1,8 @@
+# How to set path on remote logins:
+
+ssh -f -X dsf@gene.local “PATH=$PATH emacs”
+
+# How to background and detach a shell command
+
+% <bash command redirecting stdout and stderr to files> &
+% disown %1

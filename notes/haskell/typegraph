@@ -1,0 +1,30 @@
+To Do:
+
+   4. Remove the Item(?)
+   5. Show instances for TypePath s a and TypeSPath s
+   6. Remove the IsString e constraint
+   7. Remove Proxy t arguments from functions that now take TypePath t or TypeSPath t
+   9. More quickcheck properties
+* 10. Restore schema migration mechanism
+  11. Eliminate the nested splice from makePaths so we can use the typegraph stuff in th-typegraph.
+      Currently the start type needs to be hard coded.
+  12. Implement goKey
+* 13. Instead of a Proxy t argument can we add a t parameter to the monad?  Or to TypePath and TypeSPath?
+  14. Move the Path.TypeGraph modules to th-typegraph and re-implement the derive functions there
+
+
+  15. Would be nice to have a Ppr instance for TypeSPath s instead of (Proxy t, TypeSPath s).
+      The difficulty is applying the ViewType type function when necessary without the Q monad.
+  16. Renamed or replaced:
+         expandType' -> unE . expandType
+  17. Speed up diff
+  18. Eliminate the Query symbols in Data.Path.Paths
+  19. Add and use aliases:
+        type ATypePath = TypePath AppraisalPaths
+        type ATypeSPath = TypeSPath AppraisalPaths
+        path' = path [t|AppraisalPaths|]
+  20. Rename: goKey' -> goKey, goAt' -> goAt, goOrder' -> goOrder
+  21. A Set a is an Ixed instance where Index = a and IxValue = ().  However, our
+      IxValue and AtValue classes have two parameters - AtValue o ok.  Can we
+      eliminate the ok parameter?
+  22. Adding (Set a) to the primitve list should prevent the FieldHop 1 1 - but it doesn't.

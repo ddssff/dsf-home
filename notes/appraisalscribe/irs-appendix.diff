@@ -1,0 +1,25 @@
+--- fad20ba47a28a08f4f922585d6c5f5df.ltx~       2019-03-25 20:18:05.586129491 +0000
++++ fad20ba47a28a08f4f922585d6c5f5df.ltx        2019-03-25 20:58:29.482785988 +0000
+@@ -6,6 +6,8 @@
+ \usepackage[obeyspaces,hyphens]{url}
+ \urlstyle{sf}
+ \usepackage{lastpage}
++\usepackage{graphicx}
++\usepackage[final]{pdfpages}
+ \usepackage{rotating}
+ \usepackage{paralist}
+ \usepackage{graphicx}
+@@ -1353,4 +1355,11 @@
+ \caption[short]{Item 9 - Ed Moses - “Chalc”}%
+ \end{figure}}%
+
+-\end{document}
+\ No newline at end of file
++\newpage{}\section{Appendix B - Deed of Gift}
++\newpage{}\centering{}\includegraphics[height=10.00000in]{GA_2018.53_ppm-1.jpg}%
++\newpage{}\centering{}\includegraphics[height=10.00000in]{GA_2018.53_ppm-2.jpg}%
++\newpage{}\centering{}\includegraphics[height=10.00000in]{GA_2018.53_ppm-3.jpg}%
++\newpage{}\centering{}\includegraphics[height=10.00000in]{GA_2018.53_ppm-4.jpg}%
++\newpage{}\centering{}\includegraphics[height=10.00000in]{GA_2018.53_ppm-5.jpg}%
++
++\end{document}

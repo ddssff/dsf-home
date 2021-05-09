@@ -1,0 +1,26 @@
+# Install newdist on deb.seereason.com et. al
+
+	apt-get install newdist gnupg2
+	rsync ~/.gnupg from old server
+	Install postfix (options?  I just tried local only)
+
+# Remove a package from the local repo
+
+	sudo newdist --root=/home/dsf/.autobuilder/localpools/trusty-seereason --layout=Flat --remove=trusty-seereason,main,haskell-zlib=0.6.1.1-0+seereason1~trusty1
+
+Be sure to rebuild autobuilder-seereason with the changes that
+inspired this removal.  Also, uninstall the package from the depend
+environment if it got installed during previous build:
+
+	sudo newdist --root=/home/dsf/.autobuilder/dists/trusty-seereason/depend/work/localpool --layout=Flat --remove=trusty-seereason,main,haskell-zlib=0.6.1.1-0+seereason1~trusty1
+
+Just to be on the safe side:
+
+	rsync -aHxS --delete /home/dsf/.autobuilder/dists/trusty-seereason/depend/ /home/dsf/.autobuilder/dists/trusty-seereason/build
+
+
+Other packages may also have built against the new package, so the
+--allow-build-dependency-regressions flag will be needed.
+
+	cabal build
+	dist/build/autobuilder-seereason/autobuilder-seereason trusty-seereason --allow-build-dependency-regressions --all-targets > LOG01 2>&1

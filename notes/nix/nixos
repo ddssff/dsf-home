@@ -1,0 +1,45 @@
+install partition: /dev/sdb2
+uefi partition: /dev/sda1
+
+========================
+
+Boot ISO (via special boot menu)
+nix-env -i emacs
+systemctl start sshd
+scp dsf@192.168.1.209:.ssh/id_rsa.pub .ssh/authorized_keys
+
+(ssh from desktop to 192.168.1.215)
+ssh-keygen -f "/home/dsf/.ssh/known_hosts" -R 192.168.1.215
+ssh root@192.168.1.215
+(use gparted to create file system on /dev/sdb2 and label nixos)
+mkfs.ext4 -L nixos /dev/sdb2
+
+mount /dev/disk/by-label/nixos /mnt
+mkdir -p /mnt/boot
+mount /dev/sda1 /mnt/boot
+
+nixos-generate-config --root /mnt
+emacs /mnt/etc/nixos/configuration.nix
+
+(uncomment boot.loader.grub.device = "/dev/sda")
+
+networking.hostname = "nixos"
+set timezone: America/Los_Angeles?
+enable cups, sound, x11, touchpad, kde
+
+"for bios systems"
+boot.loader.grub.device = /dev/sda
+"for uefi systems" - I didn't set this
+boot.loader.systemd-boot.enable = true
+
+
+With bios:
+
+    /nix/store/rh6i0ni9pvznggp7ka36nb78vvv74s3m-grub-2.02/sbin/grub-install: warning: this GPT partition label contains no BIOS Boot Partition; embedding won't be possible.
+    /nix/store/rh6i0ni9pvznggp7ka36nb78vvv74s3m-grub-2.02/sbin/grub-install: warning: Embedding is not possible.  GRUB can only be installed in this setup by using blocklists.  However, blocklists are UNRELIABLE and their use is discouraged..
+    /nix/store/rh6i0ni9pvznggp7ka36nb78vvv74s3m-grub-2.02/sbin/grub-install: error: will not proceed with blocklists.
+    /nix/store/wrlyivfabzlmgsdzndc11biiw8r6pq6g-install-grub.pl: installation of GRUB on /dev/sda failed
+
+enabled "efiSupport", set efiSysMountPoint to /boot/efi (fail, now trying /boot/EFI), grub.device to "nodev"
+
+install successful

@@ -1,0 +1,4 @@
+BUILD AND RUN A SMALL GHCJS PROGRAM:
+
+$ ghcjs Foo.hs -o foo
+$ nodejs ./foo.jsexe/all.js

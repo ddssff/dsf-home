@@ -1,0 +1,5 @@
+See typegraph module Data.Path.Cast:
+
+    case (eqT :: Maybe (s :~: t), eqT :: Maybe (a :~: b)) of
+      (Just Refl, Just Refl) -> return l
+      _ -> fail "castTraversal"

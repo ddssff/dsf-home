@@ -1,0 +1,6 @@
+Fold notes:
+
+ * Only foldr can handle infinite lists: take 3 (foldr (:) [0] [1..]) -> [0,1,2]
+ * foldr can terminate early: foldr (||) False ([False, True] ++ replicate 1000000 undefined) is quick, foldl is slow
+ * foldl’ and foldr’ reduce the inner expression first: foldl' (+) 0 [1..100000000]
+ * foldl works if combining function is lazy in first argument: foldl (?) 1 [2,3,undefined,5,0]

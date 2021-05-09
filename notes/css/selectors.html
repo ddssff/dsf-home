@@ -1,0 +1,121 @@
+https://www.w3schools.com/cssref/css_selectors.asp
+
+=== ElEMENT SELECTOR ===
+
+Affects all <p>:
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p {
+    text-align: center;
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<p>Every paragraph will be affected by the style.</p>
+<p id="para1">Me too!</p>
+<p>And me!</p>
+
+</body>
+</html>
+
+===  ID SELECTOR ===
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+#para1 {
+    text-align: center;
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<p id="para1">Hello World!</p>
+<p>This paragraph is not affected by the style.</p>
+
+</body>
+</html>
+
+=== CLASS SELECTOR ===
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.center {
+    text-align: center;
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<h1 class="center">Red and center-aligned heading</h1>
+<p class="center">Red and center-aligned paragraph.</p>
+
+</body>
+</html>
+
+=== CLASS AND ELEMENT SELECTOR ===
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+p.center {
+    text-align: center;
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<h1 class="center">This heading will not be affected</h1>
+<p class="center">This paragraph will be red and center-aligned.</p> 
+
+</body>
+</html>
+
+=== SELECTOR GROUPING
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+h1, h2, p {
+    text-align: center;
+    color: red;
+}
+</style>
+</head>
+<body>
+
+<h1>Hello World!</h1>
+<h2>Smaller heading!</h2>
+<p>This is a paragraph.</p>
+
+</body>
+</html>
+
+=== MORE ===
+
+div, p			- Selects all <div> elements and all <p> elements
+div p			- Selects all <p> elements inside <div> elements
+div > p			- Selects all <p> elements where the parent is a <div> element
+div + p			- Selects all <p> elements that are placed immediately after <div> elements
+p ~ ul			- Selects every <ul> element that are preceded by a <p> element
+
+[target]		- Selects all elements with a target attribute
+[target=_blank]		- Selects all elements with target="_blank"
+[title~=flower]		- Selects all elements with a title attribute containing the word "flower"
+[lang|=en]		- Selects all elements with a lang attribute value starting with "en"
+a[href^="https"]	- Selects every <a> element whose href attribute value begins with "https"
+a[href$=".pdf"]		- Selects every <a> element whose href attribute value ends with ".pdf"
+a[href*="w3schools"]	- Selects every <a> element whose href attribute value contains the substring
