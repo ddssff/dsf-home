@@ -25,9 +25,13 @@ for i in `seq 1 32`; do
 done
 
 export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
-#export  NIX_PATH="nixpkgs=$HOME/nix-seereason/nixpkgs-channels:ssh-auth-sock=$SSH_AUTH_SOCK:ssh-config-file=$HOME/nix-seereason/ssh-config"
-#export NIX_PATH="nixpkgs=$HOME/nix-seereason/nixpkgs-channels:nixpkgs-overlays=$HOME/nix-seereason/seereason-local.nix:ssh-auth-sock=$SSH_AUTH_SOCK:ssh-config-file=$HOME/nix-seereason/ssh-config"
 export NIX_PATH="nixpkgs=$HOME/nix-seereason/nixpkgs-channels:ssh-auth-sock=$SSH_AUTH_SOCK:ssh-config-file=$HOME/nix-seereason/ssh-config"
+
+# Adds nixpkgs-overlays - what is this?
+#export NIX_PATH="nixpkgs=$HOME/nix-seereason/nixpkgs-channels:nixpkgs-overlays=$HOME/nix-seereason/seereason-local.nix:ssh-auth-sock=$SSH_AUTH_SOCK:ssh-config-file=$HOME/nix-seereason/ssh-config"
+
+# Do development with ~/nixpkgs
+# export NIX_PATH="nixpkgs=$HOME/nixpkgs:ssh-auth-sock=$SSH_AUTH_SOCK:ssh-config-file=$HOME/nix-seereason/ssh-config"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
