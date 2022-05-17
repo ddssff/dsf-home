@@ -2,8 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-#export LANG=en_US.utf8
-export LANG=C.UTF8
+export LANG=en_US.UTF-8
 
 #echo "Entering .bashrc on $HOSTNAME, PATH=$PATH"
 
