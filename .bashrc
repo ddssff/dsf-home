@@ -2,8 +2,7 @@
 # see /usr/share/doc/bash/examples/startup-files (in the package bash-doc)
 # for examples
 
-#export LANG=en_US.utf8
-export LANG=C.UTF8
+export LANG=en_US.UTF-8
 
 #echo "Entering .bashrc on $HOSTNAME, PATH=$PATH"
 
@@ -38,6 +37,12 @@ NIX_PATH="$NIX_PATH:ssh-config-file=$HOME/nix-seereason/ssh-config"
 
 # To use ghc HEAD instead of 9.2.2
 # nix-shell -I nixpkgs=/home/dsf/nixpkgs/ -p 'haskell.packages.ghcHEAD.ghcWithPackages (pkgs: with pkgs; [ ])'
+
+# Adds nixpkgs-overlays - what is this?
+#export NIX_PATH="nixpkgs=$HOME/nix-seereason/nixpkgs-channels:nixpkgs-overlays=$HOME/nix-seereason/seereason-local.nix:ssh-auth-sock=$SSH_AUTH_SOCK:ssh-config-file=$HOME/nix-seereason/ssh-config"
+
+# Do development with ~/nixpkgs
+# export NIX_PATH="nixpkgs=$HOME/nixpkgs:ssh-auth-sock=$SSH_AUTH_SOCK:ssh-config-file=$HOME/nix-seereason/ssh-config"
 
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
