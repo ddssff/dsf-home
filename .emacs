@@ -309,3 +309,4 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../../../sr-extra"
 	"../../../chili"
 	))
+(put 'upcase-region 'disabled nil)
