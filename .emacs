@@ -26,6 +26,7 @@
 (add-to-list 'load-path "~/elisp/start.d")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
+(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20190926.313")
 (load-library "vc-git-dired")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
