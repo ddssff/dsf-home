@@ -1,0 +1,86 @@
+# Pull with submodules (the first time)
+
+git submodule update --init-recursive (
+
+# Pull with submodules (the first time)
+git submodule update --recursive --remote
+
+# Revert a remote repository to a particular commit:
+
+git push https://github.com/seereason/th-desugar +2bf3815:master
+
+# Cherry pick a patch from another repo:
+
+(cd ../haskell-devscripts.old && git format-patch -k -1 --stdout <commit SHA>) | git am -3 -k
+
+# Convert a repo from darcs to git:
+
+cd ~/darcs/myrepo
+git init ../git/myrepo
+darcs convert export | (cd ~/git/myrepo && git fast-import)
+
+(create myrepo on github)
+
+cd ~/git/myrepo
+git remote add origin git@github.com:me/myrepo.git
+git push -u origin master
+cd ..
+rm -rf myrepo
+git clone git@github.com:me/myrepo.git
+
+# Reset unstaged changes
+
+git checkout -- .
+
+# Turn staged changes back into unstaged changes
+
+git reset
+
+# Unrecord commit and leave as unstaged changes
+
+git reset <commit>
+
+# Stash unstaged changes and pull:
+
+git stash
+git pull
+git stash pop
+
+# Stash unstaged change and pull in presence of non-conflicting local commits:
+
+<need to test>
+(Equivalent to darcs pull)
+
+# Use a branch to create a pull request
+
+Create the branch on github.com
+Check out that branch:  git clone git@github.com:seereason/th-desugar.git --branch th-orphans th-desugar.th-orphans
+Verify checkout: 
+  Local branch configured for 'git pull':
+    th-orphans merges with remote th-orphans
+  Local ref configured for 'git push' (status not queried):
+    (matching) pushes to (matching)
+Make sure it is rewound to where you want it
+Add patches to checkout
+git push as usual
+
+# Branch at a particular commit
+
+Click on the commit where you want to branch
+Click “Browse Files”
+Create branch using branch dropdown
+
+# Reset changes in a single file
+
+    git checkout -- filename
+
+# ddssff.github.io
+
+# Push a patch from master to branch ghc-8.0
+
+# Split a subdirectory into its own repository
+
+1. Create new repository (history) on github.com
+2. cd /tmp
+3. git clone git@github.com:seereason/happstack-ghcjs.git
+4. ?

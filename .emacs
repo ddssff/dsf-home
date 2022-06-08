@@ -26,6 +26,7 @@
 (add-to-list 'load-path "~/elisp/start.d")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
+(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20190926.313")
 (load-library "vc-git-dired")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -98,7 +99,7 @@
 (setq haskell-program-name "ghci")
 
 (add-hook 'haskell-mode-hook 'turn-on-font-lock)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 ;(remove-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
@@ -263,13 +264,14 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"./happstack-ghcjs-client"
 	"./happstack-ghcjs-server"
 	"./happstack-ghcjs-common"
-	"./webmodule"
+	"./webmodule.conflicts"
 	"./appraisalscribe-data"
 	"./image-cache"
-	"./alderon2"
-	"./history"
+	"./alderon2.conflicts"
+	"./history.conflicts"
 	"./lens-path"
 	"./sr-extra"
+	"./chili"
 	".."
 	"../happstack-ghcjs-client"
 	"../happstack-ghcjs-server"
@@ -281,6 +283,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../history"
 	"../lens-path"
 	"../sr-extra"
+	"../chili"
 	"../.."
 	"../../happstack-ghcjs-client"
 	"../../happstack-ghcjs-server"
@@ -292,6 +295,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../../history"
 	"../../lens-path"
 	"../../sr-extra"
+	"../../chili"
 	"../.."
 	"../../../happstack-ghcjs-client"
 	"../../../happstack-ghcjs-server"
@@ -303,4 +307,6 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../../../history"
 	"../../../lens-path"
 	"../../../sr-extra"
+	"../../../chili"
 	))
+(put 'upcase-region 'disabled nil)

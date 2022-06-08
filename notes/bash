@@ -1,0 +1,2 @@
+How to change $PATH for an emacs process launched via ssh -f -X dsf@trusty.local emacs:
+

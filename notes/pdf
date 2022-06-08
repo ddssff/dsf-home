@@ -1,0 +1,7 @@
+To insert new pages into a pdf:
+
+   pdfseparate jones2.pdf jones2-%02d.pdf
+
+copy the new pages into the correct locations
+
+   pdfjoin jones2-??.pdf

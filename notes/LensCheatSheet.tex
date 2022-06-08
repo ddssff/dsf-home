@@ -1,0 +1,195 @@
+% This file was converted to LaTeX by Writer2LaTeX ver. 1.0.2
+% see http://writer2latex.sourceforge.net for more info
+\documentclass[a4paper]{article}
+\usepackage[ascii]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[english]{babel}
+\usepackage{amsmath}
+\usepackage{amssymb,amsfonts,textcomp}
+\usepackage{color}
+\usepackage{array}
+\usepackage{hhline}
+\usepackage{hyperref}
+\hypersetup{pdftex, colorlinks=true, linkcolor=blue, citecolor=blue, filecolor=blue, urlcolor=blue, pdftitle=, pdfauthor=, pdfsubject=, pdfkeywords=}
+% List styles
+\newcommand\liststyleWWNumiii{%
+\renewcommand\labelitemi{${\bullet}$}
+\renewcommand\labelitemii{${\circ}$}
+\renewcommand\labelitemiii{${\blacksquare}$}
+\renewcommand\labelitemiv{${\bullet}$}
+}
+\newcommand\liststyleWWNumv{%
+\renewcommand\labelitemi{${\bullet}$}
+\renewcommand\labelitemii{${\circ}$}
+\renewcommand\labelitemiii{${\blacksquare}$}
+\renewcommand\labelitemiv{${\bullet}$}
+}
+\newcommand\liststyleWWNumi{%
+\renewcommand\labelitemi{${\bullet}$}
+\renewcommand\labelitemii{${\circ}$}
+\renewcommand\labelitemiii{${\blacksquare}$}
+\renewcommand\labelitemiv{${\bullet}$}
+}
+\newcommand\liststyleWWNumii{%
+\renewcommand\labelitemi{${\bullet}$}
+\renewcommand\labelitemii{${\circ}$}
+\renewcommand\labelitemiii{${\blacksquare}$}
+\renewcommand\labelitemiv{${\bullet}$}
+}
+\newcommand\liststyleWWNumiv{%
+\renewcommand\labelitemi{${\bullet}$}
+\renewcommand\labelitemii{${\circ}$}
+\renewcommand\labelitemiii{${\blacksquare}$}
+\renewcommand\labelitemiv{${\bullet}$}
+}
+% Page layout (geometry)
+\setlength\voffset{-1in}
+\setlength\hoffset{-1in}
+\setlength\topmargin{0in}
+\setlength\oddsidemargin{1in}
+\setlength\textheight{8.732699in}
+\setlength\textwidth{6.2681in}
+\setlength\footskip{0.0cm}
+\setlength\headheight{1in}
+\setlength\headsep{0.9602in}
+% Footnote rule
+\setlength{\skip\footins}{0.0469in}
+\renewcommand\footnoterule{\vspace*{-0.0071in}\setlength\leftskip{0pt}\setlength\rightskip{0pt plus 1fil}\noindent\textcolor{black}{\rule{0.0\columnwidth}{0.0071in}}\vspace*{0.0398in}}
+% Pages styles
+\makeatletter
+\newcommand\ps@Standard{
+  \renewcommand\@oddhead{}
+  \renewcommand\@evenhead{\@oddhead}
+  \renewcommand\@oddfoot{}
+  \renewcommand\@evenfoot{}
+  \renewcommand\thepage{\arabic{page}}
+}
+\makeatother
+\pagestyle{Standard}
+\title{}
+\author{}
+\date{}
+\begin{document}
+\clearpage\setcounter{page}{1}\pagestyle{Standard}
+
+The initial insight of lenses was to pack up a getter and a setter:
+
+
+\bigskip
+
+\ \ \ \ data Lens s a = Lens (s -{\textgreater} a) (a -{\textgreater} s
+-{\textgreater} s)
+
+
+\bigskip
+
+This type is actually called Lens{\textquoteright} in this package.
+\ Its capability corresponds to the getting and setting of the fields
+of a type with a single constructor. \ For setting a simpler type like
+a newtype it is more powerful than necessary, and this and similar
+cases are handled by the Iso type:
+
+
+\bigskip
+
+\ \ \ data Iso s a = Iso (s -{\textgreater} a) (a -{\textgreater} s)
+
+
+\bigskip
+
+On the other hand, lenses are not powerful enough to deal with a type
+that has multiple constructors, for which the Prism type is provided:
+
+
+\bigskip
+
+\textbf{IsA heirarchy}
+
+
+\bigskip
+
+\liststyleWWNumiii
+\begin{itemize}
+\item Every Prism is a Traversal
+\item Every Iso is a Prism
+\item Every Iso is a Lens
+\item Every Lens is a Setter
+\item Every Lens is a Getter
+\item Every Getter is a Fold
+\end{itemize}
+
+\bigskip
+
+\textbf{Basic Functions for Applying}
+
+
+\bigskip
+
+\liststyleWWNumv
+\begin{itemize}
+\item view {}- Extract a value for a Getter, or a Monoid for a Fold or
+Traversal
+\item use - Use the target of a Lens, Iso, or Getter in the current
+state, or use a summary of a Fold or Traversal that points to a
+monoidal value.
+\item listening - Writer monad
+\item over - modify target (Setter)
+\item set - Replace the target of a Lens or all of the targets of a
+Setter or Traversal with a constant value. (Setter)
+\end{itemize}
+
+\bigskip
+
+\textbf{Basic functions for building}
+
+
+\bigskip
+
+\liststyleWWNumi
+\begin{itemize}
+\item lens{\textquoteright}
+\item iso{\textquoteright}
+\item prism{\textquoteright}
+\item re - Turn a Prism or Iso around to build a Getter. (Review)
+\item to - Build an (index-preserving) Getter from an arbitrary Haskell
+function. (Getter)
+\item from - invert an Iso (Iso)
+\item mapped - This Setter can be used to map over all of the values in
+a Functor.
+\item singular
+\end{itemize}
+
+\bigskip
+
+\textbf{Identities}
+
+\bigskip
+
+\liststyleWWNumii
+\begin{itemize}
+\item view . to ${\equiv}$ id
+\item from (from l) ${\equiv}$ l
+\item under ${\equiv}$ over . from
+\item f . from f ${\equiv}$ id\newline
+from f . f ${\equiv}$ id
+\item review ${\equiv}$ view . re
+\item review . unto ${\equiv}$ id
+\item 
+\bigskip
+\end{itemize}
+
+\bigskip
+
+\textbf{Name conventions}
+
+
+\bigskip
+
+\liststyleWWNumiv
+\begin{itemize}
+\item Prefix {\textquotedblleft}i{\textquotedblright} - indexed variant
+\item Suffix {\textquotedblleft}s{\textquotedblright} -
+{\textquotedblleft}function of{\textquotedblright} variant
+\item Suffix single quote - simplified variant
+\end{itemize}
+\end{document}

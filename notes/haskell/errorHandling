@@ -1,0 +1,33 @@
+import Control.Monad.Except (MonadError(throwError, catchError), ExceptT, withExceptT)
+
+MonadError e m is a type class of monads that have error type e.  So
+suppose we build a custom error type PathError (this name is from a
+project I am working on which has constructors for all our lowest
+level errors.  We write all the functions that throw PathError with
+the return type MonadError PathError m => m r.
+
+Now we need to use these functions to write a quickcheck property that
+returns Gen a.  We can use ExceptT to achieve this.  We use the
+functions that return (MonadError PathError m => m a) to build an
+expression of type ExceptT PathError Gen a, then run that to get Gen
+(Either PathError a), which we can then turn into a Gen a with either:
+
+   runExceptT <a computation> >>= either (error . show) return
+
+Ok, so far so good.  Now we arrive at the next level of the library
+where a new error type EditError is declared.  One of its fields is
+"PathError PathError", a constructor named PathError which wraps up a
+value of type PathError.  Now we are writing computations with the
+return type (MonadError EditError m => m a), but we need to call
+functions which have type (MonadError PathError m => m a).  We can use
+withExceptT to lift the lower level functions into the new error type.
+
+  withExceptT PathError <a computation>
+
+But suppose the computation is passed a function parameter of type
+<MonadError EditError m => m a>?  One way to solve this problem is to
+add a parameter to the functions used in the computation to transform
+the PathError value, and then pass the PathError constructor to that
+to build an EditError.  It is unfortunate to have to change the signature
+of the lower level functions, so a different solution would be desirable.
+barbara

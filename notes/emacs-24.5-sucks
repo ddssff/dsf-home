@@ -1,0 +1,37 @@
+Why emacs-24.5 sucks:
+
+1. ^X-b (switch-to-buffer) does not allow you to switch to the buffer
+   you are already in.
+
+2. ^X-2 behavior is not predictable - sometimes it splits vertically,
+   sometimes horizontally.  fix:
+
+     ;; "Fix" emacs23 window splitting behavior.
+     (setq split-width-threshold nil)
+     (setq split-height-threshold nil)
+
+3. You never know where ^X-B (buffer-menu-other-window) list is going
+   to appear - in 24.3 it always appeared in the next window
+   (other-window 1) would visit.  The same happens with
+   (dired-find-file-other-window), describe-function (^h f),
+   describe-key (^h k).
+
+    (defun my-buffer-menu-other-window ()
+      "Pop up the buffer menu in other window"
+      (interactive)
+      (other-window 1)
+      (buffer-menu)
+      (other-window -1))
+   (define-key global-map (kbd "C-x C-b") 'my-buffer-menu-other-window)
+
+   The function dired-find-file-other-window calls find-file-other-window, which
+   calls switch-to-buffer-other-window, which passes t as the action argument down
+   to pop-to-buffer, which calls display-buffer.
+
+    (defun dired-find-file-other-window ()
+      "In Dired, visit this file or directory in another window."
+      (interactive)
+      (other-window 1)
+      (dired-find-file)
+      (other-window -1))
+   (define-key global-map (kbd "C-x C-b") 'my-buffer-menu-other-window)

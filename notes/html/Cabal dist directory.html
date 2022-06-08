@@ -1,0 +1,48 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { margin: 1in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+	</style>
+</head>
+<body lang="en" dir="ltr">
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+To link an executable against the library being built in the current
+directory we can use the -package-db flag of ghc.  To access from
+cabal we use cabal’s --ghc-arg flag:</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+    <font face="Courier New, serif">--ghc-arg=-package-db=dist/package.conf.inplace</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+However, the dist directory is sometimes set to dist-ghc, how can we
+determine that, or cause it to be what we want?  From cabal this is
+set using</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+    <font face="Courier New, serif">--builddir=dist-ghc</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+It defaults to dist, and haskell-devscripts set it to dist-ghc when
+building a debian package.  In the cabal 
+</p>
+</body>
+</html>

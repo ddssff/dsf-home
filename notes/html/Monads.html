@@ -1,0 +1,53 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 1in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+	</style>
+</head>
+<body lang="en-US" dir="ltr">
+<p align="center" style="margin-bottom: 0in; line-height: 115%"><i><b>Monads
+and Me</b></i></p>
+<p style="margin-bottom: 0in; line-height: 115%"><br/>
+
+</p>
+<p style="margin-bottom: 0in; line-height: 115%">When you see a
+function with a signature like</p>
+<p style="margin-bottom: 0in; line-height: 115%"><br/>
+
+</p>
+<p style="margin-bottom: 0in; line-height: 115%">  <font face="Courier New, serif"><font size="2" style="font-size: 10pt">appraisalUI
+:: MonadIO m =&gt; AppraisalUI -&gt; MyView -&gt; </font></font><font color="#ff0000"><font face="Courier New, serif"><font size="2" style="font-size: 10pt">Alderon
+MyView m</font></font></font><font face="Courier New, serif"><font size="2" style="font-size: 10pt">
+()</font></font></p>
+<p style="margin-bottom: 0in; line-height: 115%"><br/>
+
+</p>
+<p style="margin-bottom: 0in; line-height: 115%"><font size="2" style="font-size: 10pt">the
+portion of the return type which shown here in red is a type with one
+parameter, that is, a type whose kind is * -&gt; *.  My mental model
+for understanding what the red portion of the type signature means is
+pretty clear in cases like </font><font color="#ff0000"><font size="2" style="font-size: 10pt">Set</font></font><font size="2" style="font-size: 10pt">
+or </font><font color="#ff0000"><font size="2" style="font-size: 10pt">Maybe</font></font><font size="2" style="font-size: 10pt">,
+but it is much less clear for complicated types like the one above. 
+Particularly magical for me are monads like </font><font face="Courier New, serif"><font size="2" style="font-size: 10pt">StateT</font></font><font size="2" style="font-size: 10pt">,
+which make it seem like that red portion is a container with a
+persistent value which you can access with </font><font face="Courier New, serif"><font size="2" style="font-size: 10pt">get
+</font></font><font size="2" style="font-size: 10pt">and</font><font face="Courier New, serif"><font size="2" style="font-size: 10pt">
+put</font></font><font size="2" style="font-size: 10pt">.</font></p>
+<p style="margin-bottom: 0in; line-height: 115%"><br/>
+
+</p>
+<p style="margin-bottom: 0in; line-height: 115%"><font size="2" style="font-size: 10pt">This
+is a fine way of thinking about it when you are using the monad, but
+it seems to confuse me when I am trying to modify it or write a</font><font face="Courier New, serif"><font size="2" style="font-size: 10pt">
+MonadState</font></font><font size="2" style="font-size: 10pt">
+instance.</font></p>
+</body>
+</html>

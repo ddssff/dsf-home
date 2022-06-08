@@ -1,0 +1,7 @@
+To test for empty diff in a unit test:
+
+import Data.Path.Preface (diffText)
+
+assertString diffText ("a", a) ("b", b)
+
+import Data.Algorithm.DiffContext (getContextDiff, prettyContextDiff)

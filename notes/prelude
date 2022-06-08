@@ -1,0 +1,10 @@
+#if !MIN_VERSION_base(4,8,0)
+import Data.Monoid (Monoid, mempty)
+import Control.Applicative (Applicative(..), (<$>))
+import Data.Foldable (Foldable)
+import Control.Applicative()
+#endif
+
+#if MIN_VERSION_base(4,9,0)
+import Data.Semigroup (Semigroup(..))
+#endif

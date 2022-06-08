@@ -1,0 +1,3 @@
+* Convert odt files to html(?)
+   w2l (writer2atex) seems to do this.  But sometimes it can't.
+* Why doesn't conversion unoconv -f latex work?

@@ -1,0 +1,5 @@
+emacs-25 still sucks.  For example:
+
+1. M-x shell does not always appear in the current window.  This
+   is because of the use of pop-to-buffer from window.el, whereas
+   emacs-24.3 used pop-to-buffer-same-window.

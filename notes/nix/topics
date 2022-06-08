@@ -1,0 +1,6 @@
+Things to know about nix:
+
+1. How to install and deploy
+2. How to configure and modify
+     A. Installing software: nix-env -i 
+3. How to package software

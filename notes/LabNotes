@@ -1,0 +1,61 @@
+5 Feb 2018
+==========
+
+Cabal and cabal-install
+-----------------------
+
+1. Building ghcjs requires the cabal option --solver=topdown, which
+   was removed after version 1.24.0.2
+2. Ghc-8 requires cabal-install-1.24.0.2 to install packages
+3. Building cabal-install-1.24.0.2 is failing because it isn't
+   setting the name of the Cabal package to libghc-cabal2-dev.
+4. Building it by hand (with dpkg-buildpackage) gives out of date
+   dependency hackage-security.  Autobuilt and uploaded this.
+5. Build deps of cabal-install now install.  Build of cabal-install
+   fails because of mismatches betweeen libghc-cabal-dev provided by
+   ghc-8.0.2 and libghc-cabal2-dev.  Can we remove libghc-cabal2-dev?
+   The build dependencies in cabal-install should actually read
+   ghc | libghc-cabal-dev to get the built in Cabal library.
+6. Need to withdraw haskell-cabal2 from the repository and rebuild
+   hackage-security.
+7. Installed cabal-install-1.24 from hvr's repo.  Now building
+   autobuilder.  Remove the cabal2 target.
+8. Autobuild and upload autobuilder-group.  AutoBuilder target is
+   trying to installcabal-1.22.5.0-2.  Why?  Luckily I cleaned out
+   the quilt and debianize directories.
+9. Clean out the remaining cabal-2 package with --flush-pool
+   --flush-depends.  Need to update cabal-debian for cabal-2 BTW.
+
+13 Feb 2018
+===========
+
+Logging
+-------
+
+The logging facility we have been using just keeps an open file handle
+- this keeps log rotation from working.  Switching from
+System.Log.Handler.Simple to System.Log.Handler.Syslog fixed this
+issue, but how to get it to work?
+
+1. Modify call to openlog to use facility LOCAL1
+2. Add file to /etc/syslog.d/30-appraisalscribe.log containing "local1.* /var/log/appraisalscribe.log"
+3. Change line "*.*;auth,authpriv.none -/var/log/syslog" to "*.*;auth,authpriv.none;local1.none -/var/log/syslog" in 50-default.conf
+3. Create file /var/log/appraisalscribe.log and change ownership to syslog.adm
+4. Restart logger: service syslog restart
+
+logging-facade
+--------------
+
+This package provides a simple (perhaps overly simple) front end for
+logging, with packages logging-facade-systemd and
+logging-facade-journald each supplying a LogSink value which
+encapsulate the back ends.  It only provides functions for
+manipulating the LogSink and for sending messages to the log.
+
+libsystemd-journal
+------------------
+
+This package provides functions for
+  1. Constructing messages using the journald structure,
+  2. Sending these messages to a log
+  3. Reading journald logs

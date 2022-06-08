@@ -1,0 +1,16 @@
+About Versioned Dependencies on Builtin Packages
+------------------------------------------------
+
+If cabal-debian detects that a package is built in to the compiler it is
+supposed to generate unversioned dependencies like
+
+    libghc-cabal-dev | ghc, libghc-cabal-prof | ghc-prof,
+
+rather than versioned ones like
+
+    libghc-cabal-dev (>= 2.0.1.0) | ghc, libghc-cabal-dev (<< 2.1) | ghc
+
+Unfortunately, if the cabal file has versions the debian/control files
+gets them too.  To build successfully it is necessary to patch the cabal
+file.  This introduces some danger of inappropriate versions (of Cabal in
+this case,) but makes the build work.

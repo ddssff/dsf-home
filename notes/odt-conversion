@@ -1,0 +1,3 @@
+To convert a .odt document to pdf:
+
+  unoconv -f pdf --export=ExportFormFields=false aws.odt

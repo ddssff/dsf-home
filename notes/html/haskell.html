@@ -1,0 +1,259 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 1in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+	</style>
+</head>
+<body lang="en-US" dir="ltr">
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<b>Package Versions</b></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+GHC ifdefs</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+If you are using ghc-7.10 for primary development, these ifdefs may
+be necessary for older compilers to work:</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+    <font face="Courier New, serif">#if !MIN_VERSION_base(4,8,0)</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+    <font face="Courier New, serif">import Control.Applicative (pure,
+(&lt;$&gt;), (&lt;*&gt;))</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+    <font face="Courier New, serif">Import Data.Monoid (mappend,
+mconcat, mempty)</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+    <font face="Courier New, serif">#endif</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+If MIN_VERSION_base is not available, it should be safe to use</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+    <font face="Courier New, serif">#if __GLASGOW_HASKELL__ &gt; 709</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<b>Package Versions in ghci</b></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+You can use lightly edited macros from autogen like this:</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">:set
+-DMIN_VERSION_template_haskell(major1,major2,minor)=((major1)&lt;2||(major1)==2&amp;&amp;(major2)&lt;10||(major1)==2&amp;&amp;(major2)==10&amp;&amp;(minor)&lt;=0)</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif"><b>UndecidableInstances</b></font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+Not 100% clear on this, but often the “constraint is no larger than
+the instance head” message can be resolved by moving a constraint
+from the instance to the class (if it is under your control.)  For
+example, I moved <font face="Courier New, serif">U (Value path) Int</font>
+from <font face="Courier New, serif">instance path [a] </font>to
+class Path in the typegraph package.  I’m sure if I sat down and
+thought about this it would become clearer.</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<b>Parsing Version Numbers</b></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+To turn a string into a Data.Version.Version using parsec:</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">import Data.Version (parseVersion,
+Version)</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">import Data.Char (isSpace)</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">Import Data.Maybe (listToMaybe)</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">import Text.ParserCombinators.ReadP
+(ReadP, readP_to_S)</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">parseMaybe :: ReadP a -&gt; String -&gt;
+Maybe a<br/>
+parseMaybe p = listToMaybe . map fst . filter (all
+isSpace . snd) . readP_to_S p</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%; page-break-before: always">
+<font face="Courier New, serif"><b>Regular Expressions</b></font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">import Text.Regex.TDFA ((=~))</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">case s =~ “^lib([^-]*)-(.*)-[^-]*$”::
+(String, String, String, [String]) of</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+  <font face="Courier New, serif">(_, _, _, [name]) -&gt; Just
+(BinPkgName name)</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+  <font face="Courier New, serif">_ -&gt; Nothing</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<b>Wrapping a newtype around a ReaderT monad</b></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+In order to avoid type ambiguities between different reader monads,
+we need<br/>
+-- a newtype wrapper around this ReaderT FileCacheTop.</p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">newtype FileCacheT m a = FileCacheT
+{runFileCacheT :: ReaderT FileCacheTop m a} deriving (Monad,
+Applicative, Functor)<br/>
+<br/>
+instance (Monad m, Monad (FileCacheT
+m)) =&gt; MonadFileCache (FileCacheT m) where<br/>
+    --
+fileCacheTop :: FileCacheT m FilePath<br/>
+    fileCacheTop =
+FileCacheT (ReaderT (return . unFileCacheTop))</font></p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">mapFileCacheT :: (m a -&gt; m a) -&gt;
+FileCacheT m a -&gt; FileCacheT m a<br/>
+mapFileCacheT f = FileCacheT
+. mapReaderT f . runFileCacheT<br/>
+<br/>
+instance MonadTrans
+FileCacheT where<br/>
+    lift = FileCacheT . lift<br/>
+instance
+MonadReader r m =&gt; MonadReader r (FileCacheT m) where</font></p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+    <font face="Courier New, serif">ask = lift ask</font></p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+    <font face="Courier New, serif">local = mapFileCacheT . local</font></p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif"><br/>
+instance MonadIO m =&gt;
+MonadIO (FileCacheT m) where<br/>
+    liftIO = FileCacheT .
+liftIO<br/>
+<br/>
+instance MonadThrow m =&gt; MonadThrow (FileCacheT
+m) where<br/>
+    throwM e = lift $ throwM e<br/>
+instance MonadCatch
+m =&gt; MonadCatch (FileCacheT m) where<br/>
+    catch :: forall e a.
+Exception e =&gt; FileCacheT m a -&gt; (e -&gt; FileCacheT m a) -&gt;
+FileCacheT m a<br/>
+    catch (FileCacheT m) c = FileCacheT $ m
+`catch` (runFileCacheT . c)<br/>
+-- Hmm, familiar...<br/>
+instance
+MonadError e m =&gt; MonadError e (FileCacheT m) where<br/>
+   
+throwError :: e -&gt; FileCacheT m a<br/>
+    throwError e = lift $
+throwError e<br/>
+    catchError :: FileCacheT m a -&gt; (e -&gt;
+FileCacheT m a) -&gt; FileCacheT m a<br/>
+    catchError (FileCacheT
+m) c = FileCacheT $ m `catchError` (runFileCacheT . c)</font></p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif"><b>Setting up haskell-mode</b></font></p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">C-c C-l runs
+haskell-mode-enable-process-minor-mode, but it responds “Run `C-h f
+haskell-mode` for instruction how to setup a Haskell interaction
+mode.”  This says that we want to set up interactive-haskell-mode
+by running</font></p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-left: -0.56in; margin-right: -0.92in; margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">(add-hook 'haskell-mode-hook
+'interactive-haskell-mode)<br/>
+</font><br/>
+
+</p>
+</body>
+</html>

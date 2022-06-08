@@ -24,7 +24,19 @@ for i in `seq 1 32`; do
 done
 
 export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
-export NIX_PATH="nixpkgs=$HOME/nix-seereason/nixpkgs-channels:ssh-auth-sock=$SSH_AUTH_SOCK:ssh-config-file=$HOME/nix-seereason/ssh-config"
+
+# Stable
+export NIX_PATH="nixpkgs=$HOME/nix-seereason/nixpkgs-channels"
+
+# Unstable
+# export NIX_PATH="nixpkgs=$HOME/nixpkgs-unstable"
+
+# NIX_PATH="$NIX_PATH:nixpkgs-overlays=$HOME/nix-seereason/seereason-local.nix"
+NIX_PATH="$NIX_PATH:ssh-auth-sock=$SSH_AUTH_SOCK"
+NIX_PATH="$NIX_PATH:ssh-config-file=$HOME/nix-seereason/ssh-config"
+
+# To use ghc HEAD instead of 9.2.2
+# nix-shell -I nixpkgs=/home/dsf/nixpkgs/ -p 'haskell.packages.ghcHEAD.ghcWithPackages (pkgs: with pkgs; [ ])'
 
 # Adds nixpkgs-overlays - what is this?
 #export NIX_PATH="nixpkgs=$HOME/nix-seereason/nixpkgs-channels:nixpkgs-overlays=$HOME/nix-seereason/seereason-local.nix:ssh-auth-sock=$SSH_AUTH_SOCK:ssh-config-file=$HOME/nix-seereason/ssh-config"

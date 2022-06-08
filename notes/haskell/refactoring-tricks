@@ -1,0 +1,102 @@
+1. Wrap a type you want to change with a Newtype and get things to recompile.
+   Then you can add fields to it, remove the old fields, then remove the newtype
+2. To merge two arguments, replace the first argument with the pair containing
+   both, and replace the second with ().  Get it to build, then remove the ().
+3. If you suspect a MonadError function has no failure mode, try changing its
+   error type to ().  Alternatively, comment out all the constructors in the error
+   type and restore each one as needed.
+4. Create an error type for each function, creating embedded error types for
+   each function it calls.  This lets you find out what errors are truly
+   possible for each function.
+
+5. The best so far. If you have a monad stack you use throughout a program and
+   you want to convert it to a class with a single instance do as follows.  Try
+   this one:
+
+     newtype EventHandlerT e r w s m a = EventHandlerT {
+       unEventHandlerT :: RWST r w s (ExceptT e (ReaderT (LoaderChannel (EventHandlerT e r w s)) m)) a
+       } deriving (Functor, Applicative, Monad)
+
+   First, rename the original type with a quote.  Constructor name can stay
+   the same:
+
+     newtype EventHandlerT' e r w s m a = EventHandlerT {
+       unEventHandlerT :: RWST r w s (ExceptT e (ReaderT (LoaderChannel (EventHandlerT' e r w s)) m)) a
+       } deriving (Functor, Applicative, Monad)
+
+   Create the class with a single type parameter and type functions
+   for each of its parameters.  These type functions shouid have
+   short names, but its best if they don't conflict with anything
+   else in your codebase.  Omit the return value type a.  Kind
+   signatures may help if there's anything exotic in there:
+
+     class EventHandlerT m' where
+         type E m'
+         type R m'
+         type W m'
+         type S m'
+         type H m' :: (* -> *) -> * -> *
+         type M m' :: * -> *
+
+   Note the added H type, which will represent the EventHandlerT' e r w s
+   type that appears in EventHandlerT'.  Add an instance for the renamed type:
+
+     instance EventHandlerT (EventHandlerT' e r w s m a) where
+         type E (EventHandlerT' e r w s m a) = e
+         type R (EventHandlerT' e r w s m a) = r
+         type W (EventHandlerT' e r w s m a) = w
+         type S (EventHandlerT' e r w s m a) = s
+         type H (EventHandlerT' e r w s m a) = h
+         type M (EventHandlerT' e r w s m a) = m
+
+   Modify existing instances of the type to use the new name. Warnings
+   will look like this:
+
+      • Expected kind ‘k0 -> * -> k1 -> (* -> *) -> * -> *’,
+          but ‘EventHandlerT e’ has kind ‘Constraint’
+
+     instance (Monad m, Monoid w) => MonadState s (EventHandlerT' e r w s m) where
+       get = EventHandlerT RWS.get
+       put = EventHandlerT . RWS.put
+
+   Keep the monad runner function (with renamed type)
+
+     runEventHandlerT :: LoaderChannel (EventHandlerT' e r w s) -> EventHandlerT' e r w s m a -> r -> s -> m (Either e (a, s, w))
+     runEventHandlerT chan m r s = runReaderT (runExceptT (runRWST (unEventHandlerT m) r s)) chan
+
+   Convert functions that use the type internals into methods.  Use
+   constraints to bind the old variables, and use type applications as
+   required in the instance.  So
+
+     ehCatchError ::
+         Catch e (RWST r w s (ExceptT e (ReaderT (LoaderChannel (EventHandlerT e r w s)) m))) a
+      -> Catch e (EventHandlerT e r w s m) a
+     ehCatchError f = \m h -> EventHandlerT (f (unEventHandlerT m) (unEventHandlerT . h))
+
+   becomes
+
+     class EventHandlerT m' where
+     ...
+         ehCatchError ::
+             (r ~ R m', w ~ W m', s ~ S m', e ~ E m', m ~ M m')
+             => Catch e (RWST r w s (ExceptT e (ReaderT (LoaderChannel m') m))) a
+             -> Catch e m' a
+
+     instance EventHandlerT (EventHandlerT' e r w s m a) where
+     ...
+         ehCatchError f = \m h -> EventHandlerT' (f (unEventHandlerT m) (unEventHandlerT . h))
+
+
+* Replace old type in signatures with a constraint m' ~ EventHandlerT' e r r w
+* Replace m' ~ EventHandlerT' e r w s with EventHandlerT m' and bind the old arguments to the type functions
+* Remove m' ~ EventHandlerT' e r w s and build, adding constraints as necessary
+* Make EventHandlerT' local to its home module
+* Remove all redundant constraints, replace hard coded types with type variables as possible
+
+
+============
+
+Another try:
+
+  * Rename constructor of original (concrete type) by adding a quote
+  * 

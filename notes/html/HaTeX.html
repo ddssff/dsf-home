@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<html>
+<head>
+	<meta http-equiv="content-type" content="text/html; charset=utf-8"/>
+	<title></title>
+	<meta name="generator" content="LibreOffice 5.1.6.2 (Linux)"/>
+	<meta name="created" content="00:00:00"/>
+	<meta name="changed" content="00:00:00"/>
+	<style type="text/css">
+		@page { size: 8.27in 11.69in; margin: 1in }
+		p { margin-bottom: 0.1in; line-height: 120% }
+	</style>
+</head>
+<body lang="en-US" dir="ltr">
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">class (Monoid l,IsString l) =&gt;
+LaTeXC l where<br/>
+  liftListL :: ([LaTeX] -&gt; LaTeX) -&gt; [l] -&gt;
+l</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">newtype LaTeXT m a =<br/>
+  LaTeXT {
+unwrapLaTeXT :: WriterT LaTeX m a }</font></p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<br/>
+
+</p>
+<p style="margin-bottom: 0in; border: none; padding: 0in; line-height: 115%">
+<font face="Courier New, serif">instance (Monad m, a ~ ()) =&gt;
+LaTeXC (LaTeXT m a) where<br/>
+ liftListL f xs = mapM extractLaTeX_
+xs &gt;&gt;= textell . f<br/>
+</font><br/>
+
+</p>
+</body>
+</html>
