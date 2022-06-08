@@ -309,4 +309,18 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../../../sr-extra"
 	"../../../chili"
 	))
+
+
+(defun insert-date ()
+  "Insert current date in abbreviated format."
+  (interactive "*")
+  (let* ((now (current-time-string))	;With ugly-printed timestamp
+	 (firstchar (string-to-char (substring now 8 9))))
+    (if (/= firstchar 32) (insert-char firstchar 1))
+    (insert (substring now 9 10) " "	;Insert day of month
+	    (substring now 4 7) " "	;Abbreviated name of month
+	    (substring now 20 24))))	;Full year number
+
+(define-key esc-map "D" 'insert-date)
+
 (put 'upcase-region 'disabled nil)
