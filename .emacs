@@ -231,10 +231,11 @@ If there is no associated filename, it finds the parent of (pwd)."
         ("." nil (reusable-frames . visible))
 	))
 
-;; Set 14pt default font
+;; Set the default font based on the display height
 (set-face-attribute 'default nil
                     :family "Monospace"
-                    :height 140
+                    :height (cond ((<= (display-pixel-height) 1440) 100)
+				  (t 140))
                     :weight 'normal
                     :width 'normal)
 
