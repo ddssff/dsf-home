@@ -13,16 +13,6 @@ export LANG=en_US.UTF-8
 #set -x
 
 # allow nix-daemon to use your ssh-agent
-for i in `seq 1 32`; do
-    setfacl -m "u:nixbld${i}:r-x" $HOME
-    setfacl -m "u:nixbld${i}:r-x" $HOME/nix-seereason
-    setfacl -m "u:nixbld${i}:r--" $HOME/nix-seereason/ssh-config
-    if [[ ! -z "$SSH_AUTH_SOCK" ]] ; then
-      setfacl -m "u:nixbld${i}:rwx" $(dirname ${SSH_AUTH_SOCK})
-      setfacl -m "u:nixbld${i}:rwx" ${SSH_AUTH_SOCK}
-    fi
-done
-
 export PATH="$HOME/.nix-profile/bin:/nix/var/nix/profiles/default/bin:$PATH"
 
 # Stable
