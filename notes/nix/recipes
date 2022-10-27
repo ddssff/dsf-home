@@ -1,0 +1,34 @@
+========================== NIX REPL =========================
+
+# nix repl lets you type nix expressions
+
+% nix repl
+nix-repl> builtins.attrNames (import "/home/dsf/nixpkgs-unstable/default.nix" {}).haskell
+[ "compiler" "lib" "override" "overrideDerivation" "package-list" "packageOverrides" "packages" ]
+nix-repl> builtins.attrNames (import "/home/dsf/nixpkgs-unstable/default.nix" {}).haskell.packages
+[ "ghc8102Binary" "ghc8102BinaryMinimal" "ghc8107" "ghc8107Binary" "ghc8107BinaryMinimal" "ghc843" "ghc844" "ghc864" "ghc865Binary" "ghc884" "ghc902" "ghc922Binary" "ghc922BinaryMinimal" "ghc923" "ghcHEAD" "ghcjs" "ghcjs810" "integer-simple" "native-bignum" ]
+
+nix-repl> :t <nixpkgs>
+:t <nixpkgs>
+a path
+
+nix-repl> builtins.attrNames (import "/home/dsf/nix-seereason/nixpkgs-channels/default.nix" {}).haskell.packages
+
+========================== NIX EVAL =========================
+% nix eval --raw nixpkgs.lib.version
+22.11pre-git
+% nix eval nixpkgs.lib.version
+"22.11pre-git"
+========================== NIX-SHELL =========================
+
+
+# Read default.nix or shell.nix and execute a command
+# nix-shell --command emacs
+
+========================== NIX-ENV =========================
+
+nix-env -iA emacsPackagesNg.melpaPackages.nix-mode
+
+======================== INF-HASKELL =======================
+
+nix-env -iA emacsPackagesNg.melpaPackages.haskell-mode
