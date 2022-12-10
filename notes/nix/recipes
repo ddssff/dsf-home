@@ -32,3 +32,11 @@ nix-env -iA emacsPackagesNg.melpaPackages.nix-mode
 ======================== INF-HASKELL =======================
 
 nix-env -iA emacsPackagesNg.melpaPackages.haskell-mode
+
+======================== NIX VERSION =======================
+
+$ nix --version
+nix (Nix) 2.11.1
+$ nix-env -iA nix234 -p /nix/var/nix/profiles/default
+$ nix --version
+nix (Nix) 2.3.4
