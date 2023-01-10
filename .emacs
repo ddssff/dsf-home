@@ -39,6 +39,7 @@
 (setq isearch-lax-whitespace nil)
 (setq grep-command "grep -r -n -e ")
 (put 'downcase-region 'disabled nil)
+(setq visible-bell t)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; BEHAVIOR FIXES ;;
