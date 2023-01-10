@@ -248,7 +248,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 (setenv "NIX_REMOTE_SYSTEMS" "/etc/nix/machines") ;; will be used when we have distributed builds
 (package-initialize)
 (add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp") ;; so we can find `nix-mode`
-(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20181212.1342")
+(add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20190119.125")
 (require 'nix-mode) ;; might be required to get nix-mode to run automatically for .nix files, not sure.
 
 ;;;;;;;;;;;
