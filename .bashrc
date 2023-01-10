@@ -37,6 +37,8 @@ NIX_PATH="$NIX_PATH:ssh-config-file=$HOME/nix-seereason/ssh-config"
 # If not running interactively, don't do anything
 [ -z "$PS1" ] && return
 
+export EDITOR=emacs
+
 # . ~/.ssh/environment
 
 #echo "Finishing .bashrc on $HOSTNAME, PATH=$PATH"

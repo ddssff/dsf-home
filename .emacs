@@ -26,7 +26,9 @@
 (add-to-list 'load-path "~/elisp/start.d")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp")
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
-(add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20190926.313")
+(add-to-list 'load-path "/home/dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
+;(add-to-list 'load-path "/home/dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20190926.313")
+(add-to-list 'load-path "/home/dsf/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20190119.125")
 (load-library "vc-git-dired")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -93,7 +95,8 @@
 
 (add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
 ; 16.1-3 includes this
-(require 'inf-haskell)
+;(require 'inf-haskell)
+(require 'haskell-mode)
 
 ; ^C^L - go haskell
 ; ^C^R - reload
@@ -104,7 +107,7 @@
 ;(remove-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook 'inf-haskell-mode)
+; (add-hook 'haskell-mode-hook 'inferior-haskell-mode)
 (add-hook 'haskell-mode-after-save-hook t)
 (defun haskell-mode-after-save-handler ())
 (defun haskell-doc-current-info ())
@@ -259,6 +262,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 (add-to-list 'load-path "~dsf/elisp/start.d")
 (load-library "display-buffer-alist")
 (load-library "50narrow")
+(load-library "50haskell")
 (put 'scroll-left 'disabled nil)
 
 (setq compilation-search-path

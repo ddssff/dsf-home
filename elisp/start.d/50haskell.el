@@ -1,5 +1,6 @@
-;(require 'haskell)
-(require 'inf-haskell)
+(require 'haskell)
+(require 'haskell-mode)
+;(require 'inf-haskell)
 
 ; ^C^L - go haskell
 ; ^C^R - reload
@@ -7,11 +8,11 @@
 ;(setq haskell-program-name "ghcjsi")
 
 (add-hook 'haskell-mode-hook 'turn-on-font-lock)
-(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
+;(add-hook 'haskell-mode-hook 'turn-on-haskell-doc-mode)
 ;(remove-hook 'haskell-mode-hook 'turn-on-haskell-indentation)
 (add-hook 'haskell-mode-hook 'turn-on-haskell-indent)
 (add-hook 'haskell-mode-hook 'haskell-indentation-mode)
-(add-hook 'haskell-mode-hook 'inf-haskell-mode)
+;(add-hook 'haskell-mode-hook 'inferior-haskell-mode)
 
 (defun inferior-haskell-find-project-root (buf)
   (let* ((cabal-file (inferior-haskell-cabal-of-buf buf)))
