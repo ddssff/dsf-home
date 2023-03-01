@@ -84,3 +84,8 @@ Create branch using branch dropdown
 2. cd /tmp
 3. git clone git@github.com:seereason/happstack-ghcjs.git
 4. ?
+
+# Change global configuration:
+
+<edit /etc/nixos/configuration.nix>
+# nixos-rebuild switch

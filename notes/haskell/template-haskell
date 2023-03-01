@@ -1,0 +1,5 @@
+> :m +Language.Haskell.TH
+> :m +Language.Haskell.TH.Instances
+> :m +Language.Haskell.TH.Lift
+> $(lift . show =<< [d|deriving instance Ord Int|])
+"[StandaloneDerivD Nothing [] (AppT (ConT GHC.Classes.Ord) (ConT GHC.Types.Int))]"
