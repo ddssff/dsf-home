@@ -213,8 +213,15 @@ If there is no associated filename, it finds the parent of (pwd)."
 (define-key dired-mode-map "q" 'dired-parent)
 (define-key dired-mode-map "Q" 'dired-exit)
 
+(defun remove-ghc-environment-and-recompile ()
+  "Remove any .ghc.environment* file and recompile"
+  (interactive)
+  (shell-command "rm .ghc.environment*")
+  (recompile))
 
-;; Configure `display-buffer' behaviour for some special buffers
+(define-key compilation-mode-map "G" 'remove-ghc-environment-and-recompile)
+
+;; configure `display-buffer' behaviour for some special buffers
 (setq display-buffer-alist
       `(;; Open shell in a single window
         (,(rx bos "*shell")
@@ -236,10 +243,15 @@ If there is no associated filename, it finds the parent of (pwd)."
 	))
 
 ;; Set the default font based on the display height
+(message (format "(display-pixel-height) -> %d" (display-pixel-height)))
+(message (format "(display-mm-height) -> %d" (display-mm-height)))
+;; Benq UHD - height=571mm, pixels=2160
 (set-face-attribute 'default nil
                     :family "Monospace"
-                    :height (cond ((<= (display-pixel-height) 1440) 100)
-				  (t 140))
+                    :height (cond ((eq (display-pixel-height) 1200) 120) ;; thinkpad g10?
+				  ((eq (display-pixel-height) 1440) 160) ;; thinkpad
+				  ((eq (display-pixel-height) 2160) 150) ;; uhd benq monitor
+				  (t 160))
                     :weight 'normal
                     :width 'normal)
 
