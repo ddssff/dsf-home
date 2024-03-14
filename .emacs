@@ -28,7 +28,8 @@
 (add-to-list 'load-path "/usr/share/emacs/site-lisp/haskell-mode")
 (add-to-list 'load-path "/home/dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
 ;(add-to-list 'load-path "/home/dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20190926.313")
-(add-to-list 'load-path "/home/dsf/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20190119.125")
+;(add-to-list 'load-path "/home/dsf/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20190119.125")
+(add-to-list 'load-path "/home/dsf/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20181212.1342")
 (load-library "vc-git-dired")
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -301,6 +302,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../history"
 	"../lens-path"
 	"../sr-extra"
+	"../sr-cache"
 	"../chili"
 	"../.."
 	"../../happstack-ghcjs-client"
@@ -313,6 +315,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../../history"
 	"../../lens-path"
 	"../../sr-extra"
+	"../../sr-cache"
 	"../../chili"
 	"../.."
 	"../../../happstack-ghcjs-client"
@@ -325,9 +328,9 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../../../history"
 	"../../../lens-path"
 	"../../../sr-extra"
+	"../../../sr-cache"
 	"../../../chili"
 	))
-
 
 (defun insert-date ()
   "Insert current date in abbreviated format."
