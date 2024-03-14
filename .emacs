@@ -130,34 +130,6 @@
 
 (require 'compile)
 
-; Try to improve next-error performance on ghc error messages
-;(set-default 'compilation-error-regexp-alist '(ghc))
-;(add-to-list 'compilation-error-regexp-alist-alist
-;  '(ghc "^\\(\\|               defined at \\|               imported from `[^']*\' at \\|               \(and originally defined at \\)\\([^ 	\n]+\\):\\([0-9]+\\):\\([0-9]+\\):?$" 2 3 4))
-
-;(add-hook 'darcs-dired-mode-hook
-;       (lambda () (setq compile-command "runhaskell Setup build")))
-
-(defconst haskell-compilation-error-regexp-alist
-  `((,(concat
-       "^ *\\(?1:[^\t\r\n]+?\\):"
-       "\\(?:"
-       "\\(?2:[0-9]+\\):\\(?4:[0-9]+\\)\\(?:-\\(?5:[0-9]+\\)\\)?" ;; "121:1" & "12:3-5"
-       "\\|"
-       "(\\(?2:[0-9]+\\),\\(?4:[0-9]+\\))-(\\(?3:[0-9]+\\),\\(?5:[0-9]+\\))" ;; "(289,5)-(291,36)"
-       "\\)"
-       ":\\(?6: Warning:\\)?")
-     1 (2 . 3) (4 . 5) (6 . nil)) ;; error/warning locus
-
-    ;; multiple declarations
-    ("^    \\(?:Declared at:\\|            \\) \\(?1:[^ \t\r\n]+\\):\\(?2:[0-9]+\\):\\(?4:[0-9]+\\)$"
-     1 2 4 0) ;; info locus
-
-    ;; this is the weakest pattern as it's subject to line wrapping et al.
-    (" at \\(?1:[^ \t\r\n]+\\):\\(?2:[0-9]+\\):\\(?4:[0-9]+\\)\\(?:-\\(?5:[0-9]+\\)\\)?[)]?$"
-     1 2 (4 . 5) 0)) ;; info locus
-  "Regexps used for matching GHC compile messages.
-See `compilation-error-regexp-alist' for semantics.")
 
 (setq multibyte-syntax-as-symbol nil)
 
