@@ -39,7 +39,7 @@
 (setq-default show-trailing-whitespace t)
 (setq require-final-newline nil)
 (setq isearch-lax-whitespace nil)
-(setq grep-command "grep -r -n -e ")
+(setq grep-command "grep -r -n --exclude-dir=dist-newstyle -e ")
 (put 'downcase-region 'disabled nil)
 (setq visible-bell t)
 
