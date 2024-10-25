@@ -3,12 +3,6 @@
 ;;;;;;;;;;;;;;;;;;
 
 
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
-(package-initialize)
-
 (define-key esc-map "M" 'manual-entry)
 (define-key esc-map "K" 'bury-buffer)
 (define-key esc-map "Z" 'shell)
@@ -234,7 +228,6 @@ If there is no associated filename, it finds the parent of (pwd)."
 
 (setenv "PAGER" "cat") ;; don't try to use less/more in M-x shell. Alternatively you can set `NIX_PAGER` to only affect nix
 (setenv "NIX_REMOTE_SYSTEMS" "/etc/nix/machines") ;; will be used when we have distributed builds
-(package-initialize)
 (add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp") ;; so we can find `nix-mode`
 (add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20190119.125")
 (require 'nix-mode) ;; might be required to get nix-mode to run automatically for .nix files, not sure.

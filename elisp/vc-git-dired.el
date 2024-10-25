@@ -1,7 +1,7 @@
 (require 'vc-git)
 (require 'dired)
 (require 'dired-aux)
-(require 'cl)
+;(require 'cl)
 
 (defun drop-prefix (prefix string)
   (cond ((> (length prefix) (length string)) string)
@@ -236,10 +236,11 @@ the listings to reflect arch version control"
 		(inventory-alist (git--inventory directory))
 	        ; I don't think git-dired-do-changes has ever been set non-nil,
 		; which is why it is ok that git--changes never existed.
-		(changes (if git-dired-do-changes (git--changes) git-dired-changes-list)))
+		(changes (if git-dired-do-changes (git--changes) git-dired-changes-list))
+		; Let this code modify the buffer
+		(inhibit-read-only t))
 	   (if git-dired-do-changes
 	       (set (make-local-variable 'git-dired-changes-list) changes))
-	   (toggle-read-only -1)
 	   (goto-char 0)
 	   (insert-remote-origin directory)
 	   (goto-line 2)
@@ -254,7 +255,6 @@ the listings to reflect arch version control"
 	     (if (not (or (looking-at "\\.$") (looking-at "\\.\\.$")))
 		 (git--edit-dired-line top subdir inventory-alist changes))
 	     (dired-next-line 1))
-	   (toggle-read-only 1)
 	   (message "Getting directory GIT info ... done")
 	   ))
 	))
