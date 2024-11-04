@@ -30,6 +30,7 @@
 ;; BEHAVIOR PREFERENCES ;;
 ;;;;;;;;;;;;;;;;;;;;;;;;;;
 
+(set-language-environment "UTF-8")
 (setq inhibit-splash-screen t)
 (setq-default show-trailing-whitespace t)
 (setq require-final-newline nil)
@@ -37,6 +38,7 @@
 (setq grep-command "grep -r -n --exclude-dir=dist-newstyle -e ")
 (put 'downcase-region 'disabled nil)
 (setq visible-bell t)
+(setq sort-fold-case t)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; BEHAVIOR FIXES ;;
@@ -217,7 +219,7 @@ If there is no associated filename, it finds the parent of (pwd)."
                     :family "Monospace"
                     :height (cond ((eq (display-pixel-height) 1200) 120) ;; thinkpad g10?
 				  ((eq (display-pixel-height) 1440) 160) ;; thinkpad
-				  ((eq (display-pixel-height) 2160) 150) ;; uhd benq monitor
+				  ((eq (display-pixel-height) 2160) 230) ;; uhd benq monitor
 				  (t 160))
                     :weight 'normal
                     :width 'normal)
@@ -245,23 +247,10 @@ If there is no associated filename, it finds the parent of (pwd)."
 
 (setq compilation-search-path
       '("."
-	"./happstack-ghcjs-client"
-	"./happstack-ghcjs-server"
-	"./happstack-ghcjs-common"
-	"./webmodule.conflicts"
-	"./appraisalscribe-data"
-	"./image-cache"
-	"./alderon2.conflicts"
-	"./history.conflicts"
-	"./lens-path"
-	"./sr-extra"
-	"./chili"
-	".."
-	"../happstack-ghcjs-client"
-	"../happstack-ghcjs-server"
-	"../happstack-ghcjs-common"
+        "seereason"
+        "appraisalscribe-types"
+        "happstack-ghcjs-server/tools"
 	"../webmodule"
-	"../appraisalscribe-data"
 	"../image-cache"
 	"../alderon2"
 	"../history"
@@ -270,11 +259,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../sr-cache"
 	"../chili"
 	"../.."
-	"../../happstack-ghcjs-client"
-	"../../happstack-ghcjs-server"
-	"../../happstack-ghcjs-common"
 	"../../webmodule"
-	"../../appraisalscribe-data"
 	"../../image-cache"
 	"../../alderon2"
 	"../../history"
@@ -283,11 +268,7 @@ If there is no associated filename, it finds the parent of (pwd)."
 	"../../sr-cache"
 	"../../chili"
 	"../.."
-	"../../../happstack-ghcjs-client"
-	"../../../happstack-ghcjs-server"
-	"../../../happstack-ghcjs-common"
 	"../../../webmodule"
-	"../../../appraisalscribe-data"
 	"../../../image-cache"
 	"../../../alderon2"
 	"../../../history"
