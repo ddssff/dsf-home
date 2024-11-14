@@ -217,7 +217,8 @@ If there is no associated filename, it finds the parent of (pwd)."
 ;; Benq UHD - height=571mm, pixels=2160
 (set-face-attribute 'default nil
                     :family "Monospace"
-                    :height (cond ((eq (display-pixel-height) 1200) 120) ;; thinkpad g10?
+                    :height (cond ((eq (display-pixel-height) 1080) 110) ;; thinkpad g10?
+				  ((eq (display-pixel-height) 1200) 120) ;; thinkpad g10?
 				  ((eq (display-pixel-height) 1440) 160) ;; thinkpad
 				  ((eq (display-pixel-height) 2160) 230) ;; uhd benq monitor
 				  (t 160))
