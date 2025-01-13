@@ -8,6 +8,8 @@
 (define-key ctl-x-map "|" 'split-window-horizontally)
 (define-key ctl-x-map "\C-l" 'goto-line)
 (define-key ctl-x-map "\C-b" 'buffer-menu-other-window)
+(define-key esc-map "C" 'compile)
+(define-key global-map "\C-^" 'next-error)
 
 ;; Set font size according to screen height
 
@@ -101,3 +103,89 @@
 (define-key esc-map "C" 'compile)
 (define-key global-map "\C-^" 'next-error)
 (define-key compilation-mode-map "G" 'remove-ghc-environment-and-recompile)
+
+(setq compilation-search-path
+      '("."
+        "seereason"
+        "appraisalscribe-types"
+        "happstack-ghcjs-server/tools"
+	"../webmodule"
+	"../image-cache"
+	"../alderon2"
+	"../history"
+	"../lens-path"
+	"../sr-extra"
+	"../sr-cache"
+	"../chili"
+	"../.."
+	"../../webmodule"
+	"../../image-cache"
+	"../../alderon2"
+	"../../history"
+	"../../lens-path"
+	"../../sr-extra"
+	"../../sr-cache"
+	"../../chili"
+	"../.."
+	"../../../webmodule"
+	"../../../image-cache"
+	"../../../alderon2"
+	"../../../history"
+	"../../../lens-path"
+	"../../../sr-extra"
+	"../../../sr-cache"
+	"../../../chili"
+	))
+
+;;;;;;;;;;;
+;; DIRED ;;
+;;;;;;;;;;;
+
+(defun dired-parent ()
+  "This function runs dired on the parent of the current file.
+If there is no associated filename, it finds the parent of (pwd)."
+  (interactive)
+  (let ((dirname buffer-file-name)
+	(filename buffer-file-name)
+	(basename)
+	)
+    ; Figure out what directory we're looking for
+    (if (eq (cdr (assq 'major-mode (buffer-local-variables))) 'dired-mode)
+	(setq filename (cdr (assq 'dired-directory
+				  (buffer-local-variables)))))
+    (if (eq (length dirname) 0)
+	(setq dirname (substring (pwd) 10)))
+
+    (if (string-equal (substring dirname 0 2) "~/")
+	(progn
+	  (setq dirname (and dirname (expand-file-name dirname)))
+	  (setq filename (and filename (expand-file-name filename)))))
+
+    (if (not (string-equal dirname "/"))
+	(progn
+	  (setq dirname (directory-file-name dirname))
+	  (while (not (string-equal (substring dirname -1) "/"))
+	    (setq basename (concat (substring dirname -1) basename))
+	    (setq dirname (substring dirname 0 -1)))))
+
+    ; Get that directory
+    (find-file (directory-file-name dirname))
+
+    ; Position the cursor
+    ;(message (concat "dirname: " dirname))
+    ;(message (concat "filename: " filename))
+    ;(message (concat "basename: " basename))
+    (let ((name (concat dirname basename)))
+      (if (not (eq (length name) 0))
+	  (dired-goto-file name)))
+    ))
+
+(defun dired-exit ()
+  "Quit editing this directory."
+  (interactive)
+  (dired-do-flagged-delete)
+  (kill-buffer (current-buffer)))
+
+(load-library "dired")
+(define-key dired-mode-map "q" 'dired-parent)
+(define-key dired-mode-map "Q" 'dired-exit)
