@@ -218,9 +218,10 @@ If there is no associated filename, it finds the parent of (pwd)."
 (set-face-attribute 'default nil
                     :family "Monospace"
                     :height (cond ((eq (display-pixel-height) 1200) 120) ;; thinkpad g10?
-				  ((eq (display-pixel-height) 1440) 160) ;; thinkpad
-				  ((eq (display-pixel-height) 2160) 230) ;; uhd benq monitor
-				  (t 160))
+				  ((eq (display-pixel-height) 1440) 180) ;; thinkpad
+				  ((eq (display-pixel-height) 2160) 140) ;; uhd benq monitor
+				  ((eq (display-pixel-height) 3600) 140) ;; Not sure why this is happening
+				  (t 180))
                     :weight 'normal
                     :width 'normal)
 
@@ -304,3 +305,6 @@ If there is no associated filename, it finds the parent of (pwd)."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+(setq gc-cons-threshold (eval-when-compile (* 100 1024 1024)))
+(run-with-idle-timer 2 t (lambda () (garbage-collect)))
