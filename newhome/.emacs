@@ -189,3 +189,19 @@ If there is no associated filename, it finds the parent of (pwd)."
 (load-library "dired")
 (define-key dired-mode-map "q" 'dired-parent)
 (define-key dired-mode-map "Q" 'dired-exit)
+
+;;;;;;;;;;;;;
+;; HASKELL ;;
+;;;;;;;;;;;;;
+
+(if (file-exists-p "~/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
+  (progn
+    (add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
+    (require 'haskell-mode)
+    (defun haskell-mode-after-save-handler ())
+    ))
+
+(if (file-exists-p "~/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
+  (progn
+    (add-to-list 'load-path "~/.nix-profile/share/emacs/site-lisp/elpa/nix-mode-20181212.1342")
+    ))

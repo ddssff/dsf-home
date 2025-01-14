@@ -127,7 +127,7 @@
 (require 'compile)
 
 
-(setq multibyte-syntax-as-symbol nil)
+(setq multibyte-syntax-as-symbol nil) ; why?
 
 ;;;;;;;;;;;
 ;; DIRED ;;
