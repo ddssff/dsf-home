@@ -89,3 +89,8 @@ Create branch using branch dropdown
 
 <edit /etc/nixos/configuration.nix>
 # nixos-rebuild switch
+
+# Pull a particular commit that has already been fetched?
+
+git pull . 61bc70a19f78eb152d40c0a8549aac7efb817c0f
+git pull --ff-only . 61bc70a19f78eb152d40c0a8549aac7efb817c0f

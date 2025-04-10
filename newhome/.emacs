@@ -16,9 +16,9 @@
 (set-face-attribute 'default nil
                     :family "Monospace"
                     :height (cond ((eq (display-pixel-height) 1080) 110) ;; thinkpad g10?
-				  ((eq (display-pixel-height) 1200) 120) ;; thinkpad g10?
+				  ((eq (display-pixel-height) 1200) 150) ;; thinkpad g10? <--
 				  ((eq (display-pixel-height) 1440) 160) ;; thinkpad
-				  ((eq (display-pixel-height) 2160) 140) ;; uhd benq monitor
+				  ((eq (display-pixel-height) 2160) 200) ;; uhd benq monitor
 				  (t 160))
                     :weight 'normal
                     :width 'normal)
@@ -28,6 +28,7 @@
 (add-to-list 'load-path "~dsf/elisp")
 (load-library "vc-git-dired")
 (load-library "50narrow")
+(load-library "50display-time")
 
 (set-language-environment "UTF-8")
 (setq inhibit-splash-screen t)
@@ -39,6 +40,9 @@
 (put 'upcase-region 'disabled nil)
 (setq visible-bell t)
 ; (setq sort-fold-case t)
+(setq undo-outer-limit 100000000)
+
+(setq-default frame-title-format (file-name-nondirectory (directory-file-name default-directory)))
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; BEHAVIOR FIXES ;;
@@ -52,6 +56,13 @@
 (setq line-move-visual nil)
 
 (electric-indent-mode -1) ; Restore old behavior
+
+;(defun switch-to-buffer-same-window ()
+;  "do not switch windows ever"
+;  (interactive)
+;  (switch-to-buffer nil t))
+;
+;(define-key ctl-x-map "b" 'switch-to-buffer-same-window)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; VI WORD MOTION ;;
@@ -198,3 +209,13 @@ If there is no associated filename, it finds the parent of (pwd)."
   (defun haskell-mode-after-save-handler ())))
 
 (put 'scroll-left 'disabled nil)
+
+;;;;;;;;;
+;; GIT ;;
+;;;;;;;;;
+
+(defun push-this-buffer (comment)
+  (interactive (list (read-string (format "push for [%s]: " default-directory))))
+  (save-buffer)
+  (shell-command (format "git add -A; git commit -a -m \" %s\"; git push &"
+                     comment)))

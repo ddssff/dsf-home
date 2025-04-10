@@ -191,25 +191,30 @@ If there is no associated filename, it finds the parent of (pwd)."
 (define-key compilation-mode-map "G" 'remove-ghc-environment-and-recompile)
 
 ;; configure `display-buffer' behaviour for some special buffers
-(setq display-buffer-alist
-      `(;; Open shell in a single window
-        (,(rx bos "*shell")
-         (display-buffer-same-window)
-         (reusable-frames . nil))
-        (,(rx bos "*Buffer List*")
-         (display-buffer-use-some-window)
-         (reusable-frames . nil))
-        (,(rx bos "*vc*")
-         (display-buffer-use-some-window)
-         (reusable-frames . nil))
-        (,(rx bos "*grep")
-         (display-buffer-use-some-window)
-         (reusable-frames . nil))
-        ;; Let `display-buffer' reuse visible frames for all buffers. This must
-        ;; be the last entry in `display-buffer-alist', because it overrides any
-        ;; previous entry with more specific actions.
-        ("." nil (reusable-frames . visible))
-	))
+; (setq display-buffer-alist
+;       `(;; Open shell in a single window
+;         (,(rx bos "*shell")
+;          (display-buffer-same-window)
+;          (reusable-frames . nil))
+;         (,(rx bos "*Buffer List*")
+;          (display-buffer-use-some-window)
+;          (reusable-frames . nil))
+;         (,(rx bos "*vc*")
+;          (display-buffer-use-some-window)
+;          (reusable-frames . nil))
+;         (,(rx bos "*grep")
+;          (display-buffer-use-some-window)
+;          (reusable-frames . nil))
+;         ;; Let `display-buffer' reuse visible frames for all buffers. This must
+;         ;; be the last entry in `display-buffer-alist', because it overrides any
+;         ;; previous entry with more specific actions.
+;         ("." nil (reusable-frames . visible))
+; 	))
+
+(add-to-list 'display-buffer-alist
+             `(,(rx bos "*shell*")
+               display-buffer-same-window
+               (reusable-frames . visible)))
 
 ;; Set the default font based on the display height
 (message (format "(display-pixel-height) -> %d" (display-pixel-height)))
