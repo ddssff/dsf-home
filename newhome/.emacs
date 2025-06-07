@@ -57,12 +57,37 @@
 
 (electric-indent-mode -1) ; Restore old behavior
 
-;(defun switch-to-buffer-same-window ()
-;  "do not switch windows ever"
-;  (interactive)
-;  (switch-to-buffer nil t))
-;
-;(define-key ctl-x-map "b" 'switch-to-buffer-same-window)
+;; Never switch windows for shell (C-Z)
+(add-to-list 'display-buffer-alist
+             '("^\\*shell\\*$" . (display-buffer-same-window)))
+
+;; Never switch windows for C-x b
+(defun switch-to-buffer-same-window (buffer-or-name &optional norecord)
+  "Select the buffer specified by BUFFER-OR-NAME in this window.
+BUFFER-OR-NAME may be a buffer, a string (a buffer name), or
+nil.  Return the buffer switched to.
+
+If called interactively, read the buffer name using `read-buffer'.
+The variable `confirm-nonexistent-file-or-buffer' determines
+whether to request confirmation before creating a new buffer.
+See `read-buffer' for features related to input and completion
+of buffer names.
+
+If BUFFER-OR-NAME is a string and does not identify an existing
+buffer, create a new buffer with that name.  If BUFFER-OR-NAME is
+nil, switch to the buffer returned by `other-buffer'.
+
+Optional second argument NORECORD non-nil means do not put this
+buffer at the front of the list of recently selected ones.
+
+This uses the function `display-buffer' as a subroutine; see its
+documentation for additional customization information."
+  (interactive
+   (list (read-buffer-to-switch "Switch to buffer in same window: ")))
+  (switch-to-buffer buffer-or-name nil norecord))
+
+(define-key ctl-x-map "b" 'switch-to-buffer-same-window)
+(define-key ctl-x-map "b" 'switch-to-buffer)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; VI WORD MOTION ;;
