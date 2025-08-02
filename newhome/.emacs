@@ -29,6 +29,7 @@
 (load-library "vc-git-dired")
 (load-library "50narrow")
 (load-library "50display-time")
+(load-library "50misc")
 
 (set-language-environment "UTF-8")
 (setq inhibit-splash-screen t)

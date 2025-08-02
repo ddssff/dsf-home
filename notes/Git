@@ -9,6 +9,10 @@ git submodule update --recursive --remote
 
 git push https://github.com/seereason/th-desugar +2bf3815:master
 
+# Pull a patch from another checked out repo
+
+git pull --ff-only ../happstack-ghcjs.aldron ????
+
 # Cherry pick a patch from another repo:
 
 (cd ../haskell-devscripts.old && git format-patch -k -1 --stdout <commit SHA>) | git am -3 -k
