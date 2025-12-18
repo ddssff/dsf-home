@@ -11,21 +11,24 @@ or create a new one if none found."
       (let ((default-directory current-dir))
         (shell)))))
 
-(defun best-shell (potential-child-path)
+(defun best-shell (child-path)
   "Return the buffer that is the best shell for a child path"
   (let* ((buffers (buffer-list))
-	 (dirs (mapcar #'buffer-directory buffers))
-         (pairs (zip buffers dirs))
-	 (pairs2 (seq-filter #'is-shell-buffer pairs))
-         (pairs3 (mapcar (lambda (pair)
-			   (cons (car pair) (length (fill-common-string-prefix potential-child-path (cdr pair)
-						     ; common-prefix potential-child-path pair
-								   ))))
-			 pairs2))
-	 (pairs4 (max-by #'cdr pairs3)))
-    (car pairs4)))
+	 ; Zip each buffers with its working directory
+         (pairs (zip buffers (mapcar #'buffer-directory buffers)))
+	 ; Filter out non-shells
+	 (shells (seq-filter #'is-shell-buffer pairs))
+	 ; Filter out non-parents
+	 (parents (seq-filter (lambda (x) (is-prefix-of (cdr x) child-path)) shells))
+	 ; The best shell is the parent with the longest path
+	 (best (max-by (lambda (pair) (length (cdr pair))) parents)))
+    (princ (format "here: %s, parents: %s" child-path parents))
+    (car best)))
 
-; (derived-mode-p 'shell-mode)
+(defun is-prefix-of (prefix string)
+  "Return t if PREFIX is a prefix of STRING, nil otherwise."
+  (and (<= (length prefix) (length string))
+       (string= prefix (substring string 0 (length prefix)))))
 
 (defun max-by (key-function list)
   "Return the element from LIST for which KEY-FUNCTION returns the maximum value.
