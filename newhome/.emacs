@@ -1,16 +1,3 @@
-;;;;;;;;;;;;;;;;;;
-;; KEY BINDINGs ;;
-;;;;;;;;;;;;;;;;;;
-
-(define-key esc-map "M" 'manual-entry)
-(define-key esc-map "K" 'bury-buffer)
-(define-key esc-map "Z" 'shell)
-(define-key ctl-x-map "|" 'split-window-horizontally)
-(define-key ctl-x-map "\C-l" 'goto-line)
-(define-key ctl-x-map "\C-b" 'buffer-menu-other-window)
-(define-key esc-map "C" 'compile)
-(define-key global-map "\C-^" 'next-error)
-
 ;; Set font size according to screen height
 
 (set-face-attribute 'default nil
@@ -18,7 +5,7 @@
                     :height (cond ((eq (display-pixel-height) 1080) 110) ;; thinkpad g10?
 				  ((eq (display-pixel-height) 1200) 150) ;; thinkpad g10? <--
 				  ((eq (display-pixel-height) 1440) 160) ;; thinkpad
-				  ((eq (display-pixel-height) 2160) 200) ;; uhd benq monitor
+				  ((eq (display-pixel-height) 2160) 160) ;; uhd benq monitor
 				  (t 160))
                     :weight 'normal
                     :width 'normal)
@@ -30,6 +17,7 @@
 (load-library "50narrow")
 (load-library "50display-time")
 (load-library "50misc")
+(load-library "my-shell")
 
 (set-language-environment "UTF-8")
 (setq inhibit-splash-screen t)
@@ -44,6 +32,19 @@
 (setq undo-outer-limit 100000000)
 
 (setq-default frame-title-format (file-name-nondirectory (directory-file-name default-directory)))
+
+;;;;;;;;;;;;;;;;;;
+;; KEY BINDINGs ;;
+;;;;;;;;;;;;;;;;;;
+
+(define-key esc-map "M" 'manual-entry)
+(define-key esc-map "K" 'bury-buffer)
+(define-key esc-map "Z" 'my-shell)
+(define-key ctl-x-map "|" 'split-window-horizontally)
+(define-key ctl-x-map "\C-l" 'goto-line)
+(define-key ctl-x-map "\C-b" 'buffer-menu-other-window)
+(define-key esc-map "C" 'compile)
+(define-key global-map "\C-^" 'next-error)
 
 ;;;;;;;;;;;;;;;;;;;;
 ;; BEHAVIOR FIXES ;;
