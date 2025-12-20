@@ -2,28 +2,32 @@
   "Switch to an existing *shell* buffer with matching default directory,
 or create a new one if none found."
   (interactive)
-  (let* ((current-dir (expand-file-name default-directory))
-         (shell-buffer (best-shell current-dir)))
+  (let* ((child-buffer (current-buffer))
+	 (shell-buffer (best-shell child-buffer)))
     (if shell-buffer
         ;; If a matching shell buffer exists, switch to it
         (switch-to-buffer shell-buffer)
-      ;; Otherwise, create a new shell buffer in the current directory
-      (let ((default-directory current-dir))
+      ;; Otherwise, go to *shell* or create a new shell buffer in the
+      ;; current directory
+      (let ((default-directory (buffer-directory child-buffer)))
         (shell)))))
 
-(defun best-shell (child-path)
+(defun best-shell (child-buffer)
   "Return the buffer that is the best shell for a child path"
-  (let* ((buffers (buffer-list))
+  (let* ((child-path (buffer-directory child-buffer))
+	 (buffers (buffer-list))
 	 ; Zip each buffers with its working directory
          (pairs (zip buffers (mapcar #'buffer-directory buffers)))
 	 ; Filter out non-shells
 	 (shells (seq-filter #'is-shell-buffer pairs))
 	 ; Filter out non-parents
-	 (parents (seq-filter (lambda (x) (is-prefix-of (cdr x) child-path)) shells))
+	 (parents (seq-filter (lambda (x) (and (is-prefix-of (cdr x) child-path)
+					       (not (eq (car x) child-buffer)))) shells))
 	 ; The best shell is the parent with the longest path
-	 (best (max-by (lambda (pair) (length (cdr pair))) parents)))
+	 ;(best (max-by (lambda (pair) (length (cdr pair))) parents))
+	 (best (seq-sort-by (lambda (pair) (length (cdr pair))) #'> parents)))
     (princ (format "here: %s, parents: %s" child-path parents))
-    (car best)))
+    (car (car best))))
 
 (defun is-prefix-of (prefix string)
   "Return t if PREFIX is a prefix of STRING, nil otherwise."
