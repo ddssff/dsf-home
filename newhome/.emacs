@@ -246,3 +246,15 @@ If there is no associated filename, it finds the parent of (pwd)."
   (save-buffer)
   (shell-command (format "git add -A; git commit -a -m \" %s\"; git push &"
                      comment)))
+
+(defun sort-words-in-region (start end)
+  "Sort words alphabetically in the selected region."
+  (interactive "r")
+  (let* ((text (buffer-substring-no-properties start end))
+         (words (split-string text))
+         (sorted-words (sort words #'string-collate-lessp))
+         (sorted-text (mapconcat #'identity sorted-words " ")))
+    (delete-region start end)
+    (insert sorted-text)))
+
+(define-key esc-map "W" 'sort-words-in-region)
