@@ -229,11 +229,11 @@ If there is no associated filename, it finds the parent of (pwd)."
 ;; HASKELL ;;
 ;;;;;;;;;;;;;
 
-; (cond
-;  ((file-exists-p "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
-;   (add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
-;   (require 'haskell-mode)
-;   (defun haskell-mode-after-save-handler ())))
+(cond
+ ((file-exists-p "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
+  (add-to-list 'load-path "~dsf/.nix-profile/share/emacs/site-lisp/elpa/haskell-mode-20181122.23")
+  (require 'haskell-mode)
+  (defun haskell-mode-after-save-handler ())))
 
 (unless (fboundp 'haskell-mode-after-save-handler)
   (defun haskell-mode-after-save-handler () nil))
