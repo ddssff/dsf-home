@@ -1,0 +1,3 @@
+% nix develop ~/git/sr-flake/sr-hix#seereason
+% nix develop -j1 ~/git/sr-flake/sr-hix#seereason
+% nix build ~/git/sr-flake/sr-hix#seereason

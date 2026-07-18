@@ -1,0 +1,5 @@
+1. Run on local machine (g13)
+2. log into web site
+3. make sure claude is updated
+4. run "claude", "/login" and it tries to open the browser
+5. Tell it to look in a directory
