@@ -1,3 +1,43 @@
 % nix develop ~/git/sr-flake/sr-hix#seereason
+% cabal build
+
 % nix develop -j1 ~/git/sr-flake/sr-hix#seereason
+% nix develop ~/git/sr-flake/sr-hix#Unixutils
 % nix build ~/git/sr-flake/sr-hix#seereason
+% (pushd ~/git/sr-flake/sr-hix && nix flake update alderon2 && nix flake update seereason && nix flake update happstack-ghcjs)
+
+% nix build -L ~/git/sr-flake/sr-hix#appraisalscribe3-server && ./result/bin/appraisalscribe3-server --hostname g13.local --top /home/dsf/appraisalscribe3-development
+
+% nix build --show-trace
+% nix develop -L --show-trace /home/dsf/git/sr-flake/sr-hix#appraisalscribe-types-js
+
+% nix develop -L ~/git/sr-flake/sr-hix#appraisalscribe-types \
+   --override-input editor-client-six /home/dsf/git/editor-client.ghc9-mark-6 \
+   --override-input alderon2 /home/dsf/git/alderon2.ghc9 \
+   --override-input webmodule /home/dsf/git/webmodule.ghc9 \
+   --override-input seereason /home/dsf/git/seereason.ghc9 \
+   --override-input appraisalscribe-types /home/dsf/git/happstack-ghcjs.ghc9 \
+   --override-input appraisalscribe-tests /home/dsf/git/happstack-ghcjs.ghc9 \
+   --override-input happstack-ghcjs /home/dsf/git/happstack-ghcjs.ghc9 \
+   --override-input happstack-ghcjs-server /home/dsf/git/happstack-ghcjs.ghc9
+
+nix develop -L --show-trace /home/dsf/git/sr-flake/sr-hix#appraisalscribe-types-js
+ --override-input alderon2 /home/dsf/git/alderon2.ghc9
+ --override-input appraisalscribe-tests /home/dsf/git/happstack-ghcjs.ghc9
+ --override-input appraisalscribe-types /home/dsf/git/happstack-ghcjs.ghc9
+ --override-input extra /home/dsf/git/extra
+ --override-input happstack-ghjcs /home/dsf/git/happstack-ghcjs.ghc9
+ --override-input happstack-ghjcs-server /home/dsf/git/happstack-ghcjs.ghc9
+ --override-input html-entity /home/dsf/git/html-entity
+ --override-input html-entity /home/dsf/git/html-parse
+ --override-input image-cache /home/dsf/git/image-cache.ghc9
+ --override-input lens-path /home/dsf/git/lens-path.ghc9
+ --override-input seereason /home/dsf/git/seereason.ghc9
+ --override-input sr-order /home/dsf/git/sr-order
+ --override-input webmodule /home/dsf/git/webmodule.ghc9
+
+----------- to run ghci on server:
+nix develop -L ~/git/sr-flake/sr-hix#happstack-ghcjs-server
+
+
+sudo systemctl restart appraisalscribe
