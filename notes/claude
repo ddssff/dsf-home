@@ -5,3 +5,6 @@
 5. Tell it to look in a directory
 
 How do I run from inside emacs?
+
+M-x agent-shell
+choose Claude
