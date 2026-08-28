@@ -10,6 +10,8 @@
                     :weight 'normal
                     :width 'normal)
 
+(setq-default initial-frame-alist '((width . 120) (height . 40)))
+
 ;; My vc-git package
 
 (add-to-list 'load-path "~dsf/elisp")
