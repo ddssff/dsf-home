@@ -10,6 +10,8 @@
                     :weight 'normal
                     :width 'normal)
 
+(tool-bar-mode -1)
+
 ;; My vc-git package
 
 (add-to-list 'load-path "~dsf/elisp")
