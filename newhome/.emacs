@@ -33,7 +33,7 @@
 ; (setq sort-fold-case t)
 (setq undo-outer-limit 100000000)
 
-(setq-default frame-title-format (file-name-nondirectory (directory-file-name default-directory)))
+; (setq-default frame-title-format (file-name-nondirectory (directory-file-name default-directory)))
 
 ;;;;;;;;;;;;;;;;;;
 ;; KEY BINDINGs ;;
@@ -266,3 +266,19 @@ If there is no associated filename, it finds the parent of (pwd)."
     (insert sorted-text)))
 
 (define-key esc-map "W" 'sort-words-in-region)
+(custom-set-variables
+ ;; custom-set-variables was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(display-time-format (concat "dsf" "@" "presto" " - %H:%M%p"))
+ '(display-time-interval 10)
+ '(ignored-local-variable-values
+   '((haskell-process-args-cabal-repl "--project-file=server.project")
+     (haskell-process-type . cabal-repl))))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ )
