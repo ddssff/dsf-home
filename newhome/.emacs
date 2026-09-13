@@ -10,6 +10,7 @@
                     :weight 'normal
                     :width 'normal)
 
+(tool-bar-mode -1)
 (setq-default initial-frame-alist '((width . 120) (height . 40)))
 
 ;; My vc-git package
