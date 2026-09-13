@@ -4,6 +4,22 @@
 4. run "claude", "/login" and it tries to open the browser
 5. Tell it to look in a directory
 
+---------
+
+go to g13, update, start emacs, run agent-shell - what agent? - Claude (tab for a list)
+
+------------
+
+pull sr-nixos-config, switch, makes M-x agent-shell claude
+/add <dir>
+ell it to git add but not commit
+ask it to evaluation something and come up with a plan
+"how feasable to do xxx"
+
+there's an option to have it run sanity checks
+
+---------
+
 How do I run from inside emacs?
 
 M-x agent-shell
