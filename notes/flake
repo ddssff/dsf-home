@@ -6,8 +6,8 @@
 % nix build ~/git/sr-flake/sr-hix#seereason
 % (pushd ~/git/sr-flake/sr-hix && for i in alderon2 appraisalscribe-tests appraisalscribe-types chili happstack-ghcjs happstack-ghcjs-server history image-cache lens-path seereason sr-errors sr-log sr-order sr-utils webmodule editor-client-six editor-server; do nix flake update $i; done)
 
-% nix build -L ~/git/sr-flake/sr-hix#appraisalscribe3-server && ./result/bin/appraisalscribe3-server --hostname presto.local --top /home/dsf/appraisalscribe3-development
-% nix build -L --override-input appraisalscribe-tests /home/dsf/git/happstack-ghcjs.ghc9 --override-input appraisalscribe-types /home/dsf/git/happstack-ghcjs.ghc9 --override-input happstack-ghjcs /home/dsf/git/happstack-ghcjs.ghc9 --override-input happstack-ghjcs-server /home/dsf/git/happstack-ghcjs.ghc9 --override-input seereason /home/dsf/git/seereason.ghc9 ~/git/sr-flake/sr-hix#appraisalscribe3-server && ./result/bin/appraisalscribe3-server --hostname presto.local --top /home/dsf/appraisalscribe3-development
+% nix build -L ~/git/sr-flake/sr-hix#appraisalscribe3-server && ./result/bin/appraisalscribe3-server --hostname presto --top /home/dsf/appraisalscribe3-development
+% nix build -L --override-input appraisalscribe-tests /home/dsf/git/happstack-ghcjs.ghc9 --override-input appraisalscribe-types /home/dsf/git/happstack-ghcjs.ghc9/appraisalscribe-types --override-input happstack-ghjcs /home/dsf/git/happstack-ghcjs.ghc9 --override-input happstack-ghjcs-server /home/dsf/git/happstack-ghcjs.ghc9 --override-input seereason /home/dsf/git/seereason.ghc9 ~/git/sr-flake/sr-hix#appraisalscribe3-server && ./result/bin/appraisalscribe3-server --hostname presto.local --top /home/dsf/appraisalscribe3-development
 
 % nix build --show-trace
 % nix develop -L --show-trace /home/dsf/git/sr-flake/sr-hix#appraisalscribe-types-js
@@ -44,3 +44,8 @@ sudo systemctl restart appraisalscribe
 --- deploy alpha-ghc9
 
 cd sr-flake/alpha-ghc9   ; nix flake update; ./deploy.sh
+
+
+nix build -L ~/git/sr-flake/sr-hix#seereason-js --override-input seereason /home/dsf/git/seereason.ghc9
+nix build -L ~/git/sr-flake/sr-hix#appraisalscribe-types-js --override-input seereason /home/dsf/git/seereason.ghc9 --override-input appraisalscribe-types /home/dsf/git/happstack-ghcjs.ghc9/appraisalscribe-types
+nix build -L ~/git/sr-flake/sr-hix#happsack-ghcjs-js --override-input seereason /home/dsf/git/seereason.ghc9 --override-input appraisalscribe-types /home/dsf/git/happstack-ghcjs.ghc9/appraisalscribe-types --override-input happsack-ghcjs happstack-ghjcs /home/dsf/git/happstack-ghcjs.ghc9

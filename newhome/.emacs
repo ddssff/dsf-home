@@ -27,7 +27,7 @@
 (setq-default show-trailing-whitespace t)
 (setq require-final-newline nil)
 ; (setq isearch-lax-whitespace nil)
-(setq grep-command "grep -r -n --exclude-dir=dist-newstyle -e ")
+(setq grep-command "~/git/dsf-home/bin/grep.hs ")
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq visible-bell t)
@@ -144,35 +144,36 @@ documentation for additional customization information."
 
 (setq compilation-search-path
       '("."
+        "alderon2"
         "seereason"
         "appraisalscribe-types"
         "happstack-ghcjs-server/tools"
-	"../webmodule"
-	"../image-cache"
-	"../alderon2"
-	"../history"
-	"../lens-path"
-	"../sr-extra"
-	"../sr-cache"
-	"../chili"
-	"../.."
-	"../../webmodule"
-	"../../image-cache"
-	"../../alderon2"
-	"../../history"
-	"../../lens-path"
-	"../../sr-extra"
-	"../../sr-cache"
-	"../../chili"
-	"../.."
-	"../../../webmodule"
-	"../../../image-cache"
-	"../../../alderon2"
-	"../../../history"
-	"../../../lens-path"
-	"../../../sr-extra"
-	"../../../sr-cache"
-	"../../../chili"
+	;; "../webmodule"
+	;; "../image-cache"
+	;; "../alderon2"
+	;; "../history"
+	;; "../lens-path"
+	;; "../sr-extra"
+	;; "../sr-cache"
+	;; "../chili"
+	;; "../.."
+	;; "../../webmodule"
+	;; "../../image-cache"
+	;; "../../alderon2"
+	;; "../../history"
+	;; "../../lens-path"
+	;; "../../sr-extra"
+	;; "../../sr-cache"
+	;; "../../chili"
+	;; "../.."
+	;; "../../../webmodule"
+	;; "../../../image-cache"
+	;; "../../../alderon2"
+	;; "../../../history"
+	;; "../../../lens-path"
+	;; "../../../sr-extra"
+	;; "../../../sr-cache"
+	;; "../../../chili"
 	))
 
 ;;;;;;;;;;;
@@ -283,3 +284,10 @@ If there is no associated filename, it finds the parent of (pwd)."
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  )
+
+;; haskell.nix's tools.haskell-language-server builds a plain
+;; `haskell-language-server` exe, not the ghcup-style
+;; `haskell-language-server-wrapper` eglot defaults to.
+(with-eval-after-load 'eglot
+  (add-to-list 'eglot-server-programs
+               '(haskell-mode . ("haskell-language-server" "--lsp"))))
