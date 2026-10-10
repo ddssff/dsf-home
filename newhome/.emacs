@@ -1,5 +1,6 @@
-;; Set font size according to screen height
+;; -*- lexical-binding: t; -*-
 
+;; Set font size according to screen height
 (set-face-attribute 'default nil
                     :family "Monospace"
                     :height (cond ((eq (display-pixel-height) 1080) 110) ;; thinkpad g10?
@@ -27,7 +28,8 @@
 (setq-default show-trailing-whitespace t)
 (setq require-final-newline nil)
 ; (setq isearch-lax-whitespace nil)
-(setq grep-command "~/git/dsf-home/bin/grep.hs ")
+; (setq grep-command "grep.hs ")
+(setq grep-command "grep -r -n --exclude-dir=dist-* --exclude-dir=.git -e ")
 (put 'downcase-region 'disabled nil)
 (put 'upcase-region 'disabled nil)
 (setq visible-bell t)
@@ -291,3 +293,13 @@ If there is no associated filename, it finds the parent of (pwd)."
 (with-eval-after-load 'eglot
   (add-to-list 'eglot-server-programs
                '(haskell-mode . ("haskell-language-server" "--lsp"))))
+
+;;;;;;;;;;
+;; TAGS ;;
+;;;;;;;;;;
+
+(setq tags-revert-without-query t)
+(define-key esc-map ";" 'fileloop-continue)
+(custom-set-variables
+ '(safe-local-variable-values
+   '((tags-table-list "/home/dsf/git/happstack-ghcjs.ghc9/TAGS"))))

@@ -25,5 +25,6 @@
 
 (if window-system
     (progn
+      (menu-bar-mode -1) ; Uncouple f10 from menu-bar-open
       (global-set-key [f9] 'backward-narrowed-page)
       (global-set-key [f10] 'forward-narrowed-page)))

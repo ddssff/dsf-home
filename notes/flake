@@ -48,4 +48,4 @@ cd sr-flake/alpha-ghc9   ; nix flake update; ./deploy.sh
 
 nix build -L ~/git/sr-flake/sr-hix#seereason-js --override-input seereason /home/dsf/git/seereason.ghc9
 nix build -L ~/git/sr-flake/sr-hix#appraisalscribe-types-js --override-input seereason /home/dsf/git/seereason.ghc9 --override-input appraisalscribe-types /home/dsf/git/happstack-ghcjs.ghc9/appraisalscribe-types
-nix build -L ~/git/sr-flake/sr-hix#happsack-ghcjs-js --override-input seereason /home/dsf/git/seereason.ghc9 --override-input appraisalscribe-types /home/dsf/git/happstack-ghcjs.ghc9/appraisalscribe-types --override-input happsack-ghcjs happstack-ghjcs /home/dsf/git/happstack-ghcjs.ghc9
+nix build -L ~/git/sr-flake/sr-hix#happstack-ghcjs-js --override-input seereason /home/dsf/git/seereason.ghc9 --override-input appraisalscribe-types /home/dsf/git/happstack-ghcjs.ghc9/appraisalscribe-types --override-input happsack-ghcjs happstack-ghjcs /home/dsf/git/happstack-ghcjs.ghc9
