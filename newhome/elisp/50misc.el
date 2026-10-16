@@ -4,6 +4,8 @@
 
 
 
+(add-hook 'outline-mode-hook (lambda () (outline-hide-body)))
+
 ;;
 ;; From cmu's comint.el -- This should be in emacs, but it isn't.
 ;;
