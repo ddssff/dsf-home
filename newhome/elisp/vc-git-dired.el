@@ -176,7 +176,7 @@ before it is modified.")
     (erase-buffer)
     (let ((default-directory directory)
 	  (s0 (buffer-string)))
-      (vc-git-command buffer 0 nil "status" "-b" "--porcelain" "-u" "--ignored" ".")
+      (vc-git-command buffer 0 nil "status" "-b" "--porcelain" "-unormal" "--ignored" ".")
       (parse-git-status-porcelain (buffer-string)))))
 
 (defun parse-git-remote-show-origin ()
