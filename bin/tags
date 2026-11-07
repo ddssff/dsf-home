@@ -1,0 +1,5 @@
+#!/bin/sh
+
+fast-tags -e -R --nomerge -o TAGS \
+  --exclude=dist-native --exclude=dist-wasm --exclude=dist-javascript --exclude=dist-newstyle --exclude=ZZZ \
+  src appraisalscribe-types/src appraisalscribe-tests/src happstack-ghcjs-server seereason/src alderon2/src
