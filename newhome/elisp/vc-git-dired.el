@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (require 'vc-git)
 (require 'dired)
 (require 'dired-aux)

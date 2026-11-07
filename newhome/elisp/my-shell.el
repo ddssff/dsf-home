@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (defun my-shell ()
   "Switch to an existing *shell* buffer with matching default directory,
 or create a new one if none found."

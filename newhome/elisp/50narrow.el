@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 (defun forward-narrowed-page (num)
   (interactive "p")
   (beginning-of-buffer)	; Not sure this is necessary.

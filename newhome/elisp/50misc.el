@@ -1,3 +1,4 @@
+;; -*- lexical-binding: t; -*-
 ;; misc.el
 
 ;;;;;;;;;;;;;; Some Functions ;;;;;;;;;;;;;; 
